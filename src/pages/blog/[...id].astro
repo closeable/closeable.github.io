@@ -1,0 +1,75 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllPosts, formatDateCN, readingTime, tagUrl, categoryUrl, type Post } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post, index) => ({
+    params: { id: post.id },
+    props: {
+      post,
+      newer: posts[index - 1] ?? null,
+      older: posts[index + 1] ?? null,
+    },
+  }));
+}
+
+interface Props { post: Post; newer: Post | null; older: Post | null; }
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post);
+const minutes = readingTime(post.body ?? '');
+---
+
+<BaseLayout title={`${post.data.title} · Lumen`} description={post.data.description}>
+  <div class="container article-layout">
+    <article class="article-main">
+      <header class="article-header">
+        <a class="badge" href={categoryUrl(post.data.category)}>{post.data.category}</a>
+        <h1>{post.data.title}</h1>
+        <div class="article-meta">
+          <time datetime={post.data.pubDate.toISOString()}>{formatDateCN(post.data.pubDate)}</time>
+          <span class="sep"></span>
+          <span>约 {minutes} 分钟阅读</span>
+          {post.data.updatedDate && (
+            <>
+              <span class="sep"></span>
+              <span>更新于 {formatDateCN(post.data.updatedDate)}</span>
+            </>
+          )}
+        </div>
+      </header>
+
+      <p class="article-lead">{post.data.description}</p>
+      <div class="prose"><Content /></div>
+
+      <div class="article-footer">
+        {post.data.tags.map((tag) => <a class="tag" href={tagUrl(tag)}>#{tag}</a>)}
+      </div>
+
+      <nav class="post-nav" aria-label="文章导航">
+        {newer ? (
+          <a href={`/blog/${newer.id}/`}>
+            <span>← 更新一篇</span><strong>{newer.data.title}</strong>
+          </a>
+        ) : <span></span>}
+        {older && (
+          <a class="next" href={`/blog/${older.id}/`}>
+            <span>更早一篇 →</span><strong>{older.data.title}</strong>
+          </a>
+        )}
+      </nav>
+    </article>
+
+    {headings.length > 0 && (
+      <aside class="toc" aria-label="文章目录">
+        <div class="toc-title">本页目录</div>
+        <ul>
+          {headings.filter((h) => h.depth <= 3).map((h) => (
+            <li class={`level-${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+          ))}
+        </ul>
+      </aside>
+    )}
+  </div>
+</BaseLayout>

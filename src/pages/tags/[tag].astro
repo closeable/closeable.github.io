@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllPosts, formatDate, type Post } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  const tags = new Set(posts.flatMap((p) => p.data.tags));
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: { tag, items: posts.filter((p) => p.data.tags.includes(tag)) },
+  }));
+}
+
+interface Props { tag: string; items: Post[]; }
+const { tag, items } = Astro.props;
+---
+
+<BaseLayout title={`#${tag} · Lumen`} description={`标签 #${tag} 下的全部文章。`}>
+  <div class="container">
+    <div class="page-head">
+      <h1>#{tag}</h1>
+      <p>共 {items.length} 篇文章。</p>
+    </div>
+    <div class="row-list">
+      {items.map((post) => (
+        <a class="row" href={`/blog/${post.id}/`}>
+          <span class="row-date">{formatDate(post.data.pubDate)}</span>
+          <span class="row-title">{post.data.title}</span>
+          <span class="row-cat">{post.data.category}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

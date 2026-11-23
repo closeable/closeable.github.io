@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getAllPosts, groupBy } from '../../utils/posts';
+
+const posts = await getAllPosts();
+const categories = [...groupBy(posts, (p) => p.data.category).entries()]
+  .map(([name, items]) => ({ name, count: items.length }))
+  .sort((a, b) => b.count - a.count);
+---
+
+<BaseLayout title="文章 · Lumen" description="所有文章，按分类筛选或搜索。">
+  <div class="container">
+    <div class="page-head">
+      <h1>全部文章</h1>
+      <p>共 {posts.length} 篇记录。可按分类筛选，或直接搜索标题、摘要与标签。</p>
+    </div>
+
+    <div class="toolbar">
+      <button class="filter-btn active" data-filter="all">全部 {posts.length}</button>
+      {categories.map((c) => (
+        <button class="filter-btn" data-filter={c.name}>{c.name} {c.count}</button>
+      ))}
+      <input class="search-input" id="search" type="search" placeholder="搜索文章…" aria-label="搜索文章" />
+    </div>
+
+    <div class="post-grid" id="post-grid">
+      {posts.map((post) => (
+        <div
+          class="card-wrap"
+          style="display:flex"
+          data-category={post.data.category}
+          data-search={`${post.data.title} ${post.data.description} ${post.data.tags.join(' ')}`.toLowerCase()}
+        >
+          <PostCard post={post} />
+        </div>
+      ))}
+    </div>
+    <p class="empty" id="empty" hidden>没有找到匹配的文章，换个关键词试试。</p>
+  </div>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const input = document.getElementById('search') as HTMLInputElement | null;
+  const cards = document.querySelectorAll<HTMLElement>('.card-wrap');
+  const empty = document.getElementById('empty');
+  let active = 'all';
+
+  function apply() {
+    const keyword = (input?.value ?? '').trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((card) => {
+      const matchCategory = active === 'all' || card.dataset.category === active;
+      const matchText = !keyword || (card.dataset.search ?? '').includes(keyword);
+      const show = matchCategory && matchText;
+      card.style.display = show ? 'flex' : 'none';
+      if (show) visible++;
+    });
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  buttons.forEach((btn) => btn.addEventListener('click', () => {
+    buttons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    active = btn.dataset.filter ?? 'all';
+    apply();
+  }));
+  input?.addEventListener('input', apply);
+</script>

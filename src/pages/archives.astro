@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllPosts, groupBy, formatDate, type Post } from '../utils/posts';
+
+const posts = await getAllPosts();
+const years = [...groupBy(posts, (p) => String(p.data.pubDate.getFullYear())).entries()]
+  .sort((a, b) => Number(b[0]) - Number(a[0]));
+---
+
+<BaseLayout title="归档 · Lumen" description="按时间浏览全部文章。">
+  <div class="container">
+    <div class="page-head"><h1>归档</h1><p>共 {posts.length} 篇文章，按年份排列。</p></div>
+    {years.map(([year, items]) => (
+      <section class="group">
+        <h2 class="group-title">{year}<span class="count">{items.length}</span></h2>
+        <div class="row-list">
+          {items.map((post) => (
+            <a class="row" href={`/blog/${post.id}/`}>
+              <span class="row-date">{formatDate(post.data.pubDate).slice(5)}</span>
+              <span class="row-title">{post.data.title}</span>
+              <span class="row-cat">{post.data.category}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

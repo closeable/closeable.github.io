@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllPosts, groupBy, formatDate, accentFor, type Post } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  const groups = groupBy(posts, (p) => p.data.category);
+  return [...groups.entries()].map(([category, items]) => ({
+    params: { category },
+    props: { category, items },
+  }));
+}
+
+interface Props { category: string; items: Post[]; }
+const { category, items } = Astro.props;
+---
+
+<BaseLayout title={`${category} · Lumen`} description={`${category} 分类下的全部文章。`}>
+  <div class="container">
+    <div class="page-head">
+      <h1>{category}</h1>
+      <p>共 {items.length} 篇文章。</p>
+    </div>
+    <div class="row-list">
+      {items.map((post) => (
+        <a class="row" href={`/blog/${post.id}/`}>
+          <span class="row-date">{formatDate(post.data.pubDate)}</span>
+          <span class="row-title">{post.data.title}</span>
+          <span class="row-cat" style={`color:${accentFor(post.data.category)}`}>
+            {post.data.tags[0] ? `#${post.data.tags[0]}` : ''}
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

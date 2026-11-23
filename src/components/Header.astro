@@ -1,0 +1,63 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: '首页' },
+  { href: '/blog/', label: '文章' },
+  { href: '/categories/', label: '分类' },
+  { href: '/tags/', label: '标签' },
+  { href: '/archives/', label: '归档' },
+  { href: '/about/', label: '关于' },
+];
+const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="返回首页">
+      <span class="brand-mark">L</span>
+      <span>Lumen <small>技术手记</small></span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="主导航">
+      {links.map((link) => (
+        <a class="nav-link" href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <button class="icon-btn" id="theme-toggle" aria-label="切换深色模式" title="切换主题">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <button class="icon-btn mobile-toggle" id="mobile-toggle" aria-label="展开菜单" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<style>
+  .icon-sun { display: none; }
+  :global([data-theme='dark']) .icon-sun { display: block; }
+  :global([data-theme='dark']) .icon-moon { display: none; }
+</style>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  toggle?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
+
+  const menuBtn = document.getElementById('mobile-toggle');
+  const nav = document.getElementById('site-nav');
+  menuBtn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  nav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menuBtn?.setAttribute('aria-expanded', 'false');
+  }));
+</script>

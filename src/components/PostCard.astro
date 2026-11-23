@@ -1,0 +1,23 @@
+---
+import type { Post } from '../utils/posts';
+import { formatDate, readingTime, categoryUrl, tagUrl } from '../utils/posts';
+
+interface Props { post: Post; }
+const { post } = Astro.props;
+const { data } = post;
+---
+
+<article class="post-card">
+  <div class="card-top">
+    <a class="badge" href={categoryUrl(data.category)}>{data.category}</a>
+    <time class="card-date" datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
+  </div>
+  <h3><a href={`/blog/${post.id}/`}>{data.title}</a></h3>
+  <p>{data.description}</p>
+  <div class="card-bottom">
+    <div class="tag-list">
+      {data.tags.slice(0, 3).map((tag) => <a class="tag" href={tagUrl(tag)}>#{tag}</a>)}
+    </div>
+    <span class="read-time">{readingTime(post.body ?? '')} 分钟</span>
+  </div>
+</article>
