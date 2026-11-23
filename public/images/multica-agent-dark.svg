@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 462" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="462" fill="#1f1c17"/>
+<text x="380" y="44" font-size="21" fill="#e9e3d5" font-weight="700" text-anchor="middle">智能体 = 一份配置：skill 复用，小队协同</text>
+<rect x="38" y="160" width="146" height="92" rx="4" fill="#33291c"/>
+<path d="M34.9 158.8 L 72.4 158.1 L 109.9 159.1 L 147.4 158.3 L 184.9 159.2" fill="none" stroke="#d9a05c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M34.9 158.8 L 72.4 159.7 L 109.9 159.2 L 147.4 160.3 L 184.9 159.2" fill="none" stroke="#d9a05c" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M186.4 159.2 L 185.5 183.1 L 186.3 207.0 L 187.2 230.9 L 186.6 254.9" fill="none" stroke="#d9a05c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M186.4 159.2 L 185.6 183.1 L 188.2 207.0 L 186.5 230.9 L 186.6 254.9" fill="none" stroke="#d9a05c" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M186.0 255.2 L 148.7 255.6 L 111.4 254.4 L 74.1 255.0 L 36.8 254.8" fill="none" stroke="#d9a05c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M186.0 255.2 L 148.7 256.0 L 111.4 256.7 L 74.1 254.5 L 36.8 254.8" fill="none" stroke="#d9a05c" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M35.2 253.1 L 36.2 229.2 L 37.0 205.3 L 35.6 181.4 L 36.8 157.5" fill="none" stroke="#d9a05c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M35.2 253.1 L 36.8 229.2 L 37.8 205.3 L 36.3 181.4 L 36.8 157.5" fill="none" stroke="#d9a05c" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="111" y="192" font-size="14.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">Skill 库</text>
+<text x="111" y="214" font-size="11" fill="#9a9287" font-weight="400" text-anchor="middle">“这类活怎么做”</text>
+<text x="111" y="233" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">可挂载给多个智能体</text>
+<rect x="270" y="94" width="186" height="96" rx="4" fill="#1e2a3a"/>
+<path d="M267.0 91.3 L 314.6 90.9 L 362.2 93.0 L 409.8 92.7 L 457.4 93.0" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M267.0 91.3 L 314.6 92.7 L 362.2 93.3 L 409.8 91.5 L 457.4 93.0" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M459.2 93.1 L 459.4 118.0 L 458.6 143.0 L 458.4 168.0 L 458.9 192.9" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M459.2 93.1 L 458.9 118.0 L 459.1 143.0 L 460.2 168.0 L 458.9 192.9" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M458.3 190.8 L 411.0 190.3 L 363.7 192.2 L 316.4 192.2 L 269.0 191.9" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M458.3 190.8 L 411.0 191.1 L 363.7 190.6 L 316.4 192.5 L 269.0 191.9" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M267.5 191.3 L 268.0 166.1 L 266.8 141.0 L 267.4 115.9 L 268.0 90.8" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M267.5 191.3 L 268.2 166.1 L 267.4 141.0 L 267.6 115.9 L 268.0 90.8" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="363" y="120" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">智能体 A</text>
+<text x="363" y="140" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">指令：“是谁” · 模型</text>
+<text x="363" y="158" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">运行时：在哪执行</text>
+<text x="363" y="178" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">写周报的运营助手</text>
+<rect x="270" y="228" width="186" height="96" rx="4" fill="#1e2a3a"/>
+<path d="M267.4 226.2 L 315.4 225.6 L 363.4 227.0 L 411.3 227.0 L 459.3 226.0" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M267.4 226.2 L 315.4 227.2 L 363.4 224.5 L 411.3 226.5 L 459.3 226.0" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M458.0 226.6 L 458.4 251.2 L 456.2 275.7 L 457.1 300.3 L 456.8 324.8" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M458.0 226.6 L 458.2 251.2 L 457.9 275.7 L 457.9 300.3 L 456.8 324.8" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M457.2 325.7 L 409.8 326.3 L 362.4 323.9 L 314.9 324.8 L 267.5 324.8" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M457.2 325.7 L 409.8 325.2 L 362.4 325.8 L 314.9 325.5 L 267.5 324.8" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M268.2 326.1 L 267.8 300.9 L 267.8 275.8 L 267.1 250.7 L 267.0 225.6" fill="none" stroke="#7aa6e8" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M268.2 326.1 L 267.8 300.9 L 266.7 275.8 L 268.3 250.7 L 267.0 225.6" fill="none" stroke="#7aa6e8" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="363" y="254" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">智能体 B</text>
+<text x="363" y="274" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">指令：“是谁” · 模型</text>
+<text x="363" y="292" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">运行时：在哪执行</text>
+<text x="363" y="312" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">盯 PR 的代码助手</text>
+<path d="M 188 190 Q 227.4 165.7 266 136" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round" />
+<path d="M266.0 136.0 L 265.2 138.1 L 264.2 140.1 L 262.6 141.8 L 261.7 143.9" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M266.0 136.0 L 263.8 136.7 L 261.7 137.2 L 259.5 138.0 L 257.3 138.1" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M 188 222 Q 226.1 246.4 266 268" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round" />
+<path d="M266.0 268.0 L 263.7 268.0 L 261.5 267.5 L 259.3 267.6 L 257.0 267.3" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M266.0 268.0 L 264.9 266.0 L 263.4 264.4 L 262.1 262.5 L 260.5 260.9" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<text x="206" y="164" font-size="11.5" fill="#d9a05c" font-weight="400" text-anchor="start">挂载</text>
+<text x="206" y="250" font-size="11.5" fill="#d9a05c" font-weight="400" text-anchor="start">挂载</text>
+<rect x="532" y="78" width="200" height="264" rx="4" fill="#1e2f24"/>
+<path d="M529.1 75.3 L 580.2 74.9 L 631.3 75.5 L 682.4 75.3 L 733.5 76.2" fill="none" stroke="#7dbb8f" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M529.1 75.3 L 580.2 75.5 L 631.3 75.0 L 682.4 75.5 L 733.5 76.2" fill="none" stroke="#7dbb8f" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M733.5 74.9 L 734.5 142.4 L 733.1 209.9 L 733.5 277.4 L 734.7 344.9" fill="none" stroke="#7dbb8f" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M733.5 74.9 L 733.2 142.4 L 735.6 209.9 L 733.7 277.4 L 734.7 344.9" fill="none" stroke="#7dbb8f" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M734.9 343.5 L 683.5 343.2 L 632.1 344.7 L 580.7 344.7 L 529.2 345.0" fill="none" stroke="#7dbb8f" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M734.9 343.5 L 683.5 345.2 L 632.1 343.8 L 580.7 345.6 L 529.2 345.0" fill="none" stroke="#7dbb8f" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M531.2 344.7 L 530.1 277.5 L 529.2 210.3 L 530.7 143.0 L 529.6 75.8" fill="none" stroke="#7dbb8f" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M531.2 344.7 L 532.1 277.5 L 529.7 210.3 L 529.0 143.1 L 529.6 75.8" fill="none" stroke="#7dbb8f" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="632" y="104" font-size="14" fill="#7dbb8f" font-weight="700" text-anchor="middle">小队</text>
+<rect x="554" y="120" width="156" height="50" rx="4" fill="#1f1c17"/>
+<path d="M551.3 118.4 L 591.2 118.3 L 631.0 118.8 L 670.9 118.8 L 710.7 117.8" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M551.3 118.4 L 591.2 118.1 L 631.0 118.2 L 670.9 116.7 L 710.7 117.8" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M711.2 119.1 L 712.1 132.1 L 713.2 145.1 L 712.0 158.1 L 713.0 171.1" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M711.2 119.1 L 710.8 132.2 L 712.8 145.1 L 713.9 158.0 L 713.0 171.1" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M712.9 171.2 L 672.8 172.0 L 632.6 173.0 L 592.4 172.7 L 552.2 172.1" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M712.9 171.2 L 672.8 172.5 L 632.6 169.9 L 592.4 170.9 L 552.2 172.1" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M552.6 171.7 L 551.6 158.0 L 552.0 144.4 L 551.8 130.7 L 550.8 117.1" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M552.6 171.7 L 552.8 158.0 L 550.9 144.4 L 550.5 130.7 L 550.8 117.1" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="632" y="140" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">leader 智能体</text>
+<text x="632" y="158" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">领任务 · 拆解 · 协调</text>
+<rect x="554" y="202" width="72" height="58" rx="4" fill="#1f1c17"/>
+<path d="M552.6 198.9 L 571.4 199.4 L 590.2 198.8 L 609.0 199.6 L 627.8 199.2" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M552.6 198.9 L 571.4 199.8 L 590.2 198.4 L 609.0 198.6 L 627.8 199.2" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M629.2 200.9 L 629.4 216.0 L 628.7 231.0 L 627.9 246.0 L 627.1 261.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M629.2 200.9 L 628.0 215.9 L 629.9 231.0 L 628.0 246.0 L 627.1 261.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M629.1 261.4 L 609.6 261.2 L 590.2 261.1 L 570.7 262.3 L 551.3 262.1" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M629.1 261.4 L 609.6 261.6 L 590.2 263.7 L 570.7 262.9 L 551.3 262.1" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M552.3 260.8 L 552.5 245.7 L 552.8 230.6 L 552.1 215.6 L 551.0 200.5" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M552.3 260.8 L 551.1 245.8 L 553.0 230.6 L 550.4 215.6 L 551.0 200.5" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="590" y="226" font-size="11.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">成员</text>
+<text x="590" y="244" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">agent</text>
+<rect x="638" y="202" width="72" height="58" rx="4" fill="#1f1c17"/>
+<path d="M637.0 199.2 L 656.0 200.4 L 674.9 199.5 L 693.9 199.2 L 712.8 200.4" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M637.0 199.2 L 656.0 200.5 L 674.9 200.0 L 693.9 199.4 L 712.8 200.4" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M710.9 200.3 L 710.6 215.4 L 711.8 230.6 L 711.0 245.7 L 711.7 260.8" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M710.9 200.3 L 710.4 215.4 L 712.1 230.6 L 712.8 245.7 L 711.7 260.8" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M712.4 262.4 L 693.2 261.7 L 674.0 261.6 L 654.9 261.0 L 635.7 260.9" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M712.4 262.4 L 693.2 261.3 L 674.0 262.2 L 654.9 261.2 L 635.7 260.9" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M637.2 262.7 L 637.4 246.8 L 636.7 230.9 L 635.2 215.0 L 635.1 199.1" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M637.2 262.7 L 637.9 246.8 L 636.8 230.9 L 634.6 215.1 L 635.1 199.1" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="674" y="226" font-size="11.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">成员</text>
+<text x="674" y="244" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">人类</text>
+<path d="M 600 174 Q 594.2 186.4 592 198" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round" />
+<path d="M592.0 198.0 L 591.8 195.7 L 591.5 193.5 L 590.2 191.5 L 589.9 189.2" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M592.0 198.0 L 593.2 196.1 L 594.4 194.2 L 596.1 192.6 L 597.1 190.6" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 664 174 Q 666.4 184.7 672 198" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round" />
+<path d="M672.0 198.0 L 670.3 196.5 L 668.7 194.9 L 667.3 193.2 L 665.4 191.8" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M672.0 198.0 L 672.4 195.8 L 671.8 193.5 L 672.4 191.3 L 672.2 189.0" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 460 148 Q 494.0 150.4 528 158" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M528.0 158.0 L 525.8 158.7 L 523.6 159.1 L 521.4 159.5 L 519.2 159.8" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M528.0 158.0 L 526.0 156.9 L 524.6 155.0 L 522.6 153.9 L 520.8 152.6" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M 460 276 Q 497.1 278.8 528 288" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M528.0 288.0 L 525.7 287.9 L 523.6 288.8 L 521.3 288.8 L 519.1 289.2" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M528.0 288.0 L 526.2 286.7 L 524.4 285.3 L 522.7 283.8 L 521.2 282.1" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="38" y="354" width="436" height="54" rx="4" fill="#2a2620"/>
+<path d="M35.1 352.3 L 145.5 352.4 L 255.9 351.2 L 366.2 352.5 L 476.6 351.4" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M35.1 352.3 L 145.5 351.0 L 255.9 352.1 L 366.2 352.6 L 476.6 351.4" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M477.1 351.3 L 477.3 366.2 L 476.1 381.0 L 476.7 395.9 L 476.9 410.7" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M477.1 351.3 L 477.4 366.2 L 476.9 381.0 L 477.7 395.9 L 476.9 410.7" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M476.9 410.0 L 366.5 409.5 L 256.1 411.3 L 145.7 411.1 L 35.3 411.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M476.9 410.0 L 366.5 409.6 L 256.1 411.0 L 145.7 411.6 L 35.3 411.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M36.9 409.9 L 36.1 395.5 L 36.4 381.1 L 37.1 366.7 L 36.0 352.4" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M36.9 409.9 L 36.3 395.5 L 37.0 381.1 L 35.0 366.8 L 36.0 352.4" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="256" y="378" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">触发即产生一次运行</text>
+<text x="256" y="398" font-size="11" fill="#9a9287" font-weight="400" text-anchor="middle">指派任务 · 评论 @提及 · 直接对话 · 自动化（定时/事件）</text>
+<text x="380" y="442" font-size="12.5" fill="#9a9287" font-weight="400" text-anchor="middle">指令定义智能体是谁，skill 沉淀成功经验；小队让多个智能体像项目组一样干活</text>
+</svg>

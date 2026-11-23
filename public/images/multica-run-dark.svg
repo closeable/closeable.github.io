@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="420" fill="#1f1c17"/>
+<text x="380" y="44" font-size="21" fill="#e9e3d5" font-weight="700" text-anchor="middle">一次运行的完整链路：入队 → 领取 → 执行 → 写回</text>
+<rect x="38" y="150" width="124" height="70" rx="4" fill="#2a2620"/>
+<path d="M36.0 149.3 L 67.7 148.5 L 99.4 149.2 L 131.1 148.2 L 162.8 148.6" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M36.0 149.3 L 67.7 150.4 L 99.4 149.5 L 131.1 148.8 L 162.8 148.6" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M164.3 148.8 L 163.2 167.2 L 162.7 185.7 L 162.6 204.2 L 163.3 222.6" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M164.3 148.8 L 164.7 167.2 L 163.4 185.7 L 162.8 204.2 L 163.3 222.6" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M163.0 221.9 L 131.0 222.4 L 99.0 221.4 L 67.1 222.7 L 35.1 222.4" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M163.0 221.9 L 131.0 221.6 L 99.0 222.3 L 67.1 222.1 L 35.1 222.4" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M37.2 221.6 L 36.1 203.3 L 37.6 184.8 L 36.8 166.4 L 35.6 148.1" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M37.2 221.6 L 35.8 203.3 L 35.3 184.9 L 36.2 166.5 L 35.6 148.1" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="100" y="174" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">1 · 触发</text>
+<text x="100" y="195" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">指派 · @提及 · 对话</text>
+<text x="100" y="211" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">自动化定时触发</text>
+<path d="M 166 185 Q 175.0 183.2 180 185" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M180.0 185.0 L 177.7 184.9 L 175.5 185.7 L 173.3 185.7 L 171.0 185.6" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M180.0 185.0 L 178.5 183.3 L 176.4 182.3 L 175.2 180.3 L 173.5 178.7" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="184" y="150" width="124" height="70" rx="4" fill="#1e2a3a"/>
+<path d="M183.3 149.1 L 214.7 148.3 L 246.1 149.4 L 277.4 147.9 L 308.8 147.5" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M183.3 149.1 L 214.7 148.4 L 246.1 149.4 L 277.5 148.5 L 308.8 147.5" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M310.0 147.5 L 309.7 166.4 L 310.6 185.4 L 310.7 204.3 L 309.9 223.3" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M310.0 147.5 L 311.1 166.4 L 309.0 185.4 L 310.0 204.3 L 309.9 223.3" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M309.6 222.9 L 277.9 223.0 L 246.2 223.0 L 214.5 223.8 L 182.8 223.1" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M309.6 222.9 L 277.9 223.4 L 246.2 223.7 L 214.5 222.1 L 182.8 223.1" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M181.6 221.4 L 182.5 202.7 L 182.3 184.1 L 180.7 165.4 L 181.7 146.7" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M181.6 221.4 L 180.4 202.7 L 180.7 184.1 L 181.4 165.4 L 181.7 146.7" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="246" y="174" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">2 · 创建运行</text>
+<text x="246" y="195" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">带配置入队：指令</text>
+<text x="246" y="211" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">模型 · skill · 运行时</text>
+<path d="M 312 185 Q 316.0 184.3 326 185" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M326.0 185.0 L 324.0 186.0 L 321.8 186.6 L 319.5 186.9 L 317.5 188.1" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M326.0 185.0 L 324.1 183.7 L 322.0 183.0 L 320.2 181.5 L 318.1 180.7" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="330" y="150" width="124" height="70" rx="4" fill="#1e2a3a"/>
+<path d="M327.4 147.1 L 359.3 147.2 L 391.2 148.2 L 423.1 146.6 L 455.1 147.5" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M327.4 147.1 L 359.3 146.6 L 391.2 148.2 L 423.1 147.8 L 455.1 147.5" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M456.1 147.8 L 456.1 166.5 L 455.5 185.2 L 455.9 203.9 L 455.7 222.6" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M456.1 147.8 L 456.8 166.5 L 456.7 185.2 L 454.8 203.9 L 455.7 222.6" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M454.8 221.5 L 422.8 221.9 L 390.8 221.2 L 358.9 221.2 L 326.9 221.0" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M454.8 221.5 L 422.8 222.7 L 390.8 222.3 L 358.9 221.7 L 326.9 221.0" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M327.6 222.4 L 327.9 203.7 L 326.7 184.9 L 326.3 166.2 L 326.9 147.4" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M327.6 222.4 L 327.2 203.7 L 325.9 184.9 L 327.7 166.2 L 326.9 147.4" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="392" y="174" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">3 · 运行时领取</text>
+<text x="392" y="195" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">daemon 心跳在线</text>
+<text x="392" y="211" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">即从队列领取</text>
+<path d="M 458 185 Q 460.2 185.2 472 185" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M472.0 185.0 L 469.9 185.7 L 467.7 186.4 L 465.9 188.0 L 463.8 188.8" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M472.0 185.0 L 469.9 184.1 L 468.0 183.0 L 465.9 182.2 L 463.7 181.5" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="476" y="150" width="124" height="70" rx="4" fill="#33291c"/>
+<path d="M475.1 149.0 L 506.7 148.8 L 538.2 148.0 L 569.7 148.3 L 601.3 148.0" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M475.1 149.0 L 506.7 148.9 L 538.2 149.7 L 569.7 147.9 L 601.3 148.0" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M602.6 148.6 L 602.9 166.8 L 600.9 185.0 L 601.6 203.2 L 601.3 221.4" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M602.6 148.6 L 601.1 166.8 L 600.0 185.0 L 602.3 203.2 L 601.3 221.4" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M600.7 221.0 L 569.2 222.0 L 537.7 220.5 L 506.2 221.7 L 474.7 222.9" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M600.7 221.0 L 569.2 220.9 L 537.7 221.1 L 506.2 223.3 L 474.7 222.9" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M473.7 221.6 L 474.4 203.1 L 474.6 184.6 L 475.5 166.2 L 474.9 147.7" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M473.7 221.6 L 474.7 203.1 L 472.6 184.6 L 474.0 166.2 L 474.9 147.7" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="538" y="174" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">4 · 本地执行</text>
+<text x="538" y="195" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">调用 AI 编程工具</text>
+<text x="538" y="211" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">读目录 · 跑命令</text>
+<path d="M 604 185 Q 609.9 183.6 618 185" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M618.0 185.0 L 615.8 185.3 L 613.5 185.8 L 611.4 186.5 L 609.3 187.2" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M618.0 185.0 L 616.2 183.6 L 614.3 182.4 L 612.4 181.2 L 610.5 180.0" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="622" y="150" width="124" height="70" rx="4" fill="#1e2f24"/>
+<path d="M620.1 147.8 L 652.1 147.8 L 684.1 148.0 L 716.2 147.6 L 748.2 148.8" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M620.1 147.8 L 652.1 146.8 L 684.1 146.9 L 716.2 149.8 L 748.2 148.8" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M748.5 149.1 L 748.2 167.0 L 747.5 185.0 L 748.8 203.0 L 749.1 220.9" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M748.5 149.1 L 749.3 167.0 L 747.1 185.0 L 750.2 202.9 L 749.1 220.9" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M748.1 222.2 L 716.3 221.1 L 684.5 223.0 L 652.8 221.2 L 621.0 221.6" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M748.1 222.2 L 716.3 222.4 L 684.5 220.5 L 652.8 222.4 L 621.0 221.6" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M619.8 222.8 L 619.8 204.0 L 619.0 185.1 L 618.3 166.3 L 619.0 147.4" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M619.8 222.8 L 619.9 204.0 L 618.4 185.1 L 619.3 166.3 L 619.0 147.4" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="684" y="174" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">5 · 结果写回</text>
+<text x="684" y="195" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">评论 · 执行日志</text>
+<text x="684" y="211" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">任务时间线可见</text>
+<path d="M 392 144 L 392 124 L 246 124" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-dasharray="6 5" stroke-linecap="round"/>
+<path d="M 246 124 L 246 144" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-dasharray="6 5" stroke-linecap="round"/>
+<path d="M241.0 140.0 L 242.4 141.4 L 243.2 143.2 L 245.0 144.3 L 246.0 146.0" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M251.0 140.0 L 249.9 141.6 L 248.5 143.0 L 247.2 144.5 L 246.0 146.0" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-linecap="round"/>
+<text x="319" y="110" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">没有在线运行时 → 排队等待</text>
+<rect x="254" y="298" width="284" height="52" rx="4" fill="#1f1c17"/>
+<path d="M250.9 296.5 L 323.2 296.2 L 395.4 294.7 L 467.7 295.8 L 540.0 295.2" fill="none" stroke="#dd8a76" stroke-width="2" stroke-linecap="round"/>
+<path d="M250.9 296.5 L 323.2 296.4 L 395.4 296.1 L 467.7 296.0 L 540.0 295.2" fill="none" stroke="#dd8a76" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M540.8 295.6 L 540.5 309.6 L 540.2 323.7 L 538.8 337.7 L 538.8 351.7" fill="none" stroke="#dd8a76" stroke-width="2" stroke-linecap="round"/>
+<path d="M540.8 295.6 L 540.7 309.6 L 541.4 323.7 L 540.3 337.7 L 538.8 351.7" fill="none" stroke="#dd8a76" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M541.1 351.2 L 468.7 352.0 L 396.3 351.1 L 323.9 350.5 L 251.5 351.4" fill="none" stroke="#dd8a76" stroke-width="2" stroke-linecap="round"/>
+<path d="M541.1 351.2 L 468.7 352.3 L 396.3 351.2 L 323.9 350.8 L 251.5 351.4" fill="none" stroke="#dd8a76" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M251.4 352.1 L 251.4 337.8 L 252.0 323.5 L 252.2 309.2 L 253.2 294.9" fill="none" stroke="#dd8a76" stroke-width="2" stroke-linecap="round"/>
+<path d="M251.4 352.1 L 252.4 337.8 L 251.1 323.5 L 253.8 309.2 L 253.2 294.9" fill="none" stroke="#dd8a76" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="396" y="320" font-size="12.5" fill="#dd8a76" font-weight="700" text-anchor="middle">失败 / 中断：可重试、可取消</text>
+<text x="396" y="340" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">进度实时流回任务页</text>
+<path d="M 392 294 Q 392.0 259.0 392 224" fill="none" stroke="#dd8a76" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 5"/>
+<path d="M392.0 224.0 L 392.8 226.1 L 393.5 228.3 L 394.6 230.2 L 395.7 232.2" fill="none" stroke="#dd8a76" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M392.0 224.0 L 391.0 226.0 L 390.6 228.3 L 388.9 230.0 L 388.3 232.2" fill="none" stroke="#dd8a76" stroke-width="1.6" stroke-linecap="round"/>
+<text x="380" y="388" font-size="12.5" fill="#9a9287" font-weight="400" text-anchor="middle">运行结束 ≠ 任务完成：任务还能继续讨论、补充要求、再次触发</text>
+</svg>

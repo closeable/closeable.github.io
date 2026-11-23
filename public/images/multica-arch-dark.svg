@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="470" fill="#1f1c17"/>
+<text x="380" y="42" font-size="21" fill="#e9e3d5" font-weight="700" text-anchor="middle">Multica 架构：云端管协调，本地管执行</text>
+<rect x="26" y="64" width="708" height="144" rx="4" fill="#1e2a3a"/>
+<path d="M23.8 61.9 L 201.7 61.8 L 379.7 62.9 L 557.6 62.5 L 735.5 61.7" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M23.8 61.9 L 201.7 61.4 L 379.7 61.6 L 557.6 62.5 L 735.5 61.7" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M735.3 61.6 L 736.3 98.6 L 734.6 135.6 L 736.6 172.6 L 736.3 209.6" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M735.3 61.6 L 735.4 98.6 L 734.5 135.6 L 737.2 172.6 L 736.3 209.6" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M736.0 209.4 L 558.0 210.3 L 380.0 209.1 L 202.1 209.2 L 24.1 209.9" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M736.0 209.4 L 558.0 208.4 L 380.0 209.0 L 202.1 209.5 L 24.1 209.9" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M23.2 209.6 L 23.6 172.6 L 23.3 135.6 L 23.4 98.6 L 23.7 61.5" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M23.2 209.6 L 24.5 172.6 L 23.8 135.6 L 24.3 98.6 L 23.7 61.5" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="44" y="90" font-size="13.5" fill="#7aa6e8" font-weight="700" text-anchor="start">云端 · 记录与协调（托管版或自部署）</text>
+<rect x="44" y="104" width="118" height="54" rx="4" fill="#1f1c17"/>
+<path d="M41.5 102.9 L 72.4 103.2 L 103.3 101.8 L 134.2 102.8 L 165.1 102.8" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M41.5 102.9 L 72.4 101.7 L 103.3 101.3 L 134.2 103.4 L 165.1 102.8" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M163.7 102.7 L 163.3 116.9 L 162.6 131.0 L 164.4 145.1 L 163.4 159.3" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M163.7 102.7 L 164.9 116.9 L 165.1 131.0 L 164.3 145.1 L 163.4 159.3" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M164.3 160.7 L 133.6 161.3 L 102.8 159.8 L 72.1 160.2 L 41.4 161.2" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M164.3 160.7 L 133.6 161.5 L 102.8 162.0 L 72.1 162.4 L 41.4 161.2" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M40.9 160.7 L 41.2 146.1 L 41.4 131.6 L 41.8 117.1 L 42.8 102.6" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M40.9 160.7 L 41.3 146.1 L 43.0 131.7 L 41.7 117.1 L 42.8 102.6" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="103" y="126" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">Web / 桌面端</text>
+<text x="103" y="145" font-size="9.5" fill="#9a9287" font-weight="400" text-anchor="middle">Next.js + Electron</text>
+<rect x="182" y="104" width="118" height="54" rx="4" fill="#1f1c17"/>
+<path d="M179.7 101.1 L 210.3 100.4 L 240.9 101.6 L 271.5 102.4 L 302.2 101.7" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M179.7 101.1 L 210.3 100.9 L 240.9 101.1 L 271.5 102.2 L 302.2 101.7" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M301.6 101.2 L 301.7 116.1 L 300.8 131.1 L 302.4 146.0 L 302.5 160.9" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M301.6 101.2 L 303.0 116.1 L 301.3 131.1 L 303.6 145.9 L 302.5 160.9" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M302.5 158.8 L 272.0 159.6 L 241.5 159.5 L 211.0 159.3 L 180.5 160.4" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M302.5 158.8 L 272.0 159.9 L 241.5 159.2 L 211.0 160.1 L 180.5 160.4" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M179.9 160.3 L 180.7 145.4 L 180.2 130.5 L 181.2 115.6 L 181.1 100.7" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M179.9 160.3 L 180.5 145.4 L 181.7 130.6 L 181.0 115.6 L 181.1 100.7" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="241" y="126" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">Go Server</text>
+<text x="241" y="145" font-size="9.5" fill="#9a9287" font-weight="400" text-anchor="middle">REST · 任务 · 队列</text>
+<rect x="320" y="104" width="118" height="54" rx="4" fill="#1f1c17"/>
+<path d="M318.4 102.9 L 348.8 102.7 L 379.2 101.6 L 409.5 102.3 L 439.9 102.9" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M318.4 102.9 L 348.8 102.2 L 379.2 103.5 L 409.5 101.8 L 439.9 102.9" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M440.6 101.8 L 440.5 116.2 L 441.1 130.6 L 441.8 145.0 L 441.2 159.5" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M440.6 101.8 L 441.2 116.2 L 440.6 130.6 L 441.8 145.0 L 441.2 159.5" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M439.8 158.9 L 409.1 158.5 L 378.5 159.6 L 347.8 159.7 L 317.2 161.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M439.8 158.9 L 409.2 159.5 L 378.5 159.8 L 347.8 161.0 L 317.2 161.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M317.7 159.1 L 317.6 144.9 L 317.9 130.8 L 316.6 116.6 L 317.5 102.4" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M317.7 159.1 L 318.5 144.9 L 318.4 130.8 L 317.3 116.6 L 317.5 102.4" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="379" y="126" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">PostgreSQL</text>
+<text x="379" y="145" font-size="9.5" fill="#9a9287" font-weight="400" text-anchor="middle">工作区 · 状态</text>
+<rect x="458" y="104" width="118" height="54" rx="4" fill="#1f1c17"/>
+<path d="M456.9 102.3 L 487.3 101.9 L 517.8 102.1 L 548.2 102.7 L 578.7 102.8" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M456.9 102.3 L 487.3 103.1 L 517.8 104.1 L 548.2 101.9 L 578.7 102.8" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M578.2 102.6 L 578.7 117.1 L 577.7 131.6 L 577.8 146.0 L 578.4 160.5" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M578.2 102.6 L 579.1 117.1 L 577.8 131.6 L 577.3 146.0 L 578.4 160.5" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M578.5 160.7 L 547.9 160.7 L 517.3 162.0 L 486.6 160.6 L 456.0 161.2" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M578.5 160.7 L 547.9 159.8 L 517.3 162.2 L 486.6 159.9 L 456.0 161.2" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M455.1 160.3 L 455.5 146.0 L 455.8 131.6 L 455.2 117.2 L 456.2 102.9" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M455.1 160.3 L 456.3 146.0 L 455.0 131.6 L 455.9 117.2 L 456.2 102.9" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="517" y="126" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">WS Gateway</text>
+<text x="517" y="145" font-size="9.5" fill="#9a9287" font-weight="400" text-anchor="middle">NestJS 长连接</text>
+<rect x="596" y="104" width="118" height="54" rx="4" fill="#1f1c17"/>
+<path d="M595.1 102.8 L 625.3 102.6 L 655.6 102.7 L 685.9 101.4 L 716.2 101.8" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M595.1 102.8 L 625.3 102.7 L 655.6 103.4 L 685.9 102.9 L 716.2 101.8" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M716.4 102.7 L 716.5 116.8 L 717.3 130.9 L 716.4 145.0 L 716.3 159.1" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M716.4 102.7 L 716.6 116.8 L 717.5 130.9 L 715.5 145.0 L 716.3 159.1" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M716.3 160.2 L 685.6 159.1 L 654.8 159.2 L 624.1 159.1 L 593.3 159.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M716.3 160.2 L 685.6 158.9 L 654.8 159.7 L 624.1 159.6 L 593.3 159.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M593.5 158.9 L 593.8 144.8 L 593.2 130.6 L 593.7 116.5 L 595.0 102.4" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M593.5 158.9 L 593.4 144.8 L 592.3 130.6 L 593.5 116.5 L 595.0 102.4" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="655" y="126" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">协作服务</text>
+<text x="655" y="145" font-size="9.5" fill="#9a9287" font-weight="400" text-anchor="middle">Yjs 实时编辑</text>
+<path d="M 166 123 Q 172.3 124.2 178 123" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round" />
+<path d="M178.0 123.0 L 176.2 124.3 L 174.5 125.8 L 172.6 127.1 L 170.7 128.3" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M178.0 123.0 L 175.7 122.9 L 173.5 122.5 L 171.4 121.8 L 169.2 121.1" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 304 123 Q 308.3 124.9 316 123" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round" />
+<path d="M316.0 123.0 L 314.2 124.4 L 312.3 125.6 L 310.7 127.2 L 308.9 128.6" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M316.0 123.0 L 313.8 122.4 L 311.6 122.1 L 309.3 121.9 L 307.1 121.4" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 241 164 Q 368.7 147.2 515 164" fill="none" stroke="#6e6659" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="6 5"/>
+<path d="M515.0 164.0 L 512.8 164.3 L 510.6 165.0 L 508.7 166.3 L 506.4 166.7" fill="none" stroke="#6e6659" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M515.0 164.0 L 513.1 162.8 L 511.1 161.8 L 509.2 160.5 L 507.3 159.4" fill="none" stroke="#6e6659" stroke-width="1.6" stroke-linecap="round"/>
+<text x="36" y="232" font-size="12.5" fill="#dd8a76" font-weight="400" text-anchor="start">数据边界：云上只有协调数据，代码与凭据不出本机</text>
+<path d="M432.0 227.0 L 508.0 227.4 L 584.0 227.5 L 660.0 227.1 L 736.0 227.0" fill="none" stroke="#6e6659" stroke-width="1.6" stroke-linecap="round"/>
+<rect x="26" y="256" width="708" height="138" rx="4" fill="#1e2f24"/>
+<path d="M23.4 254.7 L 201.3 255.4 L 379.3 254.1 L 557.2 255.0 L 735.1 254.2" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M23.4 254.7 L 201.3 255.9 L 379.3 255.9 L 557.2 254.8 L 735.1 254.2" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M734.9 254.4 L 734.8 290.0 L 734.7 325.5 L 735.5 361.0 L 735.6 396.6" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M734.9 254.4 L 734.3 290.0 L 735.5 325.5 L 735.7 361.0 L 735.6 396.6" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M735.8 394.8 L 557.6 394.8 L 379.4 396.0 L 201.3 394.3 L 23.1 394.9" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M735.8 394.8 L 557.6 394.7 L 379.4 394.8 L 201.3 394.2 L 23.1 394.9" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M23.2 396.4 L 23.2 360.7 L 22.3 324.9 L 24.2 289.2 L 23.3 253.5" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M23.2 396.4 L 23.5 360.7 L 23.2 324.9 L 23.1 289.2 L 23.3 253.5" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="44" y="280" font-size="13.5" fill="#7dbb8f" font-weight="700" text-anchor="start">你的电脑 · 执行（daemon + 运行时）</text>
+<rect x="492" y="294" width="196" height="84" rx="4" fill="#1f1c17"/>
+<path d="M489.2 291.6 L 539.1 291.4 L 589.0 291.4 L 638.9 291.5 L 688.8 290.9" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M489.2 291.6 L 539.1 290.5 L 589.0 290.4 L 638.9 290.8 L 688.8 290.9" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M689.1 292.9 L 689.5 314.7 L 690.3 336.5 L 689.6 358.3 L 690.0 380.1" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M689.1 292.9 L 689.0 314.7 L 688.7 336.5 L 689.7 358.3 L 690.0 380.1" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M689.1 379.2 L 639.6 378.6 L 590.0 380.3 L 540.5 380.0 L 491.0 379.2" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M689.1 379.2 L 639.6 379.6 L 590.0 378.1 L 540.5 378.8 L 491.0 379.2" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M489.3 380.9 L 488.7 358.6 L 488.8 336.3 L 489.3 314.0 L 489.4 291.7" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M489.3 380.9 L 489.4 358.6 L 487.6 336.3 L 488.5 314.0 L 489.4 291.7" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="590" y="322" font-size="13" fill="#e9e3d5" font-weight="700" text-anchor="middle">daemon 常驻进程</text>
+<text x="590" y="342" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">心跳上线 · 领取运行</text>
+<text x="590" y="360" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">多台机器可同时接入</text>
+<rect x="260" y="294" width="208" height="84" rx="4" fill="#1f1c17"/>
+<path d="M259.1 292.5 L 311.6 291.7 L 364.2 290.8 L 416.7 291.3 L 469.2 291.6" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M259.1 292.5 L 311.7 293.3 L 364.2 293.3 L 416.7 292.9 L 469.2 291.6" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M470.8 290.8 L 469.8 313.0 L 468.7 335.2 L 469.0 357.5 L 468.8 379.7" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M470.8 290.8 L 471.3 313.0 L 468.8 335.2 L 470.5 357.5 L 468.8 379.7" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M469.1 380.2 L 416.4 379.0 L 363.7 378.6 L 311.0 378.6 L 258.2 379.2" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M469.1 380.2 L 416.4 380.5 L 363.7 380.5 L 311.0 378.1 L 258.2 379.2" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M258.7 379.2 L 258.9 357.3 L 257.9 335.5 L 257.8 313.7 L 257.3 291.9" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M258.7 379.2 L 258.4 357.3 L 257.9 335.5 L 256.9 313.7 L 257.3 291.9" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="364" y="320" font-size="12.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">运行时 × N（最多 31 种）</text>
+<text x="364" y="340" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">Claude Code · Codex</text>
+<text x="364" y="358" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">Cursor · Kimi · OpenCode …</text>
+<rect x="44" y="294" width="194" height="84" rx="4" fill="#1f1c17"/>
+<path d="M41.9 292.5 L 91.4 291.6 L 141.0 293.6 L 190.6 292.1 L 240.1 292.3" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M41.9 292.5 L 91.4 293.4 L 141.0 291.9 L 190.6 293.4 L 240.1 292.3" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M240.1 291.0 L 239.2 313.0 L 241.7 335.0 L 240.7 357.0 L 240.5 379.0" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M240.1 291.0 L 240.0 313.0 L 240.1 335.0 L 240.2 357.0 L 240.5 379.0" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M239.6 380.8 L 190.1 381.4 L 140.6 381.0 L 91.1 380.7 L 41.7 381.1" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M239.6 380.8 L 190.1 380.0 L 140.6 379.0 L 91.2 381.9 L 41.7 381.1" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M42.1 380.7 L 42.6 358.6 L 42.2 336.4 L 42.1 314.2 L 42.9 292.1" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M42.1 380.7 L 41.7 358.5 L 43.3 336.4 L 43.1 314.2 L 42.9 292.1" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="141" y="322" font-size="13" fill="#e9e3d5" font-weight="700" text-anchor="middle">代码目录 / 凭据</text>
+<text x="141" y="342" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">文件修改 · 命令执行</text>
+<text x="141" y="360" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">只发生在本机</text>
+<path d="M 488 336 Q 481.4 336.1 472 336" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round" />
+<path d="M472.0 336.0 L 474.0 335.0 L 476.0 333.9 L 478.2 333.4 L 480.3 332.4" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M472.0 336.0 L 474.2 336.6 L 476.2 337.5 L 478.1 338.9 L 480.2 339.8" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 256 336 Q 248.9 334.5 242 336" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round" />
+<path d="M242.0 336.0 L 243.7 334.5 L 245.7 333.4 L 247.5 332.1 L 249.2 330.7" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M242.0 336.0 L 244.1 336.8 L 246.3 337.2 L 248.6 337.2 L 250.8 337.8" fill="none" stroke="#e9e3d5" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M 520 210 Q 527.8 249.1 534 290" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round" />
+<path d="M534.0 290.0 L 533.0 288.0 L 531.8 286.1 L 530.6 284.2 L 529.1 282.4" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M534.0 290.0 L 534.4 287.8 L 534.7 285.5 L 535.6 283.4 L 536.4 281.3" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M 540 290 Q 532.5 250.9 526 210" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round" />
+<path d="M526.0 210.0 L 527.2 211.9 L 528.6 213.7 L 529.8 215.6 L 530.9 217.5" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M526.0 210.0 L 525.2 212.1 L 525.3 214.5 L 523.9 216.4 L 523.7 218.7" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<text x="506" y="272" font-size="11" fill="#d9a05c" font-weight="400" text-anchor="end">WS 双向</text>
+<text x="380" y="434" font-size="13" fill="#9a9287" font-weight="400" text-anchor="middle">平台只保存任务状态与事件；真正的文件读写和命令执行都在你自己的电脑上</text>
+</svg>
