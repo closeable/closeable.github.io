@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="一致性算法难懂，往往是因为我们跳过了它要解决的故障模型。从节点宕机和网络异常出发，重新理解共识问题的边界。"><meta name="generator" content="Astro v5.18.2"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="Lumen · 技术手记" href="/rss.xml"><title>分布式一致性：先搞清楚问题再谈算法 · Lumen</title><script>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.Dc8bxtky.css"></head> <body> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="container header-inner" data-astro-cid-3ef6ksr2> <a class="brand" href="/" aria-label="返回首页" data-astro-cid-3ef6ksr2> <span class="brand-mark" data-astro-cid-3ef6ksr2>L</span> <span data-astro-cid-3ef6ksr2>Lumen <small data-astro-cid-3ef6ksr2>技术手记</small></span> </a> <nav class="nav" id="site-nav" aria-label="主导航" data-astro-cid-3ef6ksr2> <a class="nav-link" href="/" data-astro-cid-3ef6ksr2> 首页 </a><a class="nav-link" href="/blog/" aria-current="page" data-astro-cid-3ef6ksr2> 文章 </a><a class="nav-link" href="/categories/" data-astro-cid-3ef6ksr2> 分类 </a><a class="nav-link" href="/tags/" data-astro-cid-3ef6ksr2> 标签 </a><a class="nav-link" href="/archives/" data-astro-cid-3ef6ksr2> 归档 </a><a class="nav-link" href="/about/" data-astro-cid-3ef6ksr2> 关于 </a> </nav> <button class="icon-btn" id="theme-toggle" aria-label="切换深色模式" title="切换主题" data-astro-cid-3ef6ksr2> <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3ef6ksr2><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" data-astro-cid-3ef6ksr2></path></svg> <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3ef6ksr2><circle cx="12" cy="12" r="4" data-astro-cid-3ef6ksr2></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" data-astro-cid-3ef6ksr2></path></svg> </button> <button class="icon-btn mobile-toggle" id="mobile-toggle" aria-label="展开菜单" aria-expanded="false" data-astro-cid-3ef6ksr2> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-3ef6ksr2><path d="M3 6h18M3 12h18M3 18h18" data-astro-cid-3ef6ksr2></path></svg> </button> </div> </header>  <script type="module">const a=document.getElementById("theme-toggle");a?.addEventListener("click",()=>{const e=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=e,localStorage.setItem("theme",e)});const t=document.getElementById("mobile-toggle"),n=document.getElementById("site-nav");t?.addEventListener("click",()=>{const e=n?.classList.toggle("open")??!1;t.setAttribute("aria-expanded",String(e))});n?.querySelectorAll("a").forEach(e=>e.addEventListener("click",()=>{n.classList.remove("open"),t?.setAttribute("aria-expanded","false")}));</script> <main> <div class="container article-layout"> <article class="article-main"> <header class="article-header"> <a class="badge" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a> <h1>分布式一致性：先搞清楚问题再谈算法</h1> <div class="article-meta"> <time datetime="2026-11-20T00:00:00.000Z">2026 年 11 月 20 日</time> <span class="sep"></span> <span>约 2 分钟阅读</span>  </div> </header> <p class="article-lead">一致性算法难懂，往往是因为我们跳过了它要解决的故障模型。从节点宕机和网络异常出发，重新理解共识问题的边界。</p> <div class="prose"><p>提到 Paxos、Raft，第一反应通常是“难”。但真正让这些算法显得难懂的，往往不是算法本身，而是我们没有先把它要解决的问题说清楚。</p>
+<h2 id="共识问题到底在解决什么">共识问题到底在解决什么</h2>
+<p>一句话：<strong>让一组可能出错的节点，对某个值达成一致。</strong></p>
+<p>这句话里有三个关键词：</p>
+<ul>
+<li><strong>一组节点</strong>：单节点不需要共识，直接写本地状态即可。</li>
+<li><strong>可能出错</strong>：节点会宕机、重启，消息会延迟、丢失、重复、乱序。</li>
+<li><strong>达成一致</strong>：所有存活节点最终看到同一个值，且一旦确定就不能改写。</li>
+</ul>
+<p>如果网络永远可靠、节点永不宕机，那么一次广播就能解决所有问题。共识算法存在的意义，正是在于它不假设这些理想条件。</p>
+<h2 id="故障模型决定算法难度">故障模型决定算法难度</h2>
+<p>常见的故障模型可以按强度排序：</p>
+<ol>
+<li><strong>崩溃故障（crash）</strong>：节点突然停止响应，但不会说谎。</li>
+<li><strong>崩溃—恢复故障</strong>：节点宕机后可能带着旧状态回来。</li>
+<li><strong>拜占庭故障（Byzantine）</strong>：节点可能发送任意错误消息，甚至合谋欺骗。</li>
+</ol>
+<p>Raft、Paxos 解决的是前两类，也就是所谓的<strong>非拜占庭</strong>场景。这也是为什么它们能用于多数内部集群：在同一个机房、同一个可信域内，硬件和软件出错是随机的，而不是恶意的。</p>
+<blockquote>
+<p>如果系统里存在恶意节点，需要的是 PBFT、Tendermint 这类拜占庭容错算法，代价也高得多。</p>
+</blockquote>
+<h2 id="为什么多数派是关键">为什么“多数派”是关键</h2>
+<p>几乎所有主流共识算法都依赖一个简单事实：<strong>两个人数超过半数的集合，必然有交集。</strong></p>
+<p>假设集群有 5 个节点，任何决策都要求至少 3 个节点同意。那么两次成功的决策之间，一定至少有一个节点同时参与。这个节点就是信息传递的桥梁——它记得上一次决定了什么，从而阻止系统做出相互矛盾的决策。</p>
+<p>这也是为什么集群节点数通常取奇数：3 个节点容忍 1 台故障，5 个节点容忍 2 台，但 4 个节点也只能容忍 1 台，成本却更高。</p>
+<h2 id="一致性不是强一致的同义词">一致性不是“强一致”的同义词</h2>
+<p>一个常见误解是：用了共识算法，系统就天然具备线性一致性。其实不然。</p>
+<p>共识只保证<strong>对某个值达成一致</strong>，比如“第 5 条日志的内容是什么”。至于读写请求如何编排、读操作是否走 Leader、客户端如何重试，这些属于复制状态机的实现细节，需要单独设计。</p>
+<h2 id="小结">小结</h2>
+<p>理解一致性算法，可以先问三个问题：</p>
+<ul>
+<li>系统允许哪些故障？</li>
+<li>决策需要多少节点参与？</li>
+<li>达成一致之后，谁来负责把它应用到状态机？</li>
+</ul>
+<p>把这三个问题回答清楚，再看 Paxos 或 Raft 的论文，会发现它们不过是在不同层次上回答同一件事。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li>Lamport, <em>The Part-Time Parliament</em></li>
+<li>Ongaro &#x26; Ousterhout, <em>In Search of an Understandable Consensus Algorithm</em></li>
+</ul></div> <div class="article-footer"> <a class="tag" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a><a class="tag" href="/tags/%E4%B8%80%E8%87%B4%E6%80%A7/">#一致性</a><a class="tag" href="/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">#系统设计</a> </div> <nav class="post-nav" aria-label="文章导航"> <span></span> <a class="next" href="/blog/raft-three-problems/"> <span>更早一篇 →</span><strong>Raft 速览：三个子问题串起整个协议</strong> </a> </nav> </article> <aside class="toc" aria-label="文章目录"> <div class="toc-title">本页目录</div> <ul> <li class="level-2"><a href="#共识问题到底在解决什么">共识问题到底在解决什么</a></li><li class="level-2"><a href="#故障模型决定算法难度">故障模型决定算法难度</a></li><li class="level-2"><a href="#为什么多数派是关键">为什么“多数派”是关键</a></li><li class="level-2"><a href="#一致性不是强一致的同义词">一致性不是“强一致”的同义词</a></li><li class="level-2"><a href="#小结">小结</a></li><li class="level-2"><a href="#参考">参考</a></li> </ul> </aside> </div> </main> <footer class="site-footer"> <div class="container footer-inner"> <span>© 2026 Lumen · 保持好奇，持续记录。</span> <span>Built with <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a> · <a href="/rss.xml">RSS</a></span> </div> </footer> </body></html>

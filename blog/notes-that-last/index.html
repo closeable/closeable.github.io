@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="技术笔记的价值不在于记录当下，而在于未来的自己能快速重建上下文。分享几条实用的写作约束。"><meta name="generator" content="Astro v5.18.2"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="Lumen · 技术手记" href="/rss.xml"><title>如何写一份半年后还能看懂的技术笔记 · Lumen</title><script>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.Dc8bxtky.css"></head> <body> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="container header-inner" data-astro-cid-3ef6ksr2> <a class="brand" href="/" aria-label="返回首页" data-astro-cid-3ef6ksr2> <span class="brand-mark" data-astro-cid-3ef6ksr2>L</span> <span data-astro-cid-3ef6ksr2>Lumen <small data-astro-cid-3ef6ksr2>技术手记</small></span> </a> <nav class="nav" id="site-nav" aria-label="主导航" data-astro-cid-3ef6ksr2> <a class="nav-link" href="/" data-astro-cid-3ef6ksr2> 首页 </a><a class="nav-link" href="/blog/" aria-current="page" data-astro-cid-3ef6ksr2> 文章 </a><a class="nav-link" href="/categories/" data-astro-cid-3ef6ksr2> 分类 </a><a class="nav-link" href="/tags/" data-astro-cid-3ef6ksr2> 标签 </a><a class="nav-link" href="/archives/" data-astro-cid-3ef6ksr2> 归档 </a><a class="nav-link" href="/about/" data-astro-cid-3ef6ksr2> 关于 </a> </nav> <button class="icon-btn" id="theme-toggle" aria-label="切换深色模式" title="切换主题" data-astro-cid-3ef6ksr2> <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3ef6ksr2><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" data-astro-cid-3ef6ksr2></path></svg> <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3ef6ksr2><circle cx="12" cy="12" r="4" data-astro-cid-3ef6ksr2></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" data-astro-cid-3ef6ksr2></path></svg> </button> <button class="icon-btn mobile-toggle" id="mobile-toggle" aria-label="展开菜单" aria-expanded="false" data-astro-cid-3ef6ksr2> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-3ef6ksr2><path d="M3 6h18M3 12h18M3 18h18" data-astro-cid-3ef6ksr2></path></svg> </button> </div> </header>  <script type="module">const a=document.getElementById("theme-toggle");a?.addEventListener("click",()=>{const e=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=e,localStorage.setItem("theme",e)});const t=document.getElementById("mobile-toggle"),n=document.getElementById("site-nav");t?.addEventListener("click",()=>{const e=n?.classList.toggle("open")??!1;t.setAttribute("aria-expanded",String(e))});n?.querySelectorAll("a").forEach(e=>e.addEventListener("click",()=>{n.classList.remove("open"),t?.setAttribute("aria-expanded","false")}));</script> <main> <div class="container article-layout"> <article class="article-main"> <header class="article-header"> <a class="badge" href="/categories/%E6%95%88%E7%8E%87/">效率</a> <h1>如何写一份半年后还能看懂的技术笔记</h1> <div class="article-meta"> <time datetime="2026-08-30T00:00:00.000Z">2026 年 8 月 30 日</time> <span class="sep"></span> <span>约 1 分钟阅读</span>  </div> </header> <p class="article-lead">技术笔记的价值不在于记录当下，而在于未来的自己能快速重建上下文。分享几条实用的写作约束。</p> <div class="prose"><p>很多人写过技术笔记，但半年后翻出来，往往只能看懂代码，看不懂当时的思路。问题不在于记得不够多，而在于缺少上下文。</p>
+<h2 id="先写问题再写答案">先写问题，再写答案</h2>
+<p>一条笔记的开头不应该直接是结论。先写清楚：</p>
+<ul>
+<li>当时要解决什么问题？</li>
+<li>尝试过哪些方案，为什么放弃？</li>
+<li>最终方案的约束条件是什么？</li>
+</ul>
+<p>这部分内容在写作时显得多余，但半年后它就是重建上下文的钥匙。</p>
+<h2 id="记录为什么少抄是什么">记录“为什么”，少抄“是什么”</h2>
+<p>API 文档和源码都在那里，复制一遍意义不大。真正值得记录的是：</p>
+<ul>
+<li>某个参数为什么必须这样设？</li>
+<li>某个方案看起来更优雅，为什么没用？</li>
+<li>哪个现象一度让你以为结论是错的？</li>
+</ul>
+<p>这些是从搜索里找不到的信息。</p>
+<h2 id="给结论标注确定性">给结论标注确定性</h2>
+<p>不是所有结论都经过充分验证。可以用简单的标记区分：</p>
+<ul>
+<li><strong>[已验证]</strong>：有测试、日志或压测数据支撑。</li>
+<li><strong>[推测]</strong>：基于经验判断，尚未验证。</li>
+<li><strong>[待确认]</strong>：需要后续补充证据。</li>
+</ul>
+<p>这个习惯能防止未来的自己把猜测当成事实。</p>
+<h2 id="用固定结构降低写作成本">用固定结构降低写作成本</h2>
+<p>我常用的结构只有四段：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>## 背景：要解决什么问题</span></span>
+<span class="line"><span>## 结论：最终怎么做</span></span>
+<span class="line"><span>## 过程：尝试过什么、踩了什么坑</span></span>
+<span class="line"><span>## 参考：来源和延伸阅读</span></span></code></pre>
+<p>结构固定之后，写笔记不再需要组织语言的精力，只管往里填内容。</p>
+<h2 id="允许不完美">允许不完美</h2>
+<p>笔记不是文章，不需要文采。宁可先写一份粗糙但完整的记录，也不要等想清楚所有细节再动笔。很多思路恰恰是在写的过程中才理清的。</p>
+<h2 id="小结">小结</h2>
+<p>好的技术笔记有一个判断标准：<strong>未来的自己能否在五分钟内理解当时的决策。</strong> 围绕这个目标写，比追求篇幅和排版有用得多。</p></div> <div class="article-footer"> <a class="tag" href="/tags/%E5%86%99%E4%BD%9C/">#写作</a><a class="tag" href="/tags/%E6%95%88%E7%8E%87/">#效率</a><a class="tag" href="/tags/%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/">#知识管理</a> </div> <nav class="post-nav" aria-label="文章导航"> <a href="/blog/index-not-a-silver-bullet/"> <span>← 更新一篇</span><strong>索引不是银弹：几个常见的误用场景</strong> </a>  </nav> </article> <aside class="toc" aria-label="文章目录"> <div class="toc-title">本页目录</div> <ul> <li class="level-2"><a href="#先写问题再写答案">先写问题，再写答案</a></li><li class="level-2"><a href="#记录为什么少抄是什么">记录“为什么”，少抄“是什么”</a></li><li class="level-2"><a href="#给结论标注确定性">给结论标注确定性</a></li><li class="level-2"><a href="#用固定结构降低写作成本">用固定结构降低写作成本</a></li><li class="level-2"><a href="#允许不完美">允许不完美</a></li><li class="level-2"><a href="#小结">小结</a></li> </ul> </aside> </div> </main> <footer class="site-footer"> <div class="container footer-inner"> <span>© 2026 Lumen · 保持好奇，持续记录。</span> <span>Built with <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a> · <a href="/rss.xml">RSS</a></span> </div> </footer> </body></html>

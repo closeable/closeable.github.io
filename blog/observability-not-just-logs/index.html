@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="指标、日志和链路追踪解决的是不同问题。分清它们的分工，才能在排障时少走弯路。"><meta name="generator" content="Astro v5.18.2"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="Lumen · 技术手记" href="/rss.xml"><title>可观测性不是“多打日志” · Lumen</title><script>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><link rel="stylesheet" href="/_astro/about.Dc8bxtky.css"></head> <body> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="container header-inner" data-astro-cid-3ef6ksr2> <a class="brand" href="/" aria-label="返回首页" data-astro-cid-3ef6ksr2> <span class="brand-mark" data-astro-cid-3ef6ksr2>L</span> <span data-astro-cid-3ef6ksr2>Lumen <small data-astro-cid-3ef6ksr2>技术手记</small></span> </a> <nav class="nav" id="site-nav" aria-label="主导航" data-astro-cid-3ef6ksr2> <a class="nav-link" href="/" data-astro-cid-3ef6ksr2> 首页 </a><a class="nav-link" href="/blog/" aria-current="page" data-astro-cid-3ef6ksr2> 文章 </a><a class="nav-link" href="/categories/" data-astro-cid-3ef6ksr2> 分类 </a><a class="nav-link" href="/tags/" data-astro-cid-3ef6ksr2> 标签 </a><a class="nav-link" href="/archives/" data-astro-cid-3ef6ksr2> 归档 </a><a class="nav-link" href="/about/" data-astro-cid-3ef6ksr2> 关于 </a> </nav> <button class="icon-btn" id="theme-toggle" aria-label="切换深色模式" title="切换主题" data-astro-cid-3ef6ksr2> <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3ef6ksr2><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" data-astro-cid-3ef6ksr2></path></svg> <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-3ef6ksr2><circle cx="12" cy="12" r="4" data-astro-cid-3ef6ksr2></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" data-astro-cid-3ef6ksr2></path></svg> </button> <button class="icon-btn mobile-toggle" id="mobile-toggle" aria-label="展开菜单" aria-expanded="false" data-astro-cid-3ef6ksr2> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-3ef6ksr2><path d="M3 6h18M3 12h18M3 18h18" data-astro-cid-3ef6ksr2></path></svg> </button> </div> </header>  <script type="module">const a=document.getElementById("theme-toggle");a?.addEventListener("click",()=>{const e=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=e,localStorage.setItem("theme",e)});const t=document.getElementById("mobile-toggle"),n=document.getElementById("site-nav");t?.addEventListener("click",()=>{const e=n?.classList.toggle("open")??!1;t.setAttribute("aria-expanded",String(e))});n?.querySelectorAll("a").forEach(e=>e.addEventListener("click",()=>{n.classList.remove("open"),t?.setAttribute("aria-expanded","false")}));</script> <main> <div class="container article-layout"> <article class="article-main"> <header class="article-header"> <a class="badge" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a> <h1>可观测性不是“多打日志”</h1> <div class="article-meta"> <time datetime="2026-10-05T00:00:00.000Z">2026 年 10 月 5 日</time> <span class="sep"></span> <span>约 2 分钟阅读</span>  </div> </header> <p class="article-lead">指标、日志和链路追踪解决的是不同问题。分清它们的分工，才能在排障时少走弯路。</p> <div class="prose"><p>系统出问题时，我们最常做的第一件事是翻日志。但日志只能告诉你“某一刻发生了什么”，很难回答“这个问题从什么时候开始”“影响范围有多大”。</p>
+<h2 id="三类信号三个问题">三类信号，三个问题</h2>
+<ul>
+<li><strong>指标（Metrics）</strong>：可聚合的数字。回答“有多少”“多快”“错误率多少”。</li>
+<li><strong>日志（Logs）</strong>：离散的事件记录。回答“具体发生了什么”。</li>
+<li><strong>追踪（Traces）</strong>：一次请求跨越服务的完整路径。回答“时间花在了哪一跳”。</li>
+</ul>
+<p>它们不是互相替代的关系，而是从三个角度描述同一个系统。</p>
+<h2 id="指标先定义-sli再决定采集什么">指标：先定义 SLI，再决定采集什么</h2>
+<p>很多团队采集了几百个指标，真正排障时却找不到关键数据。原因通常是采集在前、问题在后。</p>
+<p>更靠谱的顺序是：</p>
+<ol>
+<li>先定义用户可感知的服务指标，例如请求成功率、P99 延迟。</li>
+<li>再确定哪些内部指标能解释这些 SLI 的变化。</li>
+<li>最后才决定用什么工具采集。</li>
+</ol>
+<p>对 HTTP 服务来说，<code>RED</code> 方法是一个不错的起点：Rate（请求速率）、Errors（错误数）、Duration（耗时分布）。</p>
+<h2 id="日志结构化带上下文">日志：结构化、带上下文</h2>
+<p>排障时最怕的是日志里只有一句 <code>something went wrong</code>。建议：</p>
+<ul>
+<li>使用结构化日志（JSON），而不是拼接字符串。</li>
+<li>每条日志带上 request id、trace id 和用户标识（脱敏后）。</li>
+<li>区分错误级别：预期内的业务失败不该记作 error。</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "level"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"warn"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "trace_id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"4bf92f3577b34da6a3ce929d0e0e4736"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "event"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"downstream_timeout"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "service"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"order-api"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "upstream"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"inventory-svc"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "duration_ms"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">812</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="追踪解决跨服务归因">追踪：解决跨服务归因</h2>
+<p>当一次请求穿过五六个服务，日志里的告警只能告诉你“某个环节慢了”，追踪能直接告诉你“是 inventory 服务的第三次数据库查询慢了”。</p>
+<p>接入链路追踪的成本主要在传播上下文：HTTP header、消息队列的 message header 都要带上 trace 信息。一旦打通，排障效率会明显提升。</p>
+<h2 id="小结">小结</h2>
+<p>不要试图用一种信号解决所有问题。<strong>指标用于发现，追踪用于定位，日志用于确认细节。</strong> 三者配合，才构成完整的可观测性。</p></div> <div class="article-footer"> <a class="tag" href="/tags/%E5%8F%AF%E8%A7%82%E6%B5%8B%E6%80%A7/">#可观测性</a><a class="tag" href="/tags/Prometheus/">#Prometheus</a><a class="tag" href="/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">#云原生</a> </div> <nav class="post-nav" aria-label="文章导航"> <a href="/blog/go-concurrency-model/"> <span>← 更新一篇</span><strong>用 Go 写并发：先把生命周期想清楚</strong> </a> <a class="next" href="/blog/index-not-a-silver-bullet/"> <span>更早一篇 →</span><strong>索引不是银弹：几个常见的误用场景</strong> </a> </nav> </article> <aside class="toc" aria-label="文章目录"> <div class="toc-title">本页目录</div> <ul> <li class="level-2"><a href="#三类信号三个问题">三类信号，三个问题</a></li><li class="level-2"><a href="#指标先定义-sli再决定采集什么">指标：先定义 SLI，再决定采集什么</a></li><li class="level-2"><a href="#日志结构化带上下文">日志：结构化、带上下文</a></li><li class="level-2"><a href="#追踪解决跨服务归因">追踪：解决跨服务归因</a></li><li class="level-2"><a href="#小结">小结</a></li> </ul> </aside> </div> </main> <footer class="site-footer"> <div class="container footer-inner"> <span>© 2026 Lumen · 保持好奇，持续记录。</span> <span>Built with <a href="https://astro.build/" target="_blank" rel="noopener">Astro</a> · <a href="/rss.xml">RSS</a></span> </div> </footer> </body></html>
