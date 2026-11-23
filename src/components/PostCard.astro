@@ -12,7 +12,7 @@ const { data } = post;
     <a class="badge" href={categoryUrl(data.category)}>{data.category}</a>
     <time class="card-date" datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
   </div>
-  <h3><a href={`/blog/${post.id}/`}>{data.title}</a></h3>
+  <h3><a class="card-link" href={`/blog/${post.id}/`}>{data.title}</a></h3>
   <p>{data.description}</p>
   <div class="card-bottom">
     <div class="tag-list">
