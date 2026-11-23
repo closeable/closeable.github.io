@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="470" fill="#1f1c17"/>
+<text x="380" y="44" font-size="21" fill="#e9e3d5" font-weight="700" text-anchor="middle">RAG 全链路：离线摄入 + 在线查询</text>
+<text x="40" y="88" font-size="14" fill="#9a9287" font-weight="700" text-anchor="start">离线 · 数据摄入（批处理，可以慢）</text>
+<rect x="42" y="102" width="108" height="58" rx="4" fill="#2a2620"/>
+<path d="M40.0 100.1 L 68.1 100.8 L 96.2 100.3 L 124.2 99.4 L 152.3 100.2" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M40.0 100.1 L 68.1 100.2 L 96.2 100.6 L 124.2 100.1 L 152.3 100.2" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M151.9 100.9 L 151.6 116.3 L 152.8 131.7 L 152.4 147.1 L 151.8 162.4" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M151.9 100.9 L 152.5 116.3 L 152.3 131.7 L 152.2 147.1 L 151.8 162.4" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M152.2 161.0 L 124.2 161.5 L 96.2 160.6 L 68.2 161.3 L 40.3 162.2" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M152.2 161.0 L 124.2 160.6 L 96.2 162.4 L 68.2 161.6 L 40.3 162.2" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M39.4 160.8 L 39.3 145.9 L 39.0 131.0 L 40.8 116.2 L 40.6 101.2" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M39.4 160.8 L 39.3 145.9 L 40.2 131.0 L 40.5 116.1 L 40.6 101.2" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="96" y="126" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">文档源</text>
+<text x="96" y="147" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">PDF / wiki / 库表</text>
+<path d="M 154 131 Q 166.5 127.4 172 131" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M172.0 131.0 L 169.8 130.4 L 167.6 129.9 L 165.3 130.1 L 163.1 129.6" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M172.0 131.0 L 170.5 129.3 L 169.1 127.5 L 168.5 125.2 L 167.1 123.5" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="176" y="102" width="108" height="58" rx="4" fill="#2a2620"/>
+<path d="M174.0 100.1 L 201.8 100.5 L 229.7 98.9 L 257.6 100.3 L 285.4 100.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M174.0 100.1 L 201.8 98.8 L 229.7 99.8 L 257.6 100.4 L 285.4 100.0" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M287.3 99.8 L 287.8 115.3 L 285.9 130.7 L 286.4 146.2 L 285.9 161.6" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M287.3 99.8 L 286.2 115.2 L 287.4 130.7 L 286.1 146.2 L 285.9 161.6" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M285.6 162.9 L 257.5 162.2 L 229.4 161.6 L 201.2 162.2 L 173.1 161.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M285.6 162.9 L 257.5 162.8 L 229.4 162.4 L 201.3 160.3 L 173.1 161.0" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M174.9 162.3 L 174.8 147.0 L 174.2 131.7 L 173.7 116.4 L 173.8 101.1" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M174.9 162.3 L 174.7 147.0 L 172.4 131.8 L 175.1 116.4 L 173.8 101.1" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="230" y="126" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">解析与清洗</text>
+<text x="230" y="147" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">版面 · 表格 · OCR</text>
+<path d="M 288 131 Q 295.0 130.1 306 131" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M306.0 131.0 L 304.0 132.0 L 301.9 133.0 L 299.6 133.0 L 297.5 134.0" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M306.0 131.0 L 304.0 129.9 L 302.1 128.8 L 299.9 128.0 L 298.1 126.7" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="310" y="102" width="108" height="58" rx="4" fill="#33291c"/>
+<path d="M308.2 100.3 L 336.4 100.7 L 364.6 101.1 L 392.8 101.1 L 421.0 101.2" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M308.2 100.3 L 336.4 100.5 L 364.6 99.1 L 392.8 101.4 L 421.0 101.2" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M420.4 101.3 L 421.1 116.2 L 420.0 131.2 L 419.6 146.1 L 420.5 161.1" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M420.4 101.3 L 420.9 116.2 L 418.8 131.2 L 420.8 146.1 L 420.5 161.1" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M420.7 162.4 L 392.2 161.8 L 363.8 161.9 L 335.3 161.4 L 306.9 161.4" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M420.7 162.4 L 392.2 162.9 L 363.8 161.0 L 335.3 162.2 L 306.9 161.4" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M306.9 162.1 L 307.7 146.4 L 308.6 130.7 L 308.0 114.9 L 307.7 99.2" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M306.9 162.1 L 305.8 146.4 L 307.0 130.7 L 308.4 114.9 L 307.7 99.2" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="364" y="126" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">结构分块</text>
+<text x="364" y="147" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">256~512 token</text>
+<path d="M 422 131 Q 431.7 133.0 440 131" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M440.0 131.0 L 438.2 132.3 L 436.8 134.2 L 434.7 135.1 L 432.9 136.5" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M440.0 131.0 L 437.8 130.6 L 435.5 130.6 L 433.4 129.5 L 431.2 129.4" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="444" y="102" width="108" height="58" rx="4" fill="#1e2a3a"/>
+<path d="M440.9 98.9 L 469.5 99.7 L 498.1 100.6 L 526.7 100.8 L 555.3 100.3" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M440.9 98.9 L 469.5 100.6 L 498.1 97.8 L 526.7 99.1 L 555.3 100.3" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M554.2 99.7 L 555.0 115.3 L 555.3 130.9 L 554.0 146.5 L 553.8 162.1" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M554.2 99.7 L 554.8 115.3 L 554.4 130.9 L 553.3 146.5 L 553.8 162.1" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M553.8 161.6 L 525.9 160.7 L 498.0 162.2 L 470.1 161.8 L 442.2 161.7" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M553.8 161.6 L 525.9 162.3 L 498.0 160.9 L 470.1 162.1 L 442.2 161.7" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M442.2 162.4 L 441.2 146.6 L 442.4 130.7 L 440.4 114.9 L 440.7 99.0" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M442.2 162.4 L 442.7 146.5 L 440.2 130.7 L 441.4 114.9 L 440.7 99.0" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="498" y="126" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">嵌入</text>
+<text x="498" y="147" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">embedding 模型</text>
+<path d="M 556 131 Q 568.3 133.4 574 131" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M574.0 131.0 L 572.3 132.5 L 571.3 134.6 L 569.6 136.1 L 567.8 137.5" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M574.0 131.0 L 571.8 130.7 L 569.5 131.2 L 567.2 131.1 L 565.0 130.8" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="578" y="102" width="108" height="58" rx="4" fill="#1e2f24"/>
+<path d="M575.6 99.0 L 603.9 99.7 L 632.3 99.9 L 660.6 100.5 L 689.0 100.4" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M575.6 99.0 L 603.9 99.9 L 632.3 99.2 L 660.6 100.7 L 689.0 100.4" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M687.3 99.2 L 688.2 115.0 L 687.0 130.8 L 686.2 146.5 L 687.1 162.3" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M687.3 99.2 L 686.2 115.0 L 687.1 130.8 L 686.1 146.5 L 687.1 162.3" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M686.8 162.1 L 659.3 161.0 L 631.8 162.8 L 604.2 160.8 L 576.7 161.4" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M686.8 162.1 L 659.3 162.0 L 631.8 160.0 L 604.2 160.2 L 576.7 161.4" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M575.7 161.9 L 575.1 146.2 L 574.6 130.4 L 575.0 114.7 L 575.8 99.0" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M575.7 161.9 L 576.9 146.2 L 576.0 130.4 L 576.0 114.7 L 575.8 99.0" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="632" y="126" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">索引库</text>
+<text x="632" y="147" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">向量 + 倒排</text>
+<text x="40" y="258" font-size="14" fill="#9a9287" font-weight="700" text-anchor="start">在线 · 查询（延迟敏感，毫秒级预算）</text>
+<rect x="42" y="272" width="108" height="58" rx="4" fill="#2a2620"/>
+<path d="M39.3 271.1 L 67.2 270.6 L 95.1 269.7 L 123.0 270.8 L 150.9 270.9" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M39.3 271.1 L 67.2 270.7 L 95.1 269.6 L 123.0 270.6 L 150.9 270.9" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M151.0 271.0 L 150.4 286.3 L 152.1 301.5 L 151.8 316.7 L 152.2 331.9" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M151.0 271.0 L 151.2 286.3 L 152.6 301.4 L 151.9 316.7 L 152.2 331.9" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M153.2 331.5 L 124.9 332.3 L 96.5 332.4 L 68.2 331.4 L 39.9 331.8" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M153.2 331.5 L 124.9 332.8 L 96.5 333.3 L 68.2 331.0 L 39.9 331.8" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M39.1 331.3 L 39.5 316.1 L 39.8 301.0 L 40.0 285.9 L 39.8 270.7" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M39.1 331.3 L 39.0 316.1 L 40.5 301.0 L 40.8 285.9 L 39.8 270.7" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="96" y="296" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">用户问题</text>
+<text x="96" y="317" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">多轮带指代</text>
+<path d="M 154 301 Q 161.3 303.1 172 301" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M172.0 301.0 L 170.4 302.6 L 168.6 304.0 L 166.5 304.9 L 164.6 306.2" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M172.0 301.0 L 169.8 300.4 L 167.5 300.5 L 165.5 299.2 L 163.2 299.0" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="176" y="272" width="108" height="58" rx="4" fill="#2a2620"/>
+<path d="M175.1 269.0 L 203.1 269.6 L 231.1 269.6 L 259.0 270.1 L 287.0 269.7" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M175.1 269.0 L 203.1 270.5 L 231.1 269.1 L 259.0 268.8 L 287.0 269.7" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M285.5 270.6 L 285.4 285.6 L 287.1 300.7 L 286.4 315.8 L 286.5 330.8" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M285.5 270.6 L 285.1 285.6 L 286.3 300.7 L 285.1 315.8 L 286.5 330.8" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M286.6 331.0 L 258.2 332.0 L 229.8 329.8 L 201.4 331.6 L 172.9 331.1" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M286.6 331.0 L 258.2 330.6 L 229.8 331.9 L 201.4 331.6 L 172.9 331.1" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M174.6 332.7 L 174.6 317.3 L 175.3 301.9 L 174.4 286.6 L 174.3 271.2" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M174.6 332.7 L 174.2 317.3 L 173.6 302.0 L 175.4 286.6 L 174.3 271.2" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="230" y="296" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">查询改写</text>
+<text x="230" y="317" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">消解 · 变体扩展</text>
+<path d="M 288 301 Q 293.0 301.5 306 301" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M306.0 301.0 L 304.0 302.0 L 301.9 302.8 L 299.9 303.9 L 297.9 305.0" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M306.0 301.0 L 303.8 300.4 L 301.9 299.1 L 299.7 298.6 L 297.7 297.6" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="310" y="272" width="108" height="58" rx="4" fill="#1e2a3a"/>
+<path d="M307.5 269.0 L 335.9 268.4 L 364.2 269.6 L 392.6 269.4 L 421.0 269.7" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M307.5 269.0 L 335.9 268.3 L 364.3 267.6 L 392.6 268.4 L 421.0 269.7" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M419.7 271.1 L 420.0 286.6 L 420.2 302.1 L 419.6 317.6 L 419.8 333.1" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M419.7 271.1 L 421.1 286.6 L 420.3 302.1 L 419.6 317.6 L 419.8 333.1" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M420.8 332.5 L 392.7 332.5 L 364.6 333.8 L 336.4 333.8 L 308.3 333.2" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M420.8 332.5 L 392.7 333.7 L 364.6 334.0 L 336.4 332.1 L 308.3 333.2" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M307.1 331.0 L 307.5 316.0 L 305.6 301.0 L 306.7 285.9 L 306.9 270.9" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M307.1 331.0 L 305.7 316.0 L 305.9 301.0 L 307.7 285.9 L 306.9 270.9" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="364" y="296" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">混合检索</text>
+<text x="364" y="317" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">BM25 + 向量</text>
+<path d="M 422 301 Q 430.7 296.1 440 301" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M440.0 301.0 L 437.7 301.2 L 435.5 301.2 L 433.3 300.6 L 431.0 300.4" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M440.0 301.0 L 438.6 299.2 L 436.8 297.8 L 436.1 295.5 L 434.5 293.9" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="444" y="272" width="108" height="58" rx="4" fill="#33291c"/>
+<path d="M443.1 269.3 L 470.7 268.6 L 498.3 267.8 L 526.0 268.9 L 553.6 269.0" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M443.1 269.3 L 470.7 269.9 L 498.3 270.3 L 526.0 268.8 L 553.6 269.0" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M554.9 269.9 L 554.3 285.5 L 553.7 301.1 L 554.1 316.7 L 553.5 332.3" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M554.9 269.9 L 554.0 285.5 L 554.4 301.1 L 554.1 316.7 L 553.5 332.3" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M553.8 333.2 L 525.7 333.8 L 497.6 332.4 L 469.6 333.3 L 441.5 332.4" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M553.8 333.2 L 525.7 332.6 L 497.6 333.9 L 469.6 331.7 L 441.5 332.4" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M442.6 331.2 L 442.5 315.8 L 442.1 300.5 L 442.1 285.1 L 443.2 269.8" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M442.6 331.2 L 443.8 315.9 L 441.4 300.5 L 443.1 285.1 L 443.2 269.8" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="498" y="296" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">重排</text>
+<text x="498" y="317" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">cross-encoder</text>
+<path d="M 556 301 Q 568.6 304.8 574 301" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round" />
+<path d="M574.0 301.0 L 573.1 303.1 L 571.3 304.6 L 570.6 306.8 L 569.4 308.7" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<path d="M574.0 301.0 L 571.8 301.4 L 569.6 302.0 L 567.4 302.4 L 565.2 302.7" fill="none" stroke="#e9e3d5" stroke-width="2" stroke-linecap="round"/>
+<rect x="578" y="272" width="108" height="58" rx="4" fill="#1e2f24"/>
+<path d="M574.9 268.8 L 603.1 268.4 L 631.2 269.1 L 659.3 268.8 L 687.4 268.9" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M574.9 268.8 L 603.1 268.1 L 631.2 268.9 L 659.3 269.2 L 687.4 268.9" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M688.7 271.1 L 689.0 286.3 L 687.4 301.5 L 687.9 316.7 L 687.2 331.8" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M688.7 271.1 L 689.2 286.3 L 687.4 301.5 L 688.2 316.7 L 687.2 331.8" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M687.1 332.4 L 659.1 332.7 L 631.2 333.3 L 603.2 332.4 L 575.2 331.3" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M687.1 332.4 L 659.1 333.3 L 631.2 332.6 L 603.2 331.5 L 575.2 331.3" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M575.5 333.2 L 575.4 317.5 L 576.5 301.9 L 576.2 286.2 L 576.6 270.6" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M575.5 333.2 L 576.9 317.6 L 575.6 301.9 L 577.0 286.2 L 576.6 270.6" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="632" y="296" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">生成与引用</text>
+<text x="632" y="317" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">带 [1][2] 出处</text>
+<path d="M 632 166 Q 502.8 211.9 384 266" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="6 5"/>
+<path d="M384.0 266.0 L 385.7 264.5 L 386.8 262.5 L 388.2 260.7 L 390.0 259.3" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-linecap="round"/>
+<path d="M384.0 266.0 L 386.3 266.3 L 388.5 266.4 L 390.7 265.8 L 393.0 265.9" fill="none" stroke="#6e6659" stroke-width="1.8" stroke-linecap="round"/>
+<text x="610" y="218" font-size="12" fill="#9a9287" font-weight="400" text-anchor="middle">top-k 候选</text>
+<text x="380" y="400" font-size="13.5" fill="#9a9287" font-weight="400" text-anchor="middle">解析与分块决定上限，检索与重排决定下限，评测告诉你现在在哪</text>
+<text x="380" y="428" font-size="12.5" fill="#dd8a76" font-weight="400" text-anchor="middle">权限过滤放在检索层，而不是靠提示词"叮嘱"模型</text>
+</svg>

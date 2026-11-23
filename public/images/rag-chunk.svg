@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="440" fill="#fffdf4"/>
+<text x="380" y="44" font-size="21" fill="#3f3a34" font-weight="700" text-anchor="middle">小-大块：检索用小块，生成用大块</text>
+<rect x="42" y="110" width="146" height="246" rx="4" fill="#f2eee2"/>
+<path d="M40.4 108.9 L 78.0 108.2 L 115.5 107.4 L 153.1 106.5 L 190.6 106.8" fill="none" stroke="#3f3a34" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M40.4 108.9 L 78.0 109.5 L 115.6 109.1 L 153.1 107.8 L 190.6 106.8" fill="none" stroke="#3f3a34" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M189.5 108.6 L 189.3 170.9 L 191.2 233.2 L 189.6 295.5 L 190.2 357.8" fill="none" stroke="#3f3a34" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M189.5 108.6 L 189.0 170.9 L 188.5 233.2 L 190.6 295.5 L 190.2 357.8" fill="none" stroke="#3f3a34" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M191.0 358.9 L 153.4 358.0 L 115.8 358.4 L 78.3 358.6 L 40.7 358.8" fill="none" stroke="#3f3a34" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M191.0 358.9 L 153.4 360.1 L 115.8 360.1 L 78.3 359.7 L 40.7 358.8" fill="none" stroke="#3f3a34" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M40.5 357.4 L 40.5 295.2 L 41.4 232.9 L 40.3 170.7 L 39.4 108.5" fill="none" stroke="#3f3a34" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M40.5 357.4 L 41.1 295.2 L 41.5 232.9 L 39.2 170.7 L 39.4 108.5" fill="none" stroke="#3f3a34" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="115" y="96" font-size="14" fill="#3f3a34" font-weight="700" text-anchor="middle">原始文档</text>
+<text x="115" y="136" font-size="12" fill="#4a7ec2" font-weight="700" text-anchor="start">第一章 标题</text>
+<path d="M54.0 158.0 L 84.5 157.7 L 115.0 156.6 L 145.5 158.4 L 176.0 157.7" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M54.0 174.0 L 84.5 173.5 L 115.0 172.0 L 145.5 172.8 L 176.0 172.5" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M54.0 190.0 L 84.5 191.2 L 115.0 191.0 L 145.5 191.5 L 176.0 191.2" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<text x="115" y="216" font-size="12" fill="#4a7ec2" font-weight="700" text-anchor="start">第二章 标题</text>
+<path d="M54.0 238.0 L 84.5 237.8 L 115.0 237.0 L 145.5 239.0 L 176.0 238.1" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M54.0 254.0 L 84.5 255.1 L 115.0 255.2 L 145.5 254.1 L 176.0 254.7" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M54.0 270.0 L 84.5 270.0 L 115.0 271.5 L 145.5 271.2 L 176.0 270.9" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M54.0 286.0 L 84.5 286.3 L 115.0 286.3 L 145.5 287.6 L 176.0 287.3" fill="none" stroke="#8a8378" stroke-width="1.4" stroke-linecap="round"/>
+<text x="115" y="322" font-size="10.5" fill="#8a8378" font-weight="400" text-anchor="middle">（含表格 / 代码）</text>
+<text x="330" y="96" font-size="13.5" fill="#3f3a34" font-weight="700" text-anchor="middle">子块 · 128~256 token</text>
+<rect x="264" y="112" width="132" height="44" rx="4" fill="#e6eefb"/>
+<path d="M261.3 110.7 L 295.4 109.9 L 329.5 111.9 L 363.6 110.1 L 397.7 110.7" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M261.3 110.7 L 295.4 111.6 L 329.5 110.8 L 363.6 111.9 L 397.7 110.7" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M398.0 109.9 L 398.7 121.8 L 397.7 133.8 L 398.0 145.7 L 398.0 157.6" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M398.0 109.9 L 397.9 121.8 L 397.9 133.8 L 397.8 145.7 L 398.0 157.6" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M397.2 158.1 L 363.7 158.1 L 330.1 157.1 L 296.5 157.8 L 262.9 157.9" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M397.2 158.1 L 363.7 159.1 L 330.1 158.7 L 296.5 158.8 L 262.9 157.9" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M263.0 157.7 L 262.7 145.6 L 261.7 133.6 L 261.2 121.6 L 260.9 109.6" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M263.0 157.7 L 261.4 145.7 L 260.2 133.7 L 261.9 121.6 L 260.9 109.6" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="330" y="139" font-size="12.5" fill="#3f3a34" font-weight="400" text-anchor="middle">子块 1</text>
+<rect x="264" y="170" width="132" height="44" rx="4" fill="#faeeda"/>
+<path d="M262.0 168.2 L 296.0 168.9 L 329.9 168.3 L 363.9 167.8 L 397.9 167.7" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M262.0 168.2 L 296.0 167.7 L 329.9 169.7 L 363.9 168.3 L 397.9 167.7" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M396.8 168.4 L 396.9 180.5 L 396.4 192.6 L 397.4 204.7 L 397.3 216.8" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M396.8 168.4 L 397.6 180.5 L 398.3 192.6 L 396.9 204.7 L 397.3 216.8" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M396.9 214.8 L 363.3 215.7 L 329.7 214.5 L 296.0 215.4 L 262.4 216.3" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M396.9 214.8 L 363.3 215.3 L 329.7 217.5 L 296.0 217.2 L 262.4 216.3" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M261.4 215.4 L 262.4 203.4 L 263.2 191.4 L 261.9 179.3 L 262.2 167.3" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M261.4 215.4 L 261.2 203.4 L 261.8 191.3 L 263.3 179.3 L 262.2 167.3" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<text x="330" y="197" font-size="12.5" fill="#c77b2e" font-weight="700" text-anchor="middle">子块 2 ★</text>
+<rect x="264" y="228" width="132" height="44" rx="4" fill="#e6eefb"/>
+<path d="M261.2 226.1 L 295.3 226.6 L 329.5 226.9 L 363.6 225.9 L 397.7 226.2" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M261.2 226.1 L 295.3 225.1 L 329.5 226.2 L 363.6 225.2 L 397.7 226.2" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M398.0 226.8 L 398.8 238.9 L 397.5 251.0 L 398.7 263.1 L 398.4 275.2" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M398.0 226.8 L 399.1 238.9 L 400.0 251.0 L 399.1 263.1 L 398.4 275.2" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M398.7 273.2 L 364.6 272.7 L 330.5 273.5 L 296.4 274.1 L 262.3 273.9" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M398.7 273.2 L 364.6 273.8 L 330.5 274.7 L 296.4 274.2 L 262.3 273.9" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M261.6 274.1 L 260.9 261.8 L 261.6 249.6 L 262.0 237.3 L 261.7 225.0" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M261.6 274.1 L 261.0 261.8 L 261.8 249.6 L 262.3 237.3 L 261.7 225.0" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="330" y="255" font-size="12.5" fill="#3f3a34" font-weight="400" text-anchor="middle">子块 3</text>
+<rect x="264" y="286" width="132" height="44" rx="4" fill="#e6eefb"/>
+<path d="M262.0 283.1 L 296.1 283.6 L 330.3 282.5 L 364.5 282.9 L 398.6 283.4" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M262.0 283.1 L 296.1 282.6 L 330.3 283.0 L 364.5 283.6 L 398.6 283.4" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M397.2 284.8 L 396.4 296.4 L 398.0 307.8 L 398.0 319.3 L 397.7 330.8" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M397.2 284.8 L 397.9 296.3 L 396.7 307.8 L 397.3 319.3 L 397.7 330.8" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M398.3 331.3 L 364.5 332.1 L 330.6 331.9 L 296.7 332.5 L 262.9 332.2" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M398.3 331.3 L 364.5 332.2 L 330.6 329.8 L 296.7 332.3 L 262.9 332.2" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M261.1 331.0 L 261.1 319.3 L 261.5 307.5 L 261.8 295.8 L 260.8 284.1" fill="none" stroke="#4a7ec2" stroke-width="2" stroke-linecap="round"/>
+<path d="M261.1 331.0 L 262.2 319.3 L 260.4 307.5 L 261.3 295.8 L 260.8 284.1" fill="none" stroke="#4a7ec2" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="330" y="313" font-size="12.5" fill="#3f3a34" font-weight="400" text-anchor="middle">子块 4</text>
+<path d="M 190 200 Q 226.3 201.4 258 200" fill="none" stroke="#3f3a34" stroke-width="2" stroke-linecap="round" />
+<path d="M258.0 200.0 L 255.9 200.8 L 254.0 202.0 L 252.1 203.3 L 249.9 204.0" fill="none" stroke="#3f3a34" stroke-width="2" stroke-linecap="round"/>
+<path d="M258.0 200.0 L 255.8 199.5 L 253.9 198.1 L 251.8 197.3 L 249.6 196.7" fill="none" stroke="#3f3a34" stroke-width="2" stroke-linecap="round"/>
+<text x="224" y="186" font-size="11" fill="#8a8378" font-weight="400" text-anchor="middle">结构切分</text>
+<text x="612" y="96" font-size="13.5" fill="#3f3a34" font-weight="700" text-anchor="middle">父块 · 512~1024 token</text>
+<rect x="502" y="112" width="220" height="218" rx="4" fill="#faeeda"/>
+<path d="M498.7 109.2 L 554.8 109.8 L 610.8 111.4 L 666.9 111.5 L 723.0 111.2" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M498.7 109.2 L 554.8 109.1 L 610.9 108.3 L 666.9 110.9 L 723.0 111.2" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M722.9 109.7 L 724.0 165.4 L 724.6 221.0 L 722.8 276.7 L 723.7 332.4" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M722.9 109.7 L 722.5 165.4 L 724.6 221.0 L 724.4 276.7 L 723.7 332.4" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M725.0 332.1 L 669.0 331.9 L 613.1 332.3 L 557.1 331.8 L 501.2 331.3" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M725.0 332.1 L 669.0 332.8 L 613.1 330.9 L 557.1 332.0 L 501.2 331.3" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M500.5 333.2 L 499.2 277.7 L 498.9 222.2 L 499.6 166.7 L 498.8 111.2" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M500.5 333.2 L 499.6 277.7 L 499.0 222.2 L 499.8 166.7 L 498.8 111.2" fill="none" stroke="#c77b2e" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<rect x="518" y="128" width="188" height="36" rx="4" fill="#fffdf4"/>
+<path d="M516.8 125.2 L 564.8 125.5 L 612.8 125.0 L 660.8 125.6 L 708.8 125.0" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M516.8 125.2 L 564.8 124.0 L 612.8 124.8 L 660.8 125.7 L 708.8 125.0" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M708.7 126.1 L 709.1 135.8 L 707.0 145.5 L 708.2 155.3 L 707.8 165.0" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M708.7 126.1 L 708.3 135.8 L 707.3 145.5 L 708.3 155.3 L 707.8 165.0" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M707.7 165.6 L 659.6 166.4 L 611.6 164.8 L 563.5 166.6 L 515.5 166.1" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M707.7 165.6 L 659.6 166.1 L 611.6 165.9 L 563.5 164.8 L 515.5 166.1" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M515.6 165.0 L 516.1 155.1 L 514.6 145.1 L 514.8 135.2 L 515.5 125.2" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M515.6 165.0 L 516.5 155.1 L 515.6 145.1 L 515.2 135.2 L 515.5 125.2" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<text x="612" y="151" font-size="11.5" fill="#8a8378" font-weight="400" text-anchor="middle">子块 1</text>
+<rect x="518" y="178" width="188" height="36" rx="4" fill="#faeeda"/>
+<path d="M516.3 176.3 L 564.1 176.1 L 611.9 176.8 L 659.7 176.4 L 707.5 175.8" fill="none" stroke="#c77b2e" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M516.3 176.3 L 564.1 176.0 L 611.9 176.1 L 659.7 176.8 L 707.5 175.8" fill="none" stroke="#c77b2e" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M708.0 175.8 L 708.9 185.7 L 707.6 195.7 L 708.6 205.7 L 708.2 215.7" fill="none" stroke="#c77b2e" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M708.0 175.8 L 709.2 185.7 L 707.1 195.7 L 707.6 205.7 L 708.2 215.7" fill="none" stroke="#c77b2e" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M708.8 215.6 L 660.4 216.3 L 612.0 214.6 L 563.6 216.3 L 515.3 215.6" fill="none" stroke="#c77b2e" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M708.8 215.6 L 660.4 216.3 L 612.0 214.0 L 563.6 214.9 L 515.3 215.6" fill="none" stroke="#c77b2e" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M515.2 216.1 L 516.2 206.1 L 516.5 196.0 L 515.7 186.0 L 516.2 175.9" fill="none" stroke="#c77b2e" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M515.2 216.1 L 516.5 206.1 L 514.9 196.0 L 516.5 186.0 L 516.2 175.9" fill="none" stroke="#c77b2e" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="612" y="201" font-size="11.5" fill="#c77b2e" font-weight="700" text-anchor="middle">子块 2 ★ 命中</text>
+<rect x="518" y="228" width="188" height="36" rx="4" fill="#fffdf4"/>
+<path d="M516.2 226.5 L 564.3 226.8 L 612.4 225.3 L 660.5 225.7 L 708.6 225.4" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M516.2 226.5 L 564.3 225.4 L 612.4 226.7 L 660.5 224.6 L 708.6 225.4" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M707.9 226.0 L 707.3 235.9 L 708.3 245.8 L 708.5 255.7 L 708.4 265.6" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M707.9 226.0 L 707.5 235.9 L 709.0 245.8 L 709.2 255.7 L 708.4 265.6" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M707.3 265.1 L 659.6 265.4 L 611.9 266.6 L 564.3 264.5 L 516.6 265.3" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M707.3 265.1 L 659.6 265.6 L 611.9 266.0 L 564.3 264.5 L 516.6 265.3" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M515.8 265.6 L 514.9 255.8 L 514.8 246.1 L 516.5 236.3 L 516.1 226.6" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M515.8 265.6 L 516.3 255.8 L 516.4 246.1 L 515.2 236.3 L 516.1 226.6" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<text x="612" y="251" font-size="11.5" fill="#8a8378" font-weight="400" text-anchor="middle">子块 3</text>
+<rect x="518" y="278" width="188" height="36" rx="4" fill="#fffdf4"/>
+<path d="M515.9 276.6 L 563.7 277.3 L 611.6 276.6 L 659.4 275.8 L 707.2 276.0" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M515.9 276.6 L 563.7 275.5 L 611.6 278.2 L 659.4 276.2 L 707.2 276.0" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M708.0 276.9 L 707.1 286.8 L 708.7 296.6 L 708.2 306.4 L 707.8 316.2" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M708.0 276.9 L 706.9 286.8 L 706.2 296.6 L 708.4 306.4 L 707.8 316.2" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M707.2 316.6 L 659.4 316.4 L 611.5 316.4 L 563.7 317.0 L 515.8 316.9" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M707.2 316.6 L 659.4 317.8 L 611.5 318.1 L 563.7 317.0 L 515.8 316.9" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<path d="M515.9 315.4 L 516.2 305.4 L 515.3 295.5 L 514.7 285.5 L 515.4 275.6" fill="none" stroke="#3f3a34" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M515.9 315.4 L 515.1 305.5 L 515.1 295.5 L 516.5 285.5 L 515.4 275.6" fill="none" stroke="#3f3a34" stroke-width="1.1199999999999999" stroke-linecap="round" opacity="0.4"/>
+<text x="612" y="301" font-size="11.5" fill="#8a8378" font-weight="400" text-anchor="middle">子块 4</text>
+<path d="M 400 192 Q 447.9 193.8 496 192" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round" />
+<path d="M496.0 192.0 L 494.1 193.3 L 492.0 194.0 L 489.9 194.8 L 487.9 196.0" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M496.0 192.0 L 493.9 191.1 L 491.8 190.5 L 489.8 189.2 L 487.7 188.6" fill="none" stroke="#c77b2e" stroke-width="2.6" stroke-linecap="round"/>
+<text x="448" y="176" font-size="11.5" fill="#c77b2e" font-weight="700" text-anchor="middle">命中即整块带出</text>
+<text x="380" y="384" font-size="13.5" fill="#8a8378" font-weight="400" text-anchor="middle">检索粒度小 → 召回准；喂给模型的粒度大 → 上下文全</text>
+<text x="380" y="412" font-size="12.5" fill="#8a8378" font-weight="400" text-anchor="middle">表格与代码块不要硬切：转 Markdown，或"摘要 + 原文"存两份</text>
+</svg>

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="420" fill="#1f1c17"/>
+<text x="380" y="44" font-size="21" fill="#e9e3d5" font-weight="700" text-anchor="middle">混合检索：BM25 + 向量，RRF 融合</text>
+<rect x="26" y="184" width="92" height="54" rx="4" fill="#2a2620"/>
+<path d="M22.9 182.8 L 46.9 182.1 L 70.9 183.1 L 94.9 182.3 L 118.9 183.2" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M22.9 182.8 L 46.9 183.7 L 70.9 183.2 L 94.9 184.3 L 118.9 183.2" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M120.4 183.2 L 119.5 197.6 L 120.3 212.0 L 121.2 226.4 L 120.6 240.9" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M120.4 183.2 L 119.6 197.6 L 122.2 212.0 L 120.5 226.4 L 120.6 240.9" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M120.0 241.2 L 96.2 241.6 L 72.4 240.4 L 48.6 241.0 L 24.8 240.8" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M120.0 241.2 L 96.2 242.0 L 72.4 242.7 L 48.6 240.5 L 24.8 240.8" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M23.2 239.1 L 24.2 224.7 L 25.0 210.3 L 23.6 195.8 L 24.8 181.5" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M23.2 239.1 L 24.8 224.7 L 25.8 210.3 L 24.3 195.9 L 24.8 181.5" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="72" y="207" font-size="14.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">查询</text>
+<text x="72" y="227" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">改写后</text>
+<path d="M 122 200 Q 138.9 168.8 148 132" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round" />
+<path d="M148.0 132.0 L 148.6 134.2 L 148.3 136.5 L 149.5 138.6 L 149.6 140.9" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M148.0 132.0 L 146.4 133.6 L 145.2 135.5 L 143.6 137.1 L 142.5 139.1" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M 122 222 Q 137.8 247.0 148 280" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round" />
+<path d="M148.0 280.0 L 146.8 278.1 L 145.4 276.3 L 143.8 274.7 L 142.1 273.2" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M148.0 280.0 L 148.6 277.8 L 148.3 275.5 L 148.9 273.3 L 149.1 271.1" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<rect x="152" y="98" width="142" height="56" rx="4" fill="#1e2a3a"/>
+<path d="M150.8 96.2 L 187.1 96.1 L 223.4 94.1 L 259.7 95.9 L 296.0 94.8" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M150.8 96.2 L 187.1 95.7 L 223.4 97.0 L 259.7 94.3 L 296.0 94.8" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M295.2 95.9 L 295.9 110.7 L 296.7 125.5 L 296.2 140.3 L 296.5 155.1" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M295.2 95.9 L 296.8 110.7 L 295.0 125.5 L 297.0 140.3 L 296.5 155.1" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M295.3 156.6 L 258.9 156.8 L 222.5 155.9 L 186.2 155.0 L 149.8 155.7" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M295.3 156.6 L 258.9 156.4 L 222.5 157.4 L 186.2 155.2 L 149.8 155.7" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M151.3 157.0 L 150.7 141.9 L 150.8 126.7 L 148.7 111.6 L 149.0 96.5" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M151.3 157.0 L 149.5 141.9 L 148.6 126.8 L 150.7 111.6 L 149.0 96.5" fill="none" stroke="#7aa6e8" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="223" y="122" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">BM25 倒排</text>
+<text x="223" y="142" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">型号 · 代码 · 专名</text>
+<rect x="152" y="264" width="142" height="56" rx="4" fill="#1e2f24"/>
+<path d="M150.0 261.5 L 186.4 260.9 L 222.8 261.1 L 259.2 261.0 L 295.7 261.3" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M150.0 261.5 L 186.4 260.2 L 222.8 259.7 L 259.2 262.5 L 295.7 261.3" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M296.2 262.3 L 295.9 277.1 L 295.8 291.9 L 296.5 306.7 L 295.6 321.5" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M296.2 262.3 L 296.5 277.1 L 296.2 291.9 L 295.6 306.7 L 295.6 321.5" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M295.7 321.8 L 259.1 322.2 L 222.5 323.0 L 186.0 323.4 L 149.4 322.9" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M295.7 321.8 L 259.1 322.9 L 222.5 321.1 L 186.0 323.2 L 149.4 322.9" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M149.7 320.7 L 149.4 306.1 L 150.1 291.5 L 149.5 276.9 L 149.8 262.3" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M149.7 320.7 L 150.7 306.1 L 150.1 291.5 L 150.6 276.9 L 149.8 262.3" fill="none" stroke="#7dbb8f" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="223" y="288" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">向量近邻</text>
+<text x="223" y="308" font-size="10" fill="#9a9287" font-weight="400" text-anchor="middle">换个说法也能命中</text>
+<rect x="328" y="98" width="136" height="56" rx="4" fill="#1e2a3a"/>
+<path d="M325.1 95.3 L 360.2 94.9 L 395.3 95.5 L 430.4 95.3 L 465.5 96.2" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M325.1 95.3 L 360.2 95.5 L 395.3 95.0 L 430.4 95.5 L 465.5 96.2" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M465.5 94.9 L 466.5 110.4 L 465.1 125.9 L 465.5 141.4 L 466.7 156.9" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M465.5 94.9 L 465.2 110.4 L 467.6 125.9 L 465.7 141.4 L 466.7 156.9" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M466.9 155.5 L 431.5 155.2 L 396.1 156.7 L 360.7 156.7 L 325.2 157.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M466.9 155.5 L 431.5 157.2 L 396.1 155.8 L 360.7 157.6 L 325.2 157.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M327.2 156.7 L 326.1 141.5 L 325.2 126.3 L 326.7 111.0 L 325.6 95.8" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M327.2 156.7 L 328.1 141.5 L 325.7 126.3 L 325.0 111.1 L 325.6 95.8" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="396" y="120" font-size="11" fill="#e9e3d5" font-weight="700" text-anchor="middle">Top 200 · 词面匹配</text>
+<path d="M342.0 131.0 L 369.0 130.7 L 396.0 131.3 L 423.0 130.4 L 450.0 131.0" fill="none" stroke="#7aa6e8" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M342.0 139.0 L 369.0 138.9 L 396.0 139.0 L 423.0 139.3 L 450.0 139.0" fill="none" stroke="#7aa6e8" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M342.0 147.0 L 369.0 147.5 L 396.0 146.9 L 423.0 147.0 L 450.0 147.0" fill="none" stroke="#7aa6e8" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M 298 126 Q 305.3 122.9 322 126" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round" />
+<path d="M322.0 126.0 L 319.7 126.2 L 317.5 126.6 L 315.5 127.9 L 313.3 128.1" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M322.0 126.0 L 320.0 124.9 L 318.0 123.8 L 316.6 122.0 L 314.6 120.9" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<rect x="328" y="264" width="136" height="56" rx="4" fill="#1e2f24"/>
+<path d="M326.8 261.6 L 361.3 261.3 L 395.8 262.4 L 430.3 262.6 L 464.8 262.9" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M326.8 261.6 L 361.3 261.1 L 395.8 260.4 L 430.3 261.3 L 464.8 262.9" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M465.0 263.1 L 465.7 277.9 L 467.3 292.8 L 467.1 307.6 L 466.9 322.5" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M465.0 263.1 L 466.2 277.9 L 465.6 292.8 L 465.6 307.7 L 466.9 322.5" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M466.6 321.5 L 431.3 322.6 L 396.0 322.3 L 360.7 323.0 L 325.4 322.6" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M466.6 321.5 L 431.3 321.2 L 396.0 322.4 L 360.7 321.6 L 325.4 322.6" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M326.8 321.6 L 327.2 307.0 L 325.2 292.4 L 325.1 277.7 L 325.6 263.1" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M326.8 321.6 L 325.4 307.0 L 325.4 292.4 L 325.4 277.7 L 325.6 263.1" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="396" y="286" font-size="11" fill="#e9e3d5" font-weight="700" text-anchor="middle">Top 200 · 语义匹配</text>
+<path d="M342.0 297.0 L 369.0 297.3 L 396.0 296.1 L 423.0 296.8 L 450.0 297.0" fill="none" stroke="#7dbb8f" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M342.0 305.0 L 369.0 305.5 L 396.0 304.5 L 423.0 304.6 L 450.0 305.0" fill="none" stroke="#7dbb8f" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M342.0 313.0 L 369.0 313.1 L 396.0 313.4 L 423.0 313.3 L 450.0 313.0" fill="none" stroke="#7dbb8f" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M 298 292 Q 308.4 291.8 322 292" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round" />
+<path d="M322.0 292.0 L 320.1 293.2 L 318.0 294.2 L 315.8 294.6 L 313.7 295.5" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M322.0 292.0 L 319.8 291.4 L 317.7 290.5 L 315.9 289.0 L 313.8 288.2" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M 468 126 Q 479.7 152.3 498 188" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round" />
+<path d="M498.0 188.0 L 496.4 186.3 L 494.2 185.5 L 492.9 183.6 L 491.0 182.4" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M498.0 188.0 L 497.6 185.8 L 498.2 183.5 L 497.4 181.3 L 497.5 179.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M 468 292 Q 486.8 264.9 498 234" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round" />
+<path d="M498.0 234.0 L 497.8 236.3 L 498.4 238.5 L 498.8 240.7 L 498.6 243.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M498.0 234.0 L 496.2 235.4 L 494.8 237.2 L 493.5 239.0 L 491.7 240.5" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<rect x="502" y="182" width="100" height="58" rx="4" fill="#33291c"/>
+<path d="M498.9 180.3 L 525.1 180.4 L 551.3 179.0 L 577.5 179.7 L 603.7 178.8" fill="none" stroke="#d9a05c" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M498.9 180.3 L 525.1 180.6 L 551.3 178.8 L 577.5 177.9 L 603.7 178.8" fill="none" stroke="#d9a05c" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M604.4 180.4 L 603.9 195.5 L 604.1 210.6 L 603.6 225.7 L 603.7 240.9" fill="none" stroke="#d9a05c" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M604.4 180.4 L 603.5 195.5 L 604.6 210.6 L 603.8 225.7 L 603.7 240.9" fill="none" stroke="#d9a05c" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M605.2 242.7 L 578.7 241.6 L 552.2 241.4 L 525.6 241.9 L 499.1 241.1" fill="none" stroke="#d9a05c" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M605.2 242.7 L 578.7 241.1 L 552.2 241.3 L 525.6 242.6 L 499.1 241.1" fill="none" stroke="#d9a05c" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<path d="M501.2 241.7 L 500.5 226.6 L 500.6 211.4 L 500.9 196.3 L 501.2 181.1" fill="none" stroke="#d9a05c" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M501.2 241.7 L 502.1 226.6 L 499.6 211.4 L 500.3 196.3 L 501.2 181.1" fill="none" stroke="#d9a05c" stroke-width="1.8199999999999998" stroke-linecap="round" opacity="0.4"/>
+<text x="552" y="205" font-size="13" fill="#e9e3d5" font-weight="700" text-anchor="middle">RRF 融合</text>
+<text x="552" y="226" font-size="10.5" fill="#9a9287" font-weight="400" text-anchor="middle">k = 60</text>
+<path d="M 606 211 Q 617.5 210.9 628 211" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round" />
+<path d="M628.0 211.0 L 625.8 211.7 L 623.7 212.3 L 621.9 213.9 L 619.8 214.6" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M628.0 211.0 L 626.1 209.8 L 623.9 209.1 L 622.0 208.0 L 619.8 207.3" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<rect x="632" y="180" width="100" height="62" rx="4" fill="#33291c"/>
+<path d="M629.3 177.5 L 655.4 178.0 L 681.4 177.5 L 707.5 178.0 L 733.6 177.1" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M629.3 177.5 L 655.4 176.4 L 681.4 179.1 L 707.5 176.7 L 733.6 177.1" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M734.1 177.5 L 734.7 194.0 L 733.5 210.4 L 733.1 226.8 L 733.5 243.2" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M734.1 177.5 L 734.6 194.0 L 733.1 210.4 L 734.2 226.8 L 733.5 243.2" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M735.2 243.0 L 708.9 242.6 L 682.7 244.8 L 656.4 243.7 L 630.1 244.9" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M735.2 243.0 L 708.9 242.7 L 682.7 244.4 L 656.4 243.6 L 630.1 244.9" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M630.4 243.7 L 631.1 227.1 L 630.2 210.5 L 629.6 193.9 L 630.1 177.3" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M630.4 243.7 L 631.5 227.1 L 631.9 210.5 L 629.4 193.9 L 630.1 177.3" fill="none" stroke="#d9a05c" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<text x="682" y="204" font-size="13.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">重排</text>
+<text x="682" y="224" font-size="9.5" fill="#9a9287" font-weight="400" text-anchor="middle">Top 5~8 进上下文</text>
+<text x="380" y="372" font-size="13.5" fill="#9a9287" font-weight="400" text-anchor="middle">召回要宽（各取几百条），重排要精（最后留十来条）</text>
+<text x="380" y="398" font-size="12.5" fill="#9a9287" font-weight="400" text-anchor="middle">两路分数分布不同，别做线性加权——RRF 只看排名，稳</text>
+</svg>
