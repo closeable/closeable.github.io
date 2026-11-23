@@ -46,6 +46,20 @@ my-skill/
 
 这其实是把软件工程里"延迟加载"的思想搬到了上下文管理上。**description 就是函数签名，SKILL.md 就是函数体，辅助文件就是它引用的库。**
 
+<figure>
+  <img src="/images/skill-arch.svg" data-src-light="/images/skill-arch.svg" data-src-dark="/images/skill-arch-dark.svg" alt="Agent Skill 渐进式披露三层加载示意图：文件夹里三层文件分别对应常驻、触发、按需三种加载方式" loading="lazy" />
+  <figcaption>图 1：三层加载。常驻的只有 description，SKILL.md 与脚本按需才进入上下文。</figcaption>
+</figure>
+
+把这三层串起来，一次请求进来之后的完整链路是这样的：
+
+<figure>
+  <img src="/images/skill-flow.svg" data-src-light="/images/skill-flow.svg" data-src-dark="/images/skill-flow-dark.svg" alt="一次请求触发 Skill 的流程图：先匹配 description，命中后读取 SKILL.md，按需深入参考文件或执行脚本，最后执行并回复" loading="lazy" />
+  <figcaption>图 2：请求生命周期的判定链。不匹配就走普通对话，上下文里一分钱都不多花。</figcaption>
+</figure>
+
+注意图 2 里那个"否"的分支：大部分请求不会命中任何 Skill，此时 Skill 体系对上下文的开销就只有那几句 description。这正是它比"把手册全塞进 system prompt"更划算的地方。
+
 ## 三、为什么 Skill 比长 prompt 有效
 
 回过头看，Skill 之所以有效，是因为它同时解决了三件事：

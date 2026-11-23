@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" font-family='"Patrick Hand","Comic Sans MS","Kaiti SC","STKaiti","KaiTi","楷体",cursive'>
+<rect width="760" height="440" fill="#1f1c17"/>
+<text x="380" y="44" font-size="21" fill="#e9e3d5" font-weight="700" text-anchor="middle">Agent Skill：渐进式披露的三层加载</text>
+<path d="M52.0 116.0 L 68.5 114.7 L 85.0 114.3 L 101.5 117.2 L 118.0 116.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M52.0 116.0 L 68.5 116.7 L 85.0 116.1 L 101.5 115.7 L 118.0 116.0" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M118.0 116.0 L 121.4 111.4 L 124.2 106.4 L 128.6 102.6 L 132.0 98.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M118.0 116.0 L 122.2 112.0 L 124.0 106.2 L 127.5 101.7 L 132.0 98.0" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M132.0 98.0 L 149.5 98.7 L 167.0 98.1 L 184.5 97.2 L 202.0 98.0" fill="none" stroke="#e9e3d5" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M132.0 98.0 L 149.5 97.5 L 167.0 96.9 L 184.5 98.1 L 202.0 98.0" fill="none" stroke="#e9e3d5" stroke-width="1.54" stroke-linecap="round" opacity="0.4"/>
+<path d="M51.4 117.3 L 104.4 116.7 L 157.4 116.2 L 210.3 116.5 L 263.3 117.1" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M51.4 117.3 L 104.4 116.7 L 157.4 117.4 L 210.3 117.8 L 263.3 117.1" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M262.8 117.2 L 262.8 183.0 L 262.1 248.8 L 263.6 314.5 L 264.2 380.3" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M262.8 117.2 L 262.0 183.0 L 262.2 248.8 L 265.1 314.5 L 264.2 380.3" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M263.1 379.6 L 210.3 380.2 L 157.4 378.4 L 104.6 379.1 L 51.8 378.7" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M263.1 379.6 L 210.3 379.6 L 157.4 379.3 L 104.6 377.7 L 51.8 378.7" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M52.6 380.5 L 51.6 314.3 L 51.0 248.1 L 52.6 181.8 L 51.5 115.6" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M52.6 380.5 L 51.8 314.3 L 50.8 248.1 L 52.1 181.8 L 51.5 115.6" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="134" y="90" font-size="15.5" fill="#e9e3d5" font-weight="700" text-anchor="start">my-skill/</text>
+<rect x="70" y="136" width="176" height="58" rx="4" fill="#33291c"/>
+<path d="M67.6 132.9 L 112.8 133.5 L 158.0 134.9 L 203.2 134.8 L 248.4 135.0" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M67.6 132.9 L 112.8 134.6 L 158.0 132.4 L 203.2 134.6 L 248.4 135.0" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M248.4 134.9 L 248.4 150.4 L 247.4 165.9 L 248.0 181.4 L 249.1 196.8" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M248.4 134.9 L 248.4 150.4 L 247.4 165.9 L 250.2 181.3 L 249.1 196.8" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M248.0 195.6 L 203.2 195.2 L 158.3 194.5 L 113.4 195.9 L 68.5 196.1" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M248.0 195.6 L 203.2 194.9 L 158.3 196.1 L 113.4 195.6 L 68.5 196.1" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M68.6 196.1 L 67.4 180.5 L 66.7 164.8 L 68.7 149.0 L 67.5 133.4" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M68.6 196.1 L 69.2 180.4 L 68.6 164.7 L 66.5 149.1 L 67.5 133.4" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="158" y="161" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">name + description</text>
+<text x="158" y="182" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">每个约 10 token</text>
+<rect x="70" y="220" width="176" height="58" rx="4" fill="#1e2a3a"/>
+<path d="M68.3 218.2 L 113.3 218.0 L 158.4 220.1 L 203.5 219.2 L 248.5 219.2" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M68.3 218.2 L 113.3 219.3 L 158.4 219.2 L 203.5 219.8 L 248.5 219.2" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M247.1 219.2 L 248.0 234.4 L 247.9 249.7 L 248.4 264.9 L 248.0 280.2" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M247.1 219.2 L 246.5 234.4 L 246.1 249.7 L 247.2 264.9 L 248.0 280.2" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M248.4 281.2 L 203.4 280.1 L 158.3 280.9 L 113.3 281.2 L 68.3 280.6" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M248.4 281.2 L 203.4 280.8 L 158.3 279.7 L 113.3 279.8 L 68.3 280.6" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M67.3 280.1 L 66.8 264.6 L 66.9 249.1 L 67.7 233.6 L 67.9 218.1" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M67.3 280.1 L 67.4 264.6 L 66.3 249.1 L 66.4 233.6 L 67.9 218.1" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="158" y="245" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">SKILL.md</text>
+<text x="158" y="266" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">完整指令，一屏</text>
+<rect x="70" y="304" width="176" height="58" rx="4" fill="#1e2f24"/>
+<path d="M67.2 300.9 L 112.2 302.3 L 157.2 300.6 L 202.1 301.8 L 247.1 302.9" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M67.2 300.9 L 112.2 301.1 L 157.1 301.9 L 202.1 303.0 L 247.1 302.9" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M247.7 301.7 L 247.4 317.4 L 248.1 333.1 L 247.9 348.8 L 248.7 364.5" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M247.7 301.7 L 248.2 317.4 L 247.9 333.1 L 249.0 348.8 L 248.7 364.5" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M248.1 364.7 L 202.8 363.7 L 157.5 363.1 L 112.3 363.2 L 67.0 363.4" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M248.1 364.7 L 202.8 364.5 L 157.5 364.6 L 112.3 362.6 L 67.0 363.4" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M67.4 363.7 L 67.4 348.4 L 69.0 333.2 L 67.9 318.0 L 67.9 302.8" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M67.4 363.7 L 67.4 348.4 L 67.0 333.2 L 67.9 318.0 L 67.9 302.8" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="158" y="329" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">reference / scripts</text>
+<text x="158" y="350" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">细节与脚本</text>
+<path d="M481.4 117.1 L 538.6 117.8 L 595.8 117.2 L 653.0 117.2 L 710.2 117.4" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M481.4 117.1 L 538.6 117.7 L 595.8 119.0 L 653.0 117.4 L 710.2 117.4" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M710.4 115.1 L 710.3 181.2 L 709.5 247.4 L 710.7 313.5 L 710.5 379.7" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M710.4 115.1 L 711.0 181.2 L 712.1 247.4 L 710.0 313.5 L 710.5 379.7" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M710.6 381.3 L 653.4 381.6 L 596.1 379.7 L 538.8 379.0 L 481.5 379.3" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M710.6 381.3 L 653.4 380.0 L 596.1 379.0 L 538.8 378.6 L 481.5 379.3" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<path d="M481.2 381.3 L 481.1 315.0 L 481.9 248.7 L 481.9 182.4 L 481.4 116.1" fill="none" stroke="#e9e3d5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M481.2 381.3 L 481.6 315.0 L 482.2 248.7 L 481.7 182.4 L 481.4 116.1" fill="none" stroke="#e9e3d5" stroke-width="1.68" stroke-linecap="round" opacity="0.4"/>
+<text x="596" y="94" font-size="15.5" fill="#e9e3d5" font-weight="700" text-anchor="middle">Agent 的上下文</text>
+<rect x="498" y="136" width="196" height="58" rx="4" fill="#33291c"/>
+<path d="M496.2 133.5 L 546.4 132.9 L 596.5 134.3 L 646.7 133.8 L 696.8 134.0" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M496.2 133.5 L 546.4 133.7 L 596.5 133.9 L 646.7 134.9 L 696.8 134.0" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M697.1 133.2 L 696.5 148.7 L 696.4 164.3 L 694.8 179.9 L 695.0 195.5" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M697.1 133.2 L 695.6 148.7 L 695.9 164.3 L 694.5 179.9 L 695.0 195.5" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M695.5 196.0 L 645.9 195.5 L 596.2 196.7 L 546.6 195.5 L 497.0 196.4" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M695.5 196.0 L 645.9 194.8 L 596.2 194.8 L 546.6 197.6 L 497.0 196.4" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M495.2 196.6 L 496.0 180.7 L 494.5 164.8 L 495.3 148.9 L 495.1 133.0" fill="none" stroke="#d9a05c" stroke-width="2" stroke-linecap="round"/>
+<path d="M495.2 196.6 L 494.5 180.7 L 496.3 164.8 L 495.7 148.9 L 495.1 133.0" fill="none" stroke="#d9a05c" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="596" y="161" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">第 1 层 · 常驻</text>
+<text x="596" y="182" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">一直都在，花销极小</text>
+<rect x="498" y="220" width="196" height="58" rx="4" fill="#1e2a3a"/>
+<path d="M494.9 217.9 L 545.5 216.9 L 596.0 217.1 L 646.6 217.8 L 697.2 217.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M494.9 217.9 L 545.5 218.2 L 596.0 216.5 L 646.6 217.2 L 697.2 217.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M695.1 218.0 L 695.9 233.5 L 694.7 249.0 L 696.0 264.6 L 695.8 280.1" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M695.1 218.0 L 694.7 233.5 L 694.1 249.0 L 696.9 264.6 L 695.8 280.1" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M695.2 280.5 L 645.7 279.6 L 596.1 279.6 L 546.5 280.1 L 496.9 279.5" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M695.2 280.5 L 645.7 281.3 L 596.1 281.6 L 546.5 278.4 L 496.9 279.5" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M496.5 279.4 L 496.4 263.8 L 496.0 248.2 L 496.7 232.6 L 496.0 217.0" fill="none" stroke="#7aa6e8" stroke-width="2" stroke-linecap="round"/>
+<path d="M496.5 279.4 L 495.5 263.8 L 497.2 248.2 L 495.3 232.6 L 496.0 217.0" fill="none" stroke="#7aa6e8" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="596" y="245" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">第 2 层 · 触发</text>
+<text x="596" y="266" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">请求匹配时才读入</text>
+<rect x="498" y="304" width="196" height="58" rx="4" fill="#1e2f24"/>
+<path d="M495.4 301.3 L 545.8 300.3 L 596.1 302.4 L 646.5 301.8 L 696.9 300.9" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M495.4 301.3 L 545.8 301.1 L 596.1 301.4 L 646.5 301.5 L 696.9 300.9" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M695.2 302.0 L 694.7 317.6 L 694.1 333.1 L 695.9 348.7 L 695.0 364.2" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M695.2 302.0 L 695.0 317.6 L 695.6 333.1 L 696.2 348.7 L 695.0 364.2" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M697.0 363.5 L 646.5 363.8 L 596.1 362.6 L 545.6 362.9 L 495.2 363.5" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M697.0 363.5 L 646.5 362.5 L 596.1 362.4 L 545.6 362.9 L 495.2 363.5" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<path d="M496.9 364.3 L 496.4 348.9 L 496.4 333.4 L 496.9 317.9 L 496.5 302.5" fill="none" stroke="#7dbb8f" stroke-width="2" stroke-linecap="round"/>
+<path d="M496.9 364.3 L 496.3 348.9 L 495.6 333.4 L 496.6 317.9 L 496.5 302.5" fill="none" stroke="#7dbb8f" stroke-width="1.4" stroke-linecap="round" opacity="0.4"/>
+<text x="596" y="329" font-size="14" fill="#e9e3d5" font-weight="700" text-anchor="middle">第 3 层 · 按需</text>
+<text x="596" y="350" font-size="11.5" fill="#9a9287" font-weight="400" text-anchor="middle">要细节才读 / 执行</text>
+<path d="M 264 165 Q 378.8 162.9 496 165" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round" />
+<path d="M496.0 165.0 L 494.0 165.9 L 491.8 166.5 L 489.9 167.8 L 487.7 168.5" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M496.0 165.0 L 494.0 163.9 L 491.9 163.1 L 489.9 162.2 L 487.8 161.2" fill="none" stroke="#d9a05c" stroke-width="2.2" stroke-linecap="round"/>
+<text x="380" y="151" font-size="12.5" fill="#d9a05c" font-weight="700" text-anchor="middle">① 一直都在</text>
+<path d="M 264 249 Q 378.7 252.8 496 249" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round" />
+<path d="M496.0 249.0 L 494.1 250.3 L 491.9 250.9 L 489.9 251.9 L 487.9 252.9" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M496.0 249.0 L 494.0 248.0 L 491.9 247.2 L 489.6 246.8 L 487.7 245.6" fill="none" stroke="#7aa6e8" stroke-width="2.2" stroke-linecap="round"/>
+<text x="380" y="235" font-size="12.5" fill="#7aa6e8" font-weight="700" text-anchor="middle">② 请求匹配</text>
+<path d="M 264 333 Q 381.0 327.7 496 333" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round" />
+<path d="M496.0 333.0 L 493.8 333.7 L 491.8 334.6 L 489.7 335.3 L 487.6 336.3" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M496.0 333.0 L 493.9 332.1 L 492.2 330.5 L 489.8 330.3 L 488.0 329.0" fill="none" stroke="#7dbb8f" stroke-width="2.2" stroke-linecap="round"/>
+<text x="380" y="319" font-size="12.5" fill="#7dbb8f" font-weight="700" text-anchor="middle">③ 深入使用</text>
+<text x="380" y="412" font-size="13.5" fill="#9a9287" font-weight="400" text-anchor="middle">description 是函数签名，SKILL.md 是函数体，辅助文件是它引用的库</text>
+</svg>

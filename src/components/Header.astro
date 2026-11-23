@@ -48,6 +48,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
+    (window as any).__syncArt?.();
   });
 
   const menuBtn = document.getElementById('mobile-toggle');

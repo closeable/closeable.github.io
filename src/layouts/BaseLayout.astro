@@ -29,6 +29,17 @@ const {
         const saved = localStorage.getItem('theme');
         const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.dataset.theme = theme;
+
+        // 手绘插图有浅/深两套，跟随主题切换
+        const syncArt = () => {
+          const dark = document.documentElement.dataset.theme === 'dark';
+          document.querySelectorAll('img[data-src-dark]').forEach((img) => {
+            const want = dark ? img.dataset.srcDark : img.dataset.srcLight;
+            if (want && img.getAttribute('src') !== want) img.setAttribute('src', want);
+          });
+        };
+        window.__syncArt = syncArt;
+        document.addEventListener('DOMContentLoaded', syncArt);
       })();
     </script>
   </head>
