@@ -5,7 +5,7 @@ import { getAllPosts } from '../utils/posts';
 export const GET: APIRoute = async (context) => {
   const posts = await getAllPosts();
   return rss({
-    title: 'Lumen · 技术手记',
+    title: 'sqtds · 技术手记',
     description: '关注后端架构、分布式系统与工程实践。',
     site: context.site ?? 'https://example.com',
     items: posts.map((post) => ({

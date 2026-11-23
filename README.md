@@ -1,4 +1,4 @@
-# Lumen · 技术手记
+# sqtds · 技术手记
 
 基于 Astro 的静态技术博客，支持 Markdown/MDX 文章、分类、标签、归档、全文筛选、目录、暗色模式和 RSS。
 
@@ -11,6 +11,10 @@ npm run build    # 输出到 dist/
 npm run preview  # 预览构建结果
 npm run check    # 类型检查
 ```
+
+## 部署
+
+推送到 `source` 分支会自动触发 GitHub Actions 构建，并发布到 https://closeable.github.io 。
 
 ## 写文章
 

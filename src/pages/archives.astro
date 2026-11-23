@@ -7,7 +7,7 @@ const years = [...groupBy(posts, (p) => String(p.data.pubDate.getFullYear())).en
   .sort((a, b) => Number(b[0]) - Number(a[0]));
 ---
 
-<BaseLayout title="归档 · Lumen" description="按时间浏览全部文章。">
+<BaseLayout title="归档 · sqtds" description="按时间浏览全部文章。">
   <div class="container">
     <div class="page-head"><h1>归档</h1><p>共 {posts.length} 篇文章，按年份排列。</p></div>
     {years.map(([year, items]) => (
