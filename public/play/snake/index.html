@@ -9,18 +9,21 @@
     --bg: #f7f8fc; --surface: #ffffff; --border: #e6e9f0;
     --text: #1c2233; --muted: #8892a4;
     --accent: #5b5bd6; --accent2: #0ea5b7; --food: #f43f5e;
+    --gold: #d97706;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) {
       --bg: #0e111a; --surface: #171c28; --border: #2a3141;
       --text: #e8ebf3; --muted: #8b95a8;
       --accent: #9b9bff; --accent2: #4dd0d8; --food: #fb7185;
+      --gold: #fbbf24;
     }
   }
   :root[data-theme='dark'] {
     --bg: #0e111a; --surface: #171c28; --border: #2a3141;
     --text: #e8ebf3; --muted: #8b95a8;
     --accent: #9b9bff; --accent2: #4dd0d8; --food: #fb7185;
+    --gold: #fbbf24;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; overflow: hidden; touch-action: none; }
@@ -28,14 +31,28 @@
     background: var(--bg); color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 14px; padding: 16px;
+    gap: 12px; padding: 14px;
   }
   .hud {
-    display: flex; gap: 24px; font-size: 15px; font-weight: 600;
+    display: flex; align-items: center; gap: 20px; font-size: 15px; font-weight: 600;
     background: var(--surface); border: 1px solid var(--border);
-    padding: 8px 20px; border-radius: 12px;
+    padding: 7px 18px; border-radius: 12px;
   }
   .hud span { color: var(--muted); font-weight: 500; margin-right: 6px; }
+  .hud b { font-variant-numeric: tabular-nums; }
+  .combo-pill {
+    display: none; font-size: 13px; font-weight: 800; color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    padding: 3px 10px; border-radius: 999px;
+    animation: comboPop .25s ease;
+  }
+  .combo-pill.show { display: inline-block; }
+  @keyframes comboPop { 0% { transform: scale(.6); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+  #mute-btn {
+    border: 1px solid var(--border); background: transparent; color: var(--muted);
+    cursor: pointer; font-size: 15px; line-height: 1; padding: 4px 8px; border-radius: 8px;
+  }
+  #mute-btn:hover { color: var(--text); border-color: var(--accent); }
   .stage { position: relative; }
   canvas {
     display: block; background: var(--surface);
@@ -51,22 +68,51 @@
     text-align: center; padding: 20px;
   }
   .overlay.hidden { display: none; }
-  .overlay h2 { font-size: 26px; letter-spacing: -.02em; }
+  .overlay h2 {
+    font-size: 26px; letter-spacing: -.02em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
   .overlay p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .overlay .stats {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    font-size: 13px; color: var(--muted);
+  }
+  .overlay .stats b { color: var(--text); font-size: 15px; display: block; }
+  .overlay .stats .st { min-width: 58px; }
+  .new-best {
+    display: none; font-size: 14px; font-weight: 800; color: var(--gold);
+    animation: comboPop .3s ease;
+  }
+  .new-best.show { display: block; }
   .btn {
     border: 0; cursor: pointer; font: inherit; font-weight: 700; font-size: 15px;
     color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent2));
     padding: 10px 28px; border-radius: 12px;
     box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: transform .12s ease, box-shadow .12s ease;
   }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 45%, transparent); }
   .btn:active { transform: scale(.97); }
   .tip { font-size: 12.5px; color: var(--muted); }
+  /* 画布较矮时收紧结算卡，保证覆盖层始终收在画布内、不压 HUD */
+  @media (max-height: 620px) {
+    body { gap: 8px; padding: 8px; }
+    .overlay { gap: 6px; padding: 10px; }
+    .overlay h2 { font-size: 19px; }
+    .overlay p { font-size: 12px; line-height: 1.45; }
+    .overlay .stats { gap: 8px; font-size: 11.5px; }
+    .overlay .stats b { font-size: 13px; }
+    .btn { padding: 7px 20px; font-size: 13.5px; }
+  }
 </style>
 </head>
 <body>
   <div class="hud">
     <div><span>得分</span><b id="score">0</b></div>
     <div><span>最高分</span><b id="best">0</b></div>
+    <div class="combo-pill" id="combo-pill">x2 连击</div>
+    <button id="mute-btn" title="静音切换">🔊</button>
   </div>
   <div class="stage">
     <canvas id="cv" width="480" height="480"></canvas>
@@ -76,7 +122,7 @@
       <button class="btn" id="start-btn">开始游戏</button>
     </div>
   </div>
-  <div class="tip">按 P 或点击画布暂停</div>
+  <div class="tip">按 P 或点击画布暂停 · 连吃有连击加分 · ✦ 金豆限时高分</div>
 
 <script>
 (() => {
@@ -88,18 +134,60 @@
   const ovTitle = document.getElementById('ov-title');
   const ovText = document.getElementById('ov-text');
   const startBtn = document.getElementById('start-btn');
+  const comboPill = document.getElementById('combo-pill');
+  const muteBtn = document.getElementById('mute-btn');
 
   const GRID = 24;
   const CELL = cv.width / GRID;
   const BEST_KEY = 'snake-best';
+  const MUTE_KEY = 'snake-mute';
+  const BASE_TICK = 110;
+  const MIN_TICK = 65;
 
-  let snake, dir, nextDir, food, score, best, alive, running, timer;
+  let snake, prevSnake, dir, nextDir, prevDir, food, special, score, best, alive, running;
+  let interval = BASE_TICK, foodsEaten = 0, level = 0;
+  let combo = 0, maxCombo = 0, lastEatAt = 0;
+  let headTurnAt = 0, shakeT = 0, flashT = 0;
+  let particles = [], floats = [], toasts = [];
+  let acc = 0, lastFrame = performance.now();
   best = Number(localStorage.getItem(BEST_KEY) || 0);
   bestEl.textContent = best;
 
-  // 自适应画布尺寸（正方形，跟随容器）
+  // ---------- 主题色缓存 ----------
+  let colors = {};
+  function refreshColors() {
+    const cs = getComputedStyle(document.documentElement);
+    colors = {
+      surface: cs.getPropertyValue('--surface').trim(),
+      border: cs.getPropertyValue('--border').trim(),
+      accent: cs.getPropertyValue('--accent').trim(),
+      accent2: cs.getPropertyValue('--accent2').trim(),
+      food: cs.getPropertyValue('--food').trim(),
+      gold: cs.getPropertyValue('--gold').trim(),
+      danger: '#ef4444',
+    };
+    rebuildBg();
+  }
+
+  // 背景网格缓存（浅色下用更淡的描边，保证对比度但不出灰蒙感）
+  const bgc = document.createElement('canvas');
+  bgc.width = cv.width; bgc.height = cv.height;
+  function rebuildBg() {
+    const b = bgc.getContext('2d');
+    b.clearRect(0, 0, bgc.width, bgc.height);
+    b.fillStyle = colors.surface;
+    b.fillRect(0, 0, bgc.width, bgc.height);
+    b.strokeStyle = colorMix(colors.border, colors.surface, 0.35);
+    b.lineWidth = 1;
+    for (let i = 1; i < GRID; i++) {
+      b.beginPath(); b.moveTo(i * CELL + .5, 0); b.lineTo(i * CELL + .5, bgc.height); b.stroke();
+      b.beginPath(); b.moveTo(0, i * CELL + .5); b.lineTo(bgc.width, i * CELL + .5); b.stroke();
+    }
+  }
+
+  // 自适应画布尺寸：HUD≈40 + tip≈17 + 间距/内边距≈50，共约 110px chrome 预算
   function fit() {
-    const max = Math.min(window.innerWidth - 24, window.innerHeight - 120, 560);
+    const max = Math.max(240, Math.min(window.innerWidth - 24, window.innerHeight - 112, 560));
     cv.style.width = max + 'px';
     cv.style.height = max + 'px';
   }
@@ -107,100 +195,174 @@
 
   function reset() {
     snake = [{x: 11, y: 12}, {x: 10, y: 12}, {x: 9, y: 12}];
-    dir = {x: 1, y: 0}; nextDir = dir;
+    prevSnake = snake.map(s => ({...s}));
+    dir = {x: 1, y: 0}; nextDir = dir; prevDir = dir;
     score = 0; alive = true;
+    interval = BASE_TICK; foodsEaten = 0; level = 0;
+    combo = 0; maxCombo = 0; lastEatAt = 0;
+    special = null;
+    particles = []; floats = []; toasts = [];
+    acc = 0; shakeT = 0; flashT = 0;
     scoreEl.textContent = score;
+    comboPill.classList.remove('show');
     placeFood();
+  }
+
+  function onSnake(c, skipHead) {
+    return snake.some((s, i) => (!skipHead || i > 0) && s.x === c.x && s.y === c.y);
   }
 
   function placeFood() {
     do {
       food = { x: Math.floor(Math.random() * GRID), y: Math.floor(Math.random() * GRID) };
-    } while (snake.some(s => s.x === food.x && s.y === food.y));
+    } while (onSnake(food) || (special && special.x === food.x && special.y === food.y));
   }
 
+  function maybeSpawnSpecial() {
+    if (special || foodsEaten % 5 !== 0 || Math.random() > 0.55) return;
+    let c;
+    do {
+      c = { x: Math.floor(Math.random() * GRID), y: Math.floor(Math.random() * GRID) };
+    } while (onSnake(c) || (c.x === food.x && c.y === food.y));
+    special = { x: c.x, y: c.y, born: performance.now(), dur: 6000 };
+  }
+
+  // ---------- 音效 ----------
+  let audioCtx = null;
+  let muted = localStorage.getItem(MUTE_KEY) === '1';
+  function updateMuteBtn() { muteBtn.textContent = muted ? '🔇' : '🔊'; }
+  updateMuteBtn();
+  muteBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    muted = !muted;
+    localStorage.setItem(MUTE_KEY, muted ? '1' : '0');
+    updateMuteBtn();
+    if (!muted) initAudio();
+  });
+  function initAudio() {
+    if (audioCtx) return;
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+  }
+  function beep(freq, dur, type, vol, slideTo) {
+    if (muted || !audioCtx) return;
+    try {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = type || 'square';
+      o.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, audioCtx.currentTime + dur);
+      g.gain.setValueAtTime(vol || 0.1, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(); o.stop(audioCtx.currentTime + dur);
+    } catch (e) {}
+  }
+  const sfxEat = () => beep(440 + Math.min(combo, 8) * 60, 0.09, 'square', 0.08);
+  const sfxSpecial = () => beep(520, 0.22, 'sine', 0.12, 1040);
+  const sfxDie = () => { beep(220, 0.35, 'sawtooth', 0.14, 55); beep(110, 0.5, 'triangle', 0.12, 40); };
+  const sfxSpeed = () => beep(660, 0.12, 'triangle', 0.09, 880);
+
+  // ---------- 游戏推进（碰撞判定全部用网格坐标） ----------
   function tick() {
     if (!running || !alive) return;
+    prevDir = dir;
     dir = nextDir;
+    prevSnake = snake.map(s => ({...s}));
     const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
-    if (head.x < 0 || head.y < 0 || head.x >= GRID || head.y >= GRID ||
-        snake.some((s, i) => i < snake.length - 1 && s.x === head.x && s.y === head.y)) {
-      return gameOver();
-    }
+    const hitWall = head.x < 0 || head.y < 0 || head.x >= GRID || head.y >= GRID;
+    const hitSelf = snake.some((s, i) => i < snake.length - 1 && s.x === head.x && s.y === head.y);
+    if (hitWall || hitSelf) return die();
+
+    if (dir.x !== prevDir.x || dir.y !== prevDir.y) headTurnAt = performance.now();
+
     snake.unshift(head);
+    let ate = false;
     if (head.x === food.x && head.y === food.y) {
-      score += 10;
+      ate = true;
+      const now = performance.now();
+      combo = (now - lastEatAt < 2400) ? combo + 1 : 1;
+      lastEatAt = now;
+      maxCombo = Math.max(maxCombo, combo);
+      const gain = 10 * combo;
+      score += gain;
       scoreEl.textContent = score;
-      if (score > best) { best = score; bestEl.textContent = best; localStorage.setItem(BEST_KEY, best); }
+      if (score > best) bestEl.textContent = score; // 实时刷新 HUD，落盘留到结算
+      if (combo > 1) {
+        comboPill.textContent = 'x' + combo + ' 连击';
+        comboPill.classList.remove('show');
+        void comboPill.offsetWidth;
+        comboPill.classList.add('show');
+      }
+      burst(food.x, food.y, colors.food, 14);
+      floats.push({ x: food.x, y: food.y, text: '+' + gain + (combo > 1 ? ' ×' + combo : ''), t: 0, color: colors.food });
+      foodsEaten++;
       placeFood();
-    } else {
-      snake.pop();
+      maybeSpawnSpecial();
+      if (foodsEaten % 5 === 0) {
+        level++;
+        const ni = Math.max(MIN_TICK, BASE_TICK - level * 7);
+        if (ni !== interval) {
+          interval = ni;
+          toasts.push({ text: '⚡ 提速 Lv.' + level, t: 0 });
+          sfxSpeed();
+        }
+      }
+      sfxEat();
+    } else if (special && head.x === special.x && head.y === special.y) {
+      ate = true;
+      const gain = 50;
+      score += gain;
+      scoreEl.textContent = score;
+      if (score > best) bestEl.textContent = score;
+      burst(special.x, special.y, colors.gold, 22);
+      floats.push({ x: special.x, y: special.y, text: '+' + gain + ' ✦', t: 0, color: colors.gold });
+      special = null;
+      sfxSpecial();
     }
-    draw();
+    if (!ate) snake.pop();
   }
 
-  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-
-  function draw() {
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    // 网格底纹
-    ctx.fillStyle = css('--surface');
-    ctx.fillRect(0, 0, cv.width, cv.height);
-    ctx.strokeStyle = css('--border');
-    ctx.lineWidth = 1;
-    for (let i = 1; i < GRID; i++) {
-      ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, cv.height); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(0, i * CELL); ctx.lineTo(cv.width, i * CELL); ctx.stroke();
+  function die() {
+    alive = false; running = false; acc = 0;
+    comboPill.classList.remove('show');
+    shakeT = 1; flashT = 1;
+    // 蛇身碎裂爆散
+    snake.forEach((s, i) => burst(s.x, s.y, i === 0 ? colors.danger : colorMix(colors.accent, colors.accent2, i / snake.length), 6));
+    sfxDie();
+    if (score > best) {
+      best = score;
+      localStorage.setItem(BEST_KEY, best);
     }
-    // 食物
-    ctx.fillStyle = css('--food');
-    ctx.shadowColor = css('--food'); ctx.shadowBlur = 14;
-    ctx.beginPath();
-    ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.32, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    // 蛇身
-    snake.forEach((s, i) => {
-      const t = 1 - i / (snake.length + 3);
-      ctx.fillStyle = i === 0 ? css('--accent') : colorMix(css('--accent'), css('--accent2'), i / Math.max(snake.length, 1));
-      ctx.globalAlpha = 0.45 + 0.55 * t;
-      roundRect(s.x * CELL + 2, s.y * CELL + 2, CELL - 4, CELL - 4, i === 0 ? 7 : 5);
-      ctx.fill();
-    });
-    ctx.globalAlpha = 1;
-  }
-
-  function colorMix(a, b, t) {
-    const pa = [1, 3, 5].map(i => parseInt(a.slice(i, i + 2), 16));
-    const pb = [1, 3, 5].map(i => parseInt(b.slice(i, i + 2), 16));
-    const m = pa.map((v, i) => Math.round(v + (pb[i] - v) * t));
-    return `rgb(${m[0]},${m[1]},${m[2]})`;
-  }
-
-  function roundRect(x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r);
-    ctx.arcTo(x, y, x + w, y, r);
-    ctx.closePath();
-  }
-
-  function gameOver() {
-    alive = false; clearInterval(timer);
-    ovTitle.textContent = '💀 游戏结束';
-    ovText.innerHTML = `本局得分 <b>${score}</b> · 最高分 <b>${best}</b><br>再接再厉！`;
-    startBtn.textContent = '再来一局';
-    overlay.classList.remove('hidden');
+    bestEl.textContent = best;
+    setTimeout(() => {
+      if (alive) return;
+      ovTitle.textContent = '💀 游戏结束';
+      ovText.innerHTML = `本局得分 <b>${score}</b>`;
+      document.querySelector('.overlay .stats')?.remove();
+      const st = document.createElement('div');
+      st.className = 'stats';
+      st.innerHTML =
+        `<div class="st"><b>${snake.length}</b>长度</div>` +
+        `<div class="st"><b>${foodsEaten}</b>吃豆</div>` +
+        `<div class="st"><b>×${maxCombo}</b>最大连击</div>` +
+        `<div class="st"><b>${best}</b>历史最高</div>`;
+      ovText.after(st);
+      document.querySelector('.overlay .new-best')?.remove();
+      if (score >= best && score > 0) {
+        const nb = document.createElement('div');
+        nb.className = 'new-best show';
+        nb.textContent = '🏆 新纪录！';
+        st.after(nb);
+      }
+      startBtn.textContent = '再来一局';
+      overlay.classList.remove('hidden');
+    }, 550);
   }
 
   function start() {
-    reset(); draw();
+    reset();
     overlay.classList.add('hidden');
-    clearInterval(timer);
-    timer = setInterval(tick, 110);
     running = true;
+    lastFrame = performance.now();
   }
 
   function togglePause() {
@@ -208,9 +370,8 @@
     running = !running;
     if (running) {
       overlay.classList.add('hidden');
-      timer = setInterval(tick, 110);
+      lastFrame = performance.now();
     } else {
-      clearInterval(timer);
       ovTitle.textContent = '⏸ 已暂停';
       ovText.textContent = '点击继续按钮回到游戏';
       startBtn.textContent = '继续';
@@ -224,7 +385,211 @@
     nextDir = {x, y};
   }
 
+  // ---------- 特效 ----------
+  function burst(gx, gy, color, n) {
+    const cx = gx * CELL + CELL / 2, cy = gy * CELL + CELL / 2;
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, sp = 40 + Math.random() * 130;
+      particles.push({
+        x: cx, y: cy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+        life: 0.5 + Math.random() * 0.4, t: 0,
+        size: 2 + Math.random() * 3, color,
+      });
+    }
+  }
+
+  function updateEffects(dt) {
+    const s = dt / 1000;
+    particles = particles.filter(p => (p.t += s) < p.life);
+    particles.forEach(p => { p.x += p.vx * s; p.y += p.vy * s; p.vy += 260 * s; p.vx *= 0.98; });
+    floats = floats.filter(f => (f.t += s) < 0.9);
+    toasts = toasts.filter(t => (t.t += s) < 1.3);
+    if (shakeT > 0) shakeT = Math.max(0, shakeT - s * 2.4);
+    if (flashT > 0) flashT = Math.max(0, flashT - s * 1.8);
+  }
+
+  // ---------- 渲染 ----------
+  function hexRGB(h) {
+    return [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  }
+  function colorMix(a, b, t) {
+    const pa = hexRGB(a), pb = hexRGB(b);
+    const m = pa.map((v, i) => Math.round(v + (pb[i] - v) * t));
+    return `rgb(${m[0]},${m[1]},${m[2]})`;
+  }
+  function rgba(hex, a) {
+    const [r, g, bl] = hexRGB(hex);
+    return `rgba(${r},${g},${bl},${a})`;
+  }
+
+  function roundRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function render(now) {
+    const prog = (running && alive) ? Math.min(acc / interval, 1) : 1;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.save();
+    if (shakeT > 0) {
+      const amp = shakeT * 7;
+      ctx.translate((Math.random() - .5) * amp, (Math.random() - .5) * amp);
+    }
+    ctx.drawImage(bgc, 0, 0);
+
+    // 食物：呼吸脉动 + 光晕
+    if (food) {
+      const pulse = 0.86 + 0.14 * Math.sin(now / 240);
+      ctx.shadowColor = colors.food;
+      ctx.shadowBlur = 16;
+      ctx.fillStyle = colors.food;
+      ctx.beginPath();
+      ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL * 0.3 * pulse, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+
+    // 特殊食物：金色菱形 + 倒计时圈
+    if (special) {
+      const remain = 1 - (now - special.born) / special.dur;
+      if (remain <= 0) {
+        special = null;
+      } else {
+        const cx = special.x * CELL + CELL / 2, cy = special.y * CELL + CELL / 2;
+        const sp = 0.8 + 0.2 * Math.sin(now / 120);
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(now / 500);
+        ctx.fillStyle = colors.gold;
+        ctx.shadowColor = colors.gold; ctx.shadowBlur = 14;
+        ctx.beginPath();
+        ctx.moveTo(0, -CELL * 0.34 * sp); ctx.lineTo(CELL * 0.34 * sp, 0);
+        ctx.lineTo(0, CELL * 0.34 * sp); ctx.lineTo(-CELL * 0.34 * sp, 0);
+        ctx.closePath(); ctx.fill();
+        ctx.restore();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = rgba('#fbbf24', 0.9);
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(cx, cy, CELL * 0.46, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * remain);
+        ctx.stroke();
+      }
+    }
+
+    // 蛇身：插值滑行 + 渐变圆润
+    const n = snake.length;
+    for (let i = n - 1; i >= 0; i--) {
+      const cur = snake[i];
+      const prev = prevSnake[Math.min(i, prevSnake.length - 1)] || cur;
+      const x = (prev.x + (cur.x - prev.x) * prog) * CELL;
+      const y = (prev.y + (cur.y - prev.y) * prog) * CELL;
+      const t = 1 - i / (n + 3);
+      if (i === 0) {
+        // 临近墙/身体警示
+        const nxt = { x: cur.x + dir.x, y: cur.y + dir.y };
+        const danger = nxt.x < 0 || nxt.y < 0 || nxt.x >= GRID || nxt.y >= GRID ||
+          snake.some((s, j) => j > 0 && j < n - 1 && s.x === nxt.x && s.y === nxt.y);
+        const base = danger ? colors.danger : colors.accent;
+        // 转弯挤压
+        const sq = Math.max(0, 1 - (now - headTurnAt) / 150);
+        const w = CELL - 4, h = CELL - 4;
+        let sw = w, sh = h;
+        if (sq > 0) {
+          if (dir.x !== 0) { sw = w * (1 + 0.16 * sq); sh = h * (1 - 0.16 * sq); }
+          else { sw = w * (1 - 0.16 * sq); sh = h * (1 + 0.16 * sq); }
+        }
+        const ox = (w - sw) / 2, oy = (h - sh) / 2;
+        ctx.fillStyle = base;
+        ctx.shadowColor = base; ctx.shadowBlur = danger ? 14 : 8;
+        roundRect(x + 2 + ox, y + 2 + oy, sw, sh, 7);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        // 眼睛
+        const ex = dir.x, ey = dir.y;
+        const px = -ey, py = ex;
+        const cxm = x + CELL / 2, cym = y + CELL / 2;
+        const fw = ex * 4, fy = ey * 4;
+        ctx.fillStyle = '#fff';
+        ctx.beginPath(); ctx.arc(cxm + fw + px * 4, cym + fy + py * 4, 2.6, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(cxm + fw - px * 4, cym + fy - py * 4, 2.6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#1c2233';
+        ctx.beginPath(); ctx.arc(cxm + fw + px * 4 + ex * 1.1, cym + fy + py * 4 + ey * 1.1, 1.3, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(cxm + fw - px * 4 + ex * 1.1, cym + fy - py * 4 + ey * 1.1, 1.3, 0, Math.PI * 2); ctx.fill();
+      } else {
+        ctx.fillStyle = colorMix(colors.accent, colors.accent2, i / Math.max(n, 1));
+        ctx.globalAlpha = 0.55 + 0.45 * t;
+        roundRect(x + 2.5, y + 2.5, CELL - 5, CELL - 5, 5);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    // 粒子
+    particles.forEach(p => {
+      const k = 1 - p.t / p.life;
+      ctx.fillStyle = p.color.startsWith('rgb') ? p.color : rgba(p.color, k);
+      ctx.globalAlpha = k;
+      ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+      ctx.globalAlpha = 1;
+    });
+
+    // 分数飘字
+    ctx.textAlign = 'center';
+    floats.forEach(f => {
+      const k = f.t / 0.9;
+      ctx.globalAlpha = 1 - k;
+      ctx.fillStyle = f.color;
+      ctx.font = 'bold 15px -apple-system, sans-serif';
+      ctx.fillText(f.text, f.x * CELL + CELL / 2, f.y * CELL - k * 22);
+      ctx.globalAlpha = 1;
+    });
+
+    // 中央提速提示
+    toasts.forEach(t => {
+      const k = t.t / 1.3;
+      const a = k < 0.15 ? k / 0.15 : (k > 0.7 ? (1 - k) / 0.3 : 1);
+      ctx.globalAlpha = a;
+      ctx.fillStyle = colors.accent;
+      ctx.font = 'bold 26px -apple-system, sans-serif';
+      ctx.fillText(t.text, cv.width / 2, cv.height / 2 - 40 - k * 14);
+      ctx.globalAlpha = 1;
+    });
+    ctx.textAlign = 'start';
+
+    // 死亡红闪
+    if (flashT > 0) {
+      ctx.fillStyle = rgba('#ef4444', flashT * 0.28);
+      ctx.fillRect(0, 0, cv.width, cv.height);
+    }
+    ctx.restore();
+  }
+
+  // 主循环：rAF 驱动，tick 累积器 + 插值渲染
+  function loop(now) {
+    const dt = Math.min(now - lastFrame, 100);
+    lastFrame = now;
+    if (running && alive) {
+      acc += dt;
+      let guard = 0;
+      while (acc >= interval && alive && running && guard++ < 8) {
+        acc -= interval;
+        tick();
+      }
+      if (!alive) acc = 0;
+    }
+    updateEffects(dt);
+    render(now);
+    requestAnimationFrame(loop);
+  }
+
+  // ---------- 输入 ----------
   document.addEventListener('keydown', (e) => {
+    initAudio();
     const k = e.key.toLowerCase();
     if (['arrowup', 'w'].includes(k)) { e.preventDefault(); setDir(0, -1); }
     else if (['arrowdown', 's'].includes(k)) { e.preventDefault(); setDir(0, 1); }
@@ -234,10 +599,11 @@
   });
 
   // 触屏滑动
-  let tx = 0, ty = 0;
-  cv.addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, {passive: true});
+  let tx = 0, ty = 0, lastTouchEnd = 0;
+  cv.addEventListener('touchstart', (e) => { initAudio(); tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, {passive: true});
   cv.addEventListener('touchmove', (e) => e.preventDefault(), {passive: false});
   cv.addEventListener('touchend', (e) => {
+    lastTouchEnd = performance.now();
     const dx = e.changedTouches[0].clientX - tx;
     const dy = e.changedTouches[0].clientY - ty;
     if (Math.abs(dx) < 12 && Math.abs(dy) < 12) return;
@@ -246,20 +612,35 @@
   });
 
   startBtn.addEventListener('click', () => {
+    initAudio();
     if (alive && !running) togglePause(); else start();
   });
-  cv.addEventListener('click', () => { if (alive && running) togglePause(); });
-
-  // 初始画面
-  reset(); running = false; draw();
+  // 点击画布暂停（唯一入口；触屏后短时间忽略合成 click，避免滑动误暂停）
+  cv.addEventListener('click', () => {
+    if (performance.now() - lastTouchEnd < 500) return;
+    if (alive && running) togglePause();
+  });
 
   // 跟随宿主站点主题（父页面会通过 postMessage 下发）
   window.addEventListener('message', (e) => {
     if (e.data && e.data.type === 'theme') {
       document.documentElement.dataset.theme = e.data.theme;
-      draw();
+      refreshColors();
     }
   });
+  // 调试/主题同步入口
+  window.__syncArt = () => refreshColors();
+  // 测试钩子：供自动化验证粒子/飘字/金豆（不影响正常游戏）
+  window.__snakeTest = {
+    setFood(x, y) { food = {x, y}; },
+    setSpecial(x, y) { special = {x, y, born: performance.now(), dur: 6000}; },
+    state() { return { score, best, interval, foodsEaten, combo, alive, running, head: snake[0], special }; },
+  };
+
+  // 初始画面
+  refreshColors();
+  reset(); running = false;
+  requestAnimationFrame((t) => { lastFrame = t; loop(t); });
 })();
 </script>
 </body>
