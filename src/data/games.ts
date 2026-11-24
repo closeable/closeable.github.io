@@ -11,6 +11,14 @@ export interface Game {
 //          2) 在下面数组里加一条即可
 export const games: Game[] = [
   {
+    slug: 'jump',
+    title: '霓虹跳跃',
+    emoji: '🏃',
+    desc: '无尽跑酷躲避：空格 / ↑ / 触屏点击跳跃，长按跳更高，空中还能二段跳。躲开地刺和飞鸟，速度会越跑越快，本地记录最高分。',
+    tag: '跑酷',
+    date: '2026-11-24',
+  },
+  {
     slug: 'snake',
     title: '霓虹贪吃蛇',
     emoji: '🐍',

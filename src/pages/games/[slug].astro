@@ -75,7 +75,11 @@ const { game } = Astro.props;
       { type: 'theme', theme: document.documentElement.dataset.theme || 'light' },
       '*'
     );
-  iframe?.addEventListener('load', pushTheme);
+  iframe?.addEventListener('load', () => {
+    pushTheme();
+    // 让游戏直接接管键盘，否则用户先按空格会滚动页面
+    iframe.contentWindow?.focus();
+  });
   const prevSync = (window as any).__syncArt;
   (window as any).__syncArt = () => { prevSync?.(); pushTheme(); };
 </script>
