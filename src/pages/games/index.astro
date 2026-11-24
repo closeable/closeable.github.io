@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { games } from '../../data/games';
+
+const sorted = [...games].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<BaseLayout title="小游戏 · sqtds" description="AI 制作的小游戏合集">
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>小游戏</h2>
+          <p>用 AI 做的轻松一刻，点开即玩</p>
+        </div>
+        <span class="game-count">{games.length} 款</span>
+      </div>
+
+      {sorted.length === 0 && (
+        <p class="game-empty">游戏制作中，敬请期待…</p>
+      )}
+
+      <div class="game-grid">
+        {sorted.map((g) => (
+          <a class="game-card" href={`/games/${g.slug}/`}>
+            <div class="game-cover">
+              <span class="game-emoji" aria-hidden="true">{g.emoji}</span>
+              <span class="game-tag">{g.tag}</span>
+            </div>
+            <div class="game-body">
+              <h3 class="game-title">{g.title}</h3>
+              <p class="game-desc">{g.desc}</p>
+              <span class="game-play">开始游戏 <span aria-hidden="true">→</span></span>
+            </div>
+            <span class="game-date">{g.date}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .game-count {
+    padding: 5px 12px; border-radius: 999px; font-size: 13px;
+    color: var(--accent); background: var(--accent-soft); font-weight: 600;
+  }
+  .game-empty { color: var(--muted); text-align: center; padding: 48px 0; }
+  .game-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px; margin-top: 28px;
+  }
+  .game-card {
+    position: relative; display: flex; flex-direction: column;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .game-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 16px 44px rgba(31, 41, 79, 0.12);
+  }
+  .game-cover {
+    position: relative; height: 130px; display: grid; place-items: center;
+    background:
+      radial-gradient(120px 80px at 20% 30%, color-mix(in srgb, var(--accent) 22%, transparent), transparent),
+      radial-gradient(140px 90px at 85% 75%, color-mix(in srgb, var(--accent-2) 25%, transparent), transparent),
+      var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .game-emoji { font-size: 52px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+  .game-tag {
+    position: absolute; top: 12px; right: 12px;
+    padding: 3px 10px; border-radius: 999px; font-size: 12px;
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
+    border: 1px solid var(--border); color: var(--text-soft);
+    backdrop-filter: blur(6px);
+  }
+  .game-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .game-title { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+  .game-desc { margin: 0; font-size: 13.5px; color: var(--text-soft); line-height: 1.7; flex: 1; }
+  .game-play {
+    color: var(--accent); font-size: 14px; font-weight: 600;
+  }
+  .game-date {
+    position: absolute; bottom: 14px; right: 16px;
+    font-size: 12px; color: var(--muted);
+  }
+</style>

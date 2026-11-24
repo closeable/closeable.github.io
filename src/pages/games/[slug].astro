@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { games } from '../../data/games';
+
+export function getStaticPaths() {
+  return games.map((g) => ({ params: { slug: g.slug }, props: { game: g } }));
+}
+
+const { game } = Astro.props;
+---
+
+<BaseLayout title={`${game.title} · 小游戏 · sqtds`} description={game.desc}>
+  <section class="section">
+    <div class="container game-page">
+      <div class="game-head">
+        <a class="back-link" href="/games/">← 返回小游戏</a>
+        <h1 class="game-heading"><span aria-hidden="true">{game.emoji}</span> {game.title}</h1>
+        <button class="btn btn-ghost fullscreen-btn" id="fullscreen-btn">⛶ 全屏</button>
+      </div>
+      <p class="game-sub">{game.desc}</p>
+
+      <div class="game-frame-wrap" id="game-frame-wrap">
+        <iframe
+          class="game-frame"
+          src={`/play/${game.slug}/index.html`}
+          title={game.title}
+          loading="lazy"
+          allow="fullscreen; gamepad; autoplay"
+        ></iframe>
+      </div>
+      <p class="game-tip">提示：游戏区域内点击或按方向键开始，全屏模式体验更佳。</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .game-page { max-width: 960px; }
+  .game-head {
+    display: flex; align-items: center; gap: 16px; margin-top: 8px;
+  }
+  .back-link { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .back-link:hover { color: var(--accent); }
+  .game-heading { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em; flex: 1; }
+  .fullscreen-btn { white-space: nowrap; cursor: pointer; }
+  .game-sub { color: var(--text-soft); font-size: 14.5px; margin: 10px 0 20px; }
+  .game-frame-wrap {
+    position: relative; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+    background: var(--surface-2);
+    aspect-ratio: 4 / 3;
+    max-height: 700px;
+  }
+  .game-frame-wrap:fullscreen {
+    aspect-ratio: auto; max-height: none; border-radius: 0; border: none;
+  }
+  .game-frame { width: 100%; height: 100%; border: 0; display: block; }
+  .game-tip { color: var(--muted); font-size: 13px; margin-top: 14px; }
+</style>
+
+<script>
+  const btn = document.getElementById('fullscreen-btn');
+  const wrap = document.getElementById('game-frame-wrap');
+  btn?.addEventListener('click', () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      wrap?.requestFullscreen?.();
+    }
+  });
+
+  // 把站点主题透传给 iframe 里的游戏，避免游戏跟随系统而站点是手动切换的
+  const iframe = document.querySelector<HTMLIFrameElement>('.game-frame');
+  const pushTheme = () =>
+    iframe?.contentWindow?.postMessage(
+      { type: 'theme', theme: document.documentElement.dataset.theme || 'light' },
+      '*'
+    );
+  iframe?.addEventListener('load', pushTheme);
+  const prevSync = (window as any).__syncArt;
+  (window as any).__syncArt = () => { prevSync?.(); pushTheme(); };
+</script>
