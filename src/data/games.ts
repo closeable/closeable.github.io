@@ -1,7 +1,8 @@
 export interface Game {
   slug: string;       // 游戏文件位于 public/play/<slug>/index.html
   title: string;
-  emoji: string;      // 卡片封面
+  emoji: string;      // 卡片封面（无 cover 时使用）
+  cover?: string;     // 可选：卡片封面图，位于 /play/<slug>/xxx.png
   desc: string;
   tag: string;
   date: string;       // 展示用，YYYY-MM-DD
@@ -10,6 +11,15 @@ export interface Game {
 // 新增游戏：1) 把单文件 HTML 放到 public/play/<slug>/index.html
 //          2) 在下面数组里加一条即可
 export const games: Game[] = [
+  {
+    slug: 'devour-planet',
+    title: '吞噬星球',
+    emoji: '🌍',
+    cover: '/play/devour-planet/preview.png',
+    desc: 'agar.io 式成长竞技：鼠标或 WASD 控制细胞，吃掉比自己小的粒子不断变大，躲开比你大的家伙——长大只是暂时的，被吞噬才是常态。R 键随时重开。',
+    tag: '竞技',
+    date: '2026-11-24',
+  },
   {
     slug: 'jump',
     title: '霓虹跳跃',

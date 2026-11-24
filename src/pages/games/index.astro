@@ -24,7 +24,9 @@ const sorted = [...games].sort((a, b) => b.date.localeCompare(a.date));
         {sorted.map((g) => (
           <a class="game-card" href={`/games/${g.slug}/`}>
             <div class="game-cover">
-              <span class="game-emoji" aria-hidden="true">{g.emoji}</span>
+              {g.cover
+                ? <img class="game-cover-img" src={g.cover} alt={`${g.title} 游戏截图`} loading="lazy" />
+                : <span class="game-emoji" aria-hidden="true">{g.emoji}</span>}
               <span class="game-tag">{g.tag}</span>
             </div>
             <div class="game-body">
@@ -71,6 +73,10 @@ const sorted = [...games].sort((a, b) => b.date.localeCompare(a.date));
     border-bottom: 1px solid var(--border);
   }
   .game-emoji { font-size: 52px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+  .game-cover-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover;
+  }
   .game-tag {
     position: absolute; top: 12px; right: 12px;
     padding: 3px 10px; border-radius: 999px; font-size: 12px;
