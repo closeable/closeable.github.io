@@ -6,12 +6,29 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  /** 附加的结构化数据（如文章页的 Article schema） */
+  schema?: Record<string, unknown>;
 }
 
 const {
   title = 'sqtds · 技术手记',
-  description = '关注后端架构、分布式系统与工程实践的技术博客。',
+  description = '关注后端架构、分布式系统与工程实践的技术博客，附 AI 制作的小游戏合集。',
+  schema,
 } = Astro.props;
+
+const site = Astro.site ?? new URL('https://closeable.github.io');
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL('/og-default.png', site).href;
+const ogType = Astro.url.pathname.startsWith('/blog/') && Astro.url.pathname !== '/blog/' ? 'article' : 'website';
+// 结构化数据：站点级（文章页的结构化数据由文章模板自行补充）
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'sqtds · 技术手记',
+  url: site.href,
+  description,
+  inLanguage: 'zh-CN',
+});
 ---
 
 <!doctype html>
@@ -21,9 +38,32 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#5b5bd6" />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="sqtds · 技术手记" href="/rss.xml" />
+
+    <!-- 社交分享卡片（微信/X/Twitter/Telegram 抓取这些字段） -->
+    <meta property="og:site_name" content="sqtds · 技术手记" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={jsonLd} />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <title>{title}</title>
+
+    <!--
+      站长统计注入点：注册好统计服务后，把官方给的 <script> 片段原样粘贴到这里。
+      推荐（免费、轻量）：51.la v6 / Cloudflare Web Analytics / GoatCounter
+    -->
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('theme');

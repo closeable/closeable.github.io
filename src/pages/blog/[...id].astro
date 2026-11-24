@@ -19,9 +19,24 @@ interface Props { post: Post; newer: Post | null; older: Post | null; }
 const { post, newer, older } = Astro.props;
 const { Content, headings } = await render(post);
 const minutes = readingTime(post.body ?? '');
+// 文章结构化数据：帮助搜索引擎生成富摘要
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  inLanguage: 'zh-CN',
+  articleSection: post.data.category,
+  keywords: post.data.tags.join(', '),
+  mainEntityOfPage: new URL(`/blog/${post.id}/`, Astro.site ?? new URL('https://closeable.github.io')).href,
+  author: { '@type': 'Person', name: 'sqtds' },
+  publisher: { '@type': 'Organization', name: 'sqtds · 技术手记' },
+};
 ---
 
-<BaseLayout title={`${post.data.title} · sqtds`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} · sqtds`} description={post.data.description} schema={articleSchema}>
   <div class="container article-layout">
     <article class="article-main">
       <header class="article-header">
