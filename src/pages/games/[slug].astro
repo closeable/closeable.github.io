@@ -19,7 +19,7 @@ const { game } = Astro.props;
       </div>
       <p class="game-sub">{game.desc}</p>
 
-      <div class="game-frame-wrap" id="game-frame-wrap">
+      <div class="game-frame-wrap" id="game-frame-wrap" style={`aspect-ratio: ${game.aspect || '4 / 3'}`}>
         <iframe
           class="game-frame"
           src={`/play/${game.slug}/index.html`}
