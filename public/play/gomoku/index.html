@@ -128,9 +128,10 @@
         <h2>霓虹五子棋</h2>
         <p>你执黑先行，AI 执白。<br>先连成五子者胜。</p>
         <div class="btns">
-          <button data-diff="easy">🍵 简单 · 适合热身</button>
-          <button data-diff="medium" class="primary">⚔️ 中等 · 攻防兼备</button>
-          <button data-diff="hard">🔥 困难 · 步步紧逼</button>
+          <button data-diff="easy">🍵 简单 · 新手热身</button>
+          <button data-diff="medium" class="primary">⚔️ 中等 · 会攻防</button>
+          <button data-diff="hard">🔥 困难 · 算路很深</button>
+          <button data-diff="master">🏆 大师 · 会算杀</button>
         </div>
         <div class="rec-row" id="rec-row"></div>
       </div>
@@ -171,6 +172,7 @@
 
   // ---------- 状态 ----------
   let board = new Uint8Array(N * N);
+  let nearCnt = new Uint16Array(N * N);   // 每格周围 5x5 范围内的棋子数，用于快速生成候选点
   let history = [];               // {x,y,p}
   let state = 'idle';             // idle | human | thinking | over
   let diff = 'medium';
@@ -324,21 +326,30 @@
     }
     return null;
   }
+  function bumpNear(x, y, d) {
+    const y0 = Math.max(0, y - 2), y1 = Math.min(N - 1, y + 2);
+    const x0 = Math.max(0, x - 2), x1 = Math.min(N - 1, x + 2);
+    for (let ny = y0; ny <= y1; ny++) {
+      const row = ny * N;
+      for (let nx = x0; nx <= x1; nx++) nearCnt[row + nx] += d;
+    }
+  }
   function place(x, y, p) {
     board[y * N + x] = p;
+    bumpNear(x, y, 1);
     history.push({x, y, p});
     lastMove = {x, y};
   }
   function unplace() {
     const m = history.pop();
-    if (m) board[m.y * N + m.x] = EMPTY;
+    if (m) { board[m.y * N + m.x] = EMPTY; bumpNear(m.x, m.y, -1); }
     const prev = history[history.length - 1];
     lastMove = prev ? {x: prev.x, y: prev.y} : null;
     return m;
   }
 
   // ---------- AI ----------
-  // 五连窗口预计算
+  // 静态评估用的五连窗口
   const WINDOWS = (() => {
     const ws = [];
     for (let y = 0; y < N; y++) for (let x = 0; x <= N - 5; x++) ws.push([0,1,2,3,4].map(i => y*N + x + i));
@@ -347,128 +358,227 @@
     for (let y = 4; y < N; y++) for (let x = 0; x <= N - 5; x++) ws.push([0,1,2,3,4].map(i => (y-i)*N + x + i));
     return ws;
   })();
-  const WSCORE = [0, 4, 40, 400, 6000, 500000];
+  const WS = [0, 2, 26, 620, 9000, 1000000];
+  const WIN_SCORE = 1e9;
+  // 棋型价值
+  const T = { FIVE: 1e9, OPEN4: 5e7, DBL: 2e7, FOUR: 3e6, OPEN3: 5e5, THREE: 6e4 };
+  const LINE = new Uint8Array(9);
 
-  // 落点打分（攻击 + 防守），用于走法排序与贪心
-  function moveScore(x, y, p) {
-    let total = 0;
-    for (const pass of [p, p === BLACK ? WHITE : BLACK]) {
-      let s = 0;
-      for (const [dx, dy] of DIRS) {
-        let cnt = 1, openA = 1, openB = 1;
-        let nx = x + dx, ny = y + dy;
-        while (nx >= 0 && nx < N && ny >= 0 && ny < N && board[ny*N+nx] === pass) { cnt++; nx += dx; ny += dy; }
-        openA = (nx >= 0 && nx < N && ny >= 0 && ny < N && board[ny*N+nx] === EMPTY) ? 1 : 0;
-        nx = x - dx; ny = y - dy;
-        while (nx >= 0 && nx < N && ny >= 0 && ny < N && board[ny*N+nx] === pass) { cnt++; nx -= dx; ny -= dy; }
-        openB = (nx >= 0 && nx < N && ny >= 0 && ny < N && board[ny*N+nx] === EMPTY) ? 1 : 0;
-        const open = openA + openB;
-        if (cnt >= 5) s += 100000;
-        else if (cnt === 4) s += open === 2 ? 30000 : (open === 1 ? 8000 : 0);
-        else if (cnt === 3) s += open === 2 ? 5000 : (open === 1 ? 600 : 0);
-        else if (cnt === 2) s += open === 2 ? 400 : (open === 1 ? 60 : 0);
-        else s += open === 2 ? 10 : 0;
+  // 假设在 (x,y) 落 p 之后，四个方向形成的最高威胁价值（已含双四/四三/双三判断）
+  function threatVal(x, y, p) {
+    let five = 0, open4 = 0, four = 0, open3 = 0, three = 0;
+    for (let d = 0; d < 4; d++) {
+      const dx = DIRS[d][0], dy = DIRS[d][1];
+      for (let i = -4; i <= 4; i++) {
+        if (i === 0) { LINE[4] = 1; continue; }
+        const nx = x + dx * i, ny = y + dy * i;
+        if (nx < 0 || nx >= N || ny < 0 || ny >= N) { LINE[i + 4] = 2; continue; }
+        const v = board[ny * N + nx];
+        LINE[i + 4] = v === EMPTY ? 0 : (v === p ? 1 : 2);
       }
-      total += pass === p ? s : s * 0.85;   // 防守权重略低于进攻
+      let c5 = 0, c4 = 0, c3 = 0;
+      for (let s = 0; s <= 4; s++) {           // 含落点的 5 格窗口
+        let me = 0, bad = false;
+        for (let k = 0; k < 5; k++) {
+          const v = LINE[s + k];
+          if (v === 2) { bad = true; break; }
+          if (v === 1) me++;
+        }
+        if (bad) continue;
+        if (me === 5) c5++;
+        else if (me === 4) c4++;
+        else if (me === 3) c3++;
+      }
+      if (c5) five++;
+      else if (c4 >= 2) open4++;               // 011110：两端成五点 → 活四
+      else if (c4 === 1) four++;               // 冲四
+      else if (c3 >= 2) open3++;               // 活三（含跳活三）
+      else if (c3 === 1) three++;              // 眠三
     }
-    return total;
+    if (five) return T.FIVE;
+    if (open4) return T.OPEN4;
+    const fours = four + open4;
+    if (fours >= 2) return T.DBL;              // 双四
+    if (four >= 1 && open3 >= 1) return T.DBL; // 四三
+    if (open3 >= 2) return T.DBL * 0.6;        // 双活三
+    if (fours === 1) return T.FOUR;
+    if (open3 === 1) return T.OPEN3;
+    if (three >= 1) return T.THREE;
+    return 0;
   }
-  function candidates(limit) {
+
+  // 候选点：只在已有棋子周围 2 格内搜索，按「我方威胁 + 对方威胁」排序
+  function genMoves(p, limit) {
+    const opp = p === BLACK ? WHITE : BLACK;
     const list = [];
-    if (history.length === 0) return [{x: 7, y: 7}];
-    for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
-      if (board[y*N+x] !== EMPTY) continue;
-      let near = false;
-      for (let dy = -2; dy <= 2 && !near; dy++) for (let dx = -2; dx <= 2; dx++) {
-        const nx = x + dx, ny = y + dy;
-        if (nx >= 0 && nx < N && ny >= 0 && ny < N && board[ny*N+nx] !== EMPTY) { near = true; break; }
+    for (let y = 0; y < N; y++) {
+      const row = y * N;
+      for (let x = 0; x < N; x++) {
+        if (board[row + x] !== EMPTY || nearCnt[row + x] === 0) continue;
+        const atk = threatVal(x, y, p);
+        const def = threatVal(x, y, opp);
+        let s = atk > def * 0.92 ? atk : def * 0.92;
+        if (atk >= T.FIVE) s += 1e8;           // 能成五
+        else if (def >= T.FIVE) s += 5e7;      // 必须挡五
+        list.push({ x, y, s, atk, def });
       }
-      if (near) list.push({x, y, s: moveScore(x, y, AI)});
     }
+    if (list.length === 0 && history.length === 0) list.push({ x: 7, y: 7, s: 1, atk: 0, def: 0 });
     list.sort((a, b) => b.s - a.s);
-    return list.slice(0, limit);
+    return limit ? list.slice(0, limit) : list;
   }
-  function evalBoard() {
-    let s = 0;
-    for (const w of WINDOWS) {
+
+  // 静态评估（AI=白为正）；p 为当前行棋方——有「四」的一方下一手必成五
+  function evalBoard(p) {
+    let sw = 0, sb = 0, w4 = 0, b4 = 0;
+    for (let wi = 0; wi < WINDOWS.length; wi++) {
+      const w = WINDOWS[wi];
       let b = 0, wh = 0;
-      for (const i of w) { const v = board[i]; if (v === BLACK) b++; else if (v === WHITE) wh++; }
+      for (let k = 0; k < 5; k++) {
+        const v = board[w[k]];
+        if (v === BLACK) b++; else if (v === WHITE) wh++;
+      }
       if (b && wh) continue;
-      if (b) s += WSCORE[b];
-      else if (wh) s -= WSCORE[wh] * 1.1;
+      if (wh) { sw += WS[wh]; if (wh === 4) w4++; }
+      else if (b) { sb += WS[b]; if (b === 4) b4++; }
     }
-    return s;   // AI（白）视角
+    if (w4 || b4) {
+      // 行棋方有「冲四」→ 下一手直接成五；只有对方有四 → 必须去挡，凶多吉少
+      if (p === WHITE) {
+        if (w4) return WIN_SCORE * 0.75;
+        return -WIN_SCORE * 0.35;
+      }
+      if (b4) return -WIN_SCORE * 0.75;
+      return WIN_SCORE * 0.35;
+    }
+    return sw - sb * 1.08;
   }
-  function winningMove(p) {
-    for (const {x, y} of candidates(40)) {
-      board[y*N+x] = p;
-      const w = lineAt(x, y, p);
-      board[y*N+x] = EMPTY;
-      if (w) return {x, y};
+
+  // 负极大值搜索：返回 p 视角分数；超时返回 null
+  let nodes = 0, aiInfo = { nodes: 0, ms: 0 };
+  function search(depth, alpha, beta, p, deadline) {
+    nodes++;
+    if (depth <= 0) return { s: p === AI ? evalBoard(p) : -evalBoard(p), move: null };
+    if (performance.now() > deadline) return null;
+    const opp = p === BLACK ? WHITE : BLACK;
+    const moves = genMoves(p, depth >= 4 ? 10 : 8);
+    if (moves.length === 0) return { s: 0, move: null };
+    let bestS = -Infinity, bestM = null;
+    for (let mi = 0; mi < moves.length; mi++) {
+      const m = moves[mi], idx = m.y * N + m.x;
+      board[idx] = p; bumpNear(m.x, m.y, 1);
+      let sc;
+      if (lineAt(m.x, m.y, p)) {
+        sc = WIN_SCORE - (12 - depth);
+      } else {
+        const r = search(depth - 1, -beta, -alpha, opp, deadline);
+        if (r === null) { board[idx] = EMPTY; bumpNear(m.x, m.y, -1); return null; }
+        sc = -r.s;
+      }
+      board[idx] = EMPTY; bumpNear(m.x, m.y, -1);
+      if (sc > bestS) { bestS = sc; bestM = m; }
+      if (sc > alpha) alpha = sc;
+      if (alpha >= beta) break;
+    }
+    return { s: bestS, move: bestM };
+  }
+
+  // 所有能让 p 一步成五的点
+  function fivePoints(p, cap) {
+    const res = [];
+    for (let y = 0; y < N; y++) {
+      const row = y * N;
+      for (let x = 0; x < N; x++) {
+        if (board[row + x] !== EMPTY || nearCnt[row + x] === 0) continue;
+        board[row + x] = p;
+        const w = lineAt(x, y, p);
+        board[row + x] = EMPTY;
+        if (w) {
+          res.push({ x, y });
+          if (res.length >= (cap || 8)) return res;
+        }
+      }
+    }
+    return res;
+  }
+
+  // 冲四（VCF）搜索：只用连续「四」逼对手，找强制胜
+  function vcf(p, depth, deadline) {
+    if (performance.now() > deadline) return null;
+    const opp = p === BLACK ? WHITE : BLACK;
+    const mine = fivePoints(p, 1);
+    if (mine.length) return mine[0];                 // 直接成五
+    if (depth <= 0) return null;
+    if (fivePoints(opp, 1).length) return null;      // 对方有四，冲四杀不成立
+    const cands = genMoves(p, 12);
+    for (let ci = 0; ci < cands.length; ci++) {
+      const m = cands[ci], idx = m.y * N + m.x;
+      board[idx] = p; bumpNear(m.x, m.y, 1);
+      const fp = fivePoints(p, 3);
+      if (fp.length >= 2) {                          // 双四，对手只能挡一个
+        board[idx] = EMPTY; bumpNear(m.x, m.y, -1);
+        return { x: m.x, y: m.y };
+      }
+      if (fp.length === 1) {
+        const b = fp[0], bidx = b.y * N + b.x;
+        board[bidx] = opp; bumpNear(b.x, b.y, 1);
+        const sub = (lineAt(b.x, b.y, opp) === null) ? vcf(p, depth - 1, deadline) : null;
+        board[bidx] = EMPTY; bumpNear(b.x, b.y, -1);
+        board[idx] = EMPTY; bumpNear(m.x, m.y, -1);
+        if (performance.now() > deadline) return null;
+        if (sub) return { x: m.x, y: m.y };
+      } else {
+        board[idx] = EMPTY; bumpNear(m.x, m.y, -1);
+      }
     }
     return null;
   }
-  // minimax：ai 眼里 maximize
-  function minimax(depth, alpha, beta, aiTurn, deadline) {
-    if (performance.now() > deadline) return null;   // 超时信号
-    const moves = candidates(aiTurn ? 10 : 8);
-    if (moves.length === 0) return { score: 0 };
-    let best = aiTurn ? -Infinity : Infinity;
-    let bestMove = null;
-    for (const m of moves) {
-      board[m.y*N+m.x] = aiTurn ? AI : ME;
-      let sc;
-      if (lineAt(m.x, m.y, aiTurn ? AI : ME)) {
-        sc = aiTurn ? 400000 + depth * 1000 : -400000 - depth * 1000;
-      } else if (depth <= 1) {
-        sc = evalBoard();
-      } else {
-        const r = minimax(depth - 1, alpha, beta, !aiTurn, deadline);
-        sc = r === null ? null : r.score;
-      }
-      board[m.y*N+m.x] = EMPTY;
-      if (sc === null) return null;
-      if (aiTurn) {
-        if (sc > best) { best = sc; bestMove = m; }
-        alpha = Math.max(alpha, best);
-      } else {
-        if (sc < best) { best = sc; bestMove = m; }
-        beta = Math.min(beta, best);
-      }
-      if (alpha >= beta) break;
-    }
-    return { score: best, move: bestMove };
-  }
+
   function aiThink() {
     // 1. 能赢直接赢
-    const w1 = winningMove(AI);
-    if (w1) return w1;
+    const w1 = fivePoints(AI, 1);
+    if (w1.length) return w1[0];
     // 2. 对手下一手能赢必须堵
-    const w2 = winningMove(ME);
-    if (w2) return w2;
+    const b1 = fivePoints(ME, 1);
+    if (b1.length) return b1[0];
+
     if (diff === 'easy') {
-      // 贪心 + 少量随机
-      const cands = candidates(8);
-      const top = cands.slice(0, 3);
-      return top[Math.floor(Math.random() * top.length)];
+      const list = genMoves(AI, 6);
+      if (!list.length) return { x: 7, y: 7 };
+      const k = Math.min(list.length, 3);
+      const idx = Math.random() < 0.65 ? 0 : 1 + Math.floor(Math.random() * (k - 1));
+      return list[idx];
     }
+
     const t0 = performance.now();
-    const deadline = t0 + (diff === 'hard' ? 1500 : 500);
-    const maxDepth = diff === 'hard' ? 4 : 2;
-    let result = null;
-    // 迭代加深，超时保底用上一层结果
+    const hard = diff === 'hard' || diff === 'master';
+    const early = history.length < 10;               // 开局阶段缩短思考时间
+    // 高难度：先算连续冲四杀
+    if (hard) {
+      const vb = (diff === 'master' ? 1400 : 900) * (early ? 0.5 : 1);
+      const v = vcf(AI, diff === 'master' ? 10 : 8, t0 + vb);
+      if (v) { aiInfo = { path: 'vcf', nodes, ms: Math.round(performance.now() - t0) }; return v; }
+    }
+    const base = diff === 'master' ? 2600 : hard ? 1800 : 700;
+    const deadline = t0 + Math.round(base * (early ? 0.55 : 1));
+    let maxDepth = diff === 'master' ? 8 : hard ? 6 : 4;
+    if (early) maxDepth = Math.min(maxDepth, 6);
+    let best = null;
+    nodes = 0;
+    // 迭代加深，超时用上一层结果
     for (let d = 2; d <= maxDepth; d += 2) {
-      const r = minimax(d, -Infinity, Infinity, true, deadline);
-      if (r === null) break;
-      result = r;
+      const r = search(d, -Infinity, Infinity, AI, deadline);
+      if (!r) break;
+      if (r.move) best = r.move;
+      if (Math.abs(r.s) > WIN_SCORE / 2) break;      // 已算出必胜/必败
       if (performance.now() > deadline) break;
-      if (Math.abs(r.score) > 300000) break;   // 已找到必胜/必败，不再加深
     }
-    if (!result || !result.move) {
-      const cands = candidates(1);
-      return cands[0];
+    aiInfo = { nodes, ms: Math.round(performance.now() - t0) };
+    if (!best) {
+      const list = genMoves(AI, 1);
+      best = list[0] || { x: 7, y: 7 };
     }
-    return result.move;
+    return best;
   }
 
   // ---------- 流程 ----------
@@ -523,6 +633,7 @@
 
   function startGame() {
     board = new Uint8Array(N * N);
+    nearCnt = new Uint16Array(N * N);
     history = []; winLine = null; lastMove = null; hover = null;
     state = 'human';
     overlay.classList.add('hidden');
@@ -572,7 +683,34 @@
     state: () => ({ state, diff, moves: history.length, last: lastMove, record: { ...record } }),
     board: () => Array.from(board),
     play: (x, y) => humanMove(x, y),
-    setCell: (x, y, p) => { board[y * N + x] = p; },
+    setCell: (x, y, p) => {
+      const i = y * N + x;
+      if (board[i] === EMPTY && p !== EMPTY) bumpNear(x, y, 1);
+      else if (board[i] !== EMPTY && p === EMPTY) bumpNear(x, y, -1);
+      board[i] = p;
+    },
+    clear: () => { board = new Uint8Array(N * N); nearCnt = new Uint16Array(N * N); },
+    bestFor: (p, maxDepth, budget) => {
+      const t0 = performance.now();
+      const dl = t0 + (budget || 1200);
+      let best = null, reached = 0;
+      for (let d = 2; d <= maxDepth; d += 2) {
+        const r = search(d, -Infinity, Infinity, p, dl);
+        if (!r) break;
+        if (r.move) { best = r.move; reached = d; }
+        if (Math.abs(r.s) > WIN_SCORE / 2) break;
+      }
+      if (!best) { const l = genMoves(p, 1); best = l[0] || { x: 7, y: 7 }; }
+      return { x: best.x, y: best.y, ms: Math.round(performance.now() - t0), depth: reached };
+    },
+    think: (d) => {
+      diff = d || diff;
+      const t0 = performance.now();
+      const mv = aiThink();
+      return { x: mv.x, y: mv.y, ms: Math.round(performance.now() - t0), info: { ...aiInfo } };
+    },
+    threat: (x, y, p) => threatVal(x, y, p),
+    eval: (p) => evalBoard(p || AI),
   };
 
   // ---------- 启动 ----------
