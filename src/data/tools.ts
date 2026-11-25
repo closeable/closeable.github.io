@@ -219,6 +219,16 @@ export const tools: AiTool[] = [
     stars: '40k+',
     license: 'Apache-2.0',
   },
+  {
+    id: 'dsh-game-studio',
+    name: 'DSH 游戏工坊',
+    desc: '一句话让 Agent 做小游戏：自动试玩、换 AI 美术，导出单文件 HTML 或微信小游戏，还能一键发到 GitHub Pages。',
+    category: 'Agent 与工作流',
+    tags: ['MCP', '游戏创作', '中文友好'],
+    url: 'https://github.com/ZSeven-W/dsh-game-studio',
+    stars: '900+',
+    license: 'MIT',
+  },
 
   // ---- RAG 与知识库 ----
   {
