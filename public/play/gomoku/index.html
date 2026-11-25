@@ -10,9 +10,10 @@
     --border: #d9dfe9; --text: #1c2330; --muted: #6b7688;
     --accent: #5b5bd6; --accent2: #0ea5b7; --danger: #e5484d;
     --gold: #d97706;
-    --stone-black-hi: #3a4256; --stone-black-lo: #0b0e16;
-    --stone-white-hi: #ffffff; --stone-white-lo: #c3cad9;
-    --board: #e9e2d1; --grid: #a9987a;
+    --stone-black-hi: #4d5872; --stone-black-mid: #1b2130; --stone-black-lo: #05070d;
+    --stone-white-hi: #ffffff; --stone-white-mid: #f3f6fb; --stone-white-lo: #c6cedd;
+    --board: #e6dabe; --board-hi: #fdf8ec; --board-lo: #c6b083; --grid: #7b6844;
+    --veil: rgba(24, 28, 38, .20);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) {
@@ -20,9 +21,10 @@
       --border: #2a3141; --text: #e8ebf3; --muted: #8b95a8;
       --accent: #9b9bff; --accent2: #4dd0d8; --danger: #fb7185;
       --gold: #fbbf24;
-      --stone-black-hi: #3a4256; --stone-black-lo: #0b0e16;
-      --stone-white-hi: #f2f5fa; --stone-white-lo: #aeb7c9;
-      --board: #171a24; --grid: #3d4860;
+      --stone-black-hi: #6a7799; --stone-black-mid: #262e40; --stone-black-lo: #090d16;
+      --stone-white-hi: #f4f7fc; --stone-white-mid: #e9eef7; --stone-white-lo: #aab4c7;
+      --board: #151a25; --board-hi: #2a3346; --board-lo: #080b11; --grid: #55648a;
+    --veil: rgba(6, 8, 14, .52);
     }
   }
   :root[data-theme='dark'] {
@@ -30,9 +32,10 @@
     --border: #2a3141; --text: #e8ebf3; --muted: #8b95a8;
     --accent: #9b9bff; --accent2: #4dd0d8; --danger: #fb7185;
     --gold: #fbbf24;
-    --stone-black-hi: #3a4256; --stone-black-lo: #0b0e16;
-    --stone-white-hi: #f2f5fa; --stone-white-lo: #aeb7c9;
-    --board: #171a24; --grid: #3d4860;
+    --stone-black-hi: #6a7799; --stone-black-mid: #262e40; --stone-black-lo: #090d16;
+    --stone-white-hi: #f4f7fc; --stone-white-mid: #e9eef7; --stone-white-lo: #aab4c7;
+    --board: #151a25; --board-hi: #2a3346; --board-lo: #080b11; --grid: #55648a;
+    --veil: rgba(6, 8, 14, .52);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
@@ -61,11 +64,14 @@
   }
   .hud button:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,.15); }
   .hud button:disabled { opacity: .45; cursor: default; transform: none; box-shadow: none; }
-  canvas { display: block; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.18); cursor: pointer; }
+  canvas {
+    display: block; border-radius: 16px; cursor: pointer;
+    box-shadow: 0 18px 42px rgba(12, 16, 28, .26), 0 3px 8px rgba(12, 16, 28, .14);
+  }
   .tip { font-size: 12px; color: var(--muted); }
   #overlay {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    background: rgba(10, 12, 20, .55); backdrop-filter: blur(6px);
+    background: var(--veil, rgba(10, 12, 20, .55)); backdrop-filter: blur(4px) saturate(1.02);
     border-radius: 14px; z-index: 5;
   }
   #overlay.hidden { display: none; }
@@ -118,7 +124,8 @@
     <span class="pill" id="status">执黑先行</span>
     <span class="grow"></span>
     <button id="undo-btn" disabled>↩ 悔棋</button>
-    <button id="mute-btn">🔊</button>
+    <button id="music-btn" title="背景音乐">🎵</button>
+    <button id="mute-btn" title="音效">🔊</button>
   </div>
   <div style="position:relative">
     <canvas id="cv"></canvas>
@@ -159,6 +166,7 @@
   const statusEl = document.getElementById('status');
   const undoBtn = document.getElementById('undo-btn');
   const muteBtn = document.getElementById('mute-btn');
+  const musicBtn = document.getElementById('music-btn');
   const overlay = document.getElementById('overlay');
   const cardStart = document.getElementById('card-start');
   const cardOver = document.getElementById('card-over');
@@ -191,9 +199,9 @@
       bg: cssVar('--bg'), surface: cssVar('--surface'), border: cssVar('--border'),
       text: cssVar('--text'), muted: cssVar('--muted'),
       accent: cssVar('--accent'), accent2: cssVar('--accent2'), danger: cssVar('--danger'),
-      board: cssVar('--board'), grid: cssVar('--grid'),
-      bh: cssVar('--stone-black-hi'), bl: cssVar('--stone-black-lo'),
-      wh: cssVar('--stone-white-hi'), wl: cssVar('--stone-white-lo'),
+      board: cssVar('--board'), boardHi: cssVar('--board-hi'), boardLo: cssVar('--board-lo'), grid: cssVar('--grid'),
+      bh: cssVar('--stone-black-hi'), bm: cssVar('--stone-black-mid'), bl: cssVar('--stone-black-lo'),
+      wh: cssVar('--stone-white-hi'), wm: cssVar('--stone-white-mid'), wl: cssVar('--stone-white-lo'),
     };
     if (state !== 'idle') draw();
   }
@@ -227,61 +235,161 @@
   const gx = (x) => Math.round((x - PAD) / CELL);
 
   // ---------- 绘制 ----------
+  const TAU = Math.PI * 2;
+  const BOARD_R = 16;
+
   function draw() {
     ctx.clearRect(0, 0, SIZE, SIZE);
-    // 棋盘底
-    ctx.fillStyle = C.board;
-    roundRect(0, 0, SIZE, SIZE, 14); ctx.fill();
+
+    // 棋盘底：斜向渐变
+    const bg = ctx.createLinearGradient(0, 0, SIZE, SIZE);
+    bg.addColorStop(0, C.boardHi);
+    bg.addColorStop(0.52, C.board);
+    bg.addColorStop(1, C.boardLo);
+    ctx.fillStyle = bg;
+    roundRect(0, 0, SIZE, SIZE, BOARD_R); ctx.fill();
+
+    // 柔光 / 暗角 + 极淡木纹
+    ctx.save();
+    roundRect(0, 0, SIZE, SIZE, BOARD_R); ctx.clip();
+    const vg = ctx.createRadialGradient(SIZE * 0.3, SIZE * 0.26, SIZE * 0.05, SIZE * 0.52, SIZE * 0.5, SIZE * 0.86);
+    vg.addColorStop(0, 'rgba(255,255,255,.16)');
+    vg.addColorStop(0.5, 'rgba(255,255,255,0)');
+    vg.addColorStop(1, 'rgba(0,0,0,.15)');
+    ctx.fillStyle = vg; ctx.fillRect(0, 0, SIZE, SIZE);
+
+    ctx.strokeStyle = C.grid; ctx.globalAlpha = 0.07; ctx.lineWidth = 1;
+    for (let yy = 7; yy < SIZE; yy += 10) {
+      ctx.beginPath();
+      ctx.moveTo(-4, yy);
+      ctx.bezierCurveTo(SIZE * 0.32, yy + 5, SIZE * 0.68, yy - 5, SIZE + 4, yy + 2);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    // 板边内阴影：让棋盘有一点厚度
+    ctx.strokeStyle = 'rgba(0,0,0,.14)'; ctx.lineWidth = 1.4;
+    roundRect(0.7, 0.7, SIZE - 1.4, SIZE - 1.4, BOARD_R - 0.7); ctx.stroke();
+    ctx.restore();
+
     // 网格
-    ctx.strokeStyle = C.grid; ctx.lineWidth = 1.15;
+    ctx.strokeStyle = C.grid; ctx.lineWidth = 1.35; ctx.globalAlpha = 0.92;
     for (let i = 0; i < N; i++) {
       line(px(0), px(i), px(N - 1), px(i));
       line(px(i), px(0), px(i), px(N - 1));
     }
-    ctx.lineWidth = 2;
+    ctx.globalAlpha = 1;
+    // 外框：深一档 + 内侧高光
+    ctx.strokeStyle = C.grid; ctx.lineWidth = 2.6; ctx.globalAlpha = 1;
     ctx.strokeRect(px(0), px(0), (N - 1) * CELL, (N - 1) * CELL);
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = 'rgba(255,255,255,.30)'; ctx.lineWidth = 1.2;
+    ctx.strokeRect(px(0) + 2.6, px(0) + 2.6, (N - 1) * CELL - 5.2, (N - 1) * CELL - 5.2);
+
     // 星位
-    ctx.fillStyle = C.grid;
     for (const [sx, sy] of [[3,3],[11,3],[7,7],[3,11],[11,11]]) {
-      ctx.beginPath(); ctx.arc(px(sx), px(sy), 3.2, 0, 7); ctx.fill();
+      const cx = px(sx), cy = px(sy);
+      ctx.fillStyle = C.grid;
+      ctx.beginPath(); ctx.arc(cx, cy, 3.1, 0, TAU); ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,.35)';
+      ctx.beginPath(); ctx.arc(cx - 0.6, cy - 0.7, 1.1, 0, TAU); ctx.fill();
     }
+
     // 悬停预览
     if (hover && state === 'human' && board[hover.y * N + hover.x] === EMPTY) {
-      ctx.globalAlpha = 0.35;
+      ctx.globalAlpha = 0.32;
       drawStone(hover.x, hover.y, ME);
       ctx.globalAlpha = 1;
     }
+
+    // 胜利光晕（在棋子下方，像一条被棋子压住的光带）
+    if (winLine) {
+      const a = winLine[0], b = winLine[winLine.length - 1];
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = C.danger;
+      ctx.globalAlpha = 0.16; ctx.lineWidth = CELL * 0.95;
+      ctx.beginPath(); ctx.moveTo(px(a.x), px(a.y)); ctx.lineTo(px(b.x), px(b.y)); ctx.stroke();
+      ctx.globalAlpha = 0.3; ctx.lineWidth = CELL * 0.42;
+      ctx.beginPath(); ctx.moveTo(px(a.x), px(a.y)); ctx.lineTo(px(b.x), px(b.y)); ctx.stroke();
+      ctx.restore();
+    }
+
     // 棋子
     for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
       const v = board[y * N + x];
       if (v) drawStone(x, y, v);
     }
+
     // 最后一手标记
     if (lastMove && !winLine) {
-      ctx.strokeStyle = C.danger; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(px(lastMove.x), px(lastMove.y), CELL * 0.5, 0, 7); ctx.stroke();
-    }
-    // 胜利连线
-    if (winLine) {
-      const a = winLine[0], b = winLine[winLine.length - 1];
+      const lx = px(lastMove.x), ly = px(lastMove.y), d = Math.max(2.6, CELL * 0.085);
+      ctx.fillStyle = 'rgba(255,255,255,.9)';
+      ctx.beginPath(); ctx.arc(lx, ly, d + 2, 0, TAU); ctx.fill();
       ctx.save();
-      ctx.strokeStyle = C.danger; ctx.lineWidth = 4; ctx.lineCap = 'round';
-      ctx.shadowColor = C.danger; ctx.shadowBlur = 12;
-      ctx.beginPath(); ctx.moveTo(px(a.x), px(a.y)); ctx.lineTo(px(b.x), px(b.y)); ctx.stroke();
+      ctx.shadowColor = C.danger; ctx.shadowBlur = 8;
+      ctx.fillStyle = C.danger;
+      ctx.beginPath(); ctx.arc(lx, ly, d, 0, TAU); ctx.fill();
+      ctx.restore();
+    }
+
+    // 胜利标记：五颗子各描一圈光边
+    if (winLine) {
+      ctx.save();
+      ctx.strokeStyle = C.danger;
+      ctx.lineWidth = 2;
+      ctx.shadowColor = C.danger; ctx.shadowBlur = 9;
+      ctx.globalAlpha = 0.9;
+      for (const c of winLine) {
+        ctx.beginPath(); ctx.arc(px(c.x), px(c.y), CELL * 0.455 + 2.2, 0, TAU); ctx.stroke();
+      }
       ctx.restore();
     }
   }
+
   function drawStone(x, y, p) {
-    const cx = px(x), cy = px(y), r = CELL * 0.42;
+    const cx = px(x), cy = px(y), r = CELL * 0.455;
     const hi = p === BLACK ? C.bh : C.wh;
     const lo = p === BLACK ? C.bl : C.wl;
-    const g = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.4, r * 0.15, cx, cy, r);
-    g.addColorStop(0, hi); g.addColorStop(1, lo);
+
+    // 投影（贴着棋盘的接触阴影）
+    ctx.save();
+    ctx.shadowColor = p === BLACK ? 'rgba(3,6,12,.55)' : 'rgba(12,18,32,.35)';
+    ctx.shadowBlur = r * 0.7;
+    ctx.shadowOffsetY = r * 0.3;
+    ctx.fillStyle = lo;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.fill();
+    ctx.restore();
+
+    // 石体：左上高光 → 右下暗部
+    const g = ctx.createRadialGradient(cx - r * 0.4, cy - r * 0.46, r * 0.05, cx + r * 0.16, cy + r * 0.22, r * 1.08);
+    g.addColorStop(0, hi);
+    g.addColorStop(0.5, p === BLACK ? C.bm : C.wm);
+    g.addColorStop(1, lo);
     ctx.fillStyle = g;
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fill();
-    ctx.strokeStyle = p === BLACK ? 'rgba(0,0,0,.45)' : 'rgba(58,70,92,.55)';
-    ctx.lineWidth = 1.2;
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.fill();
+
+    // 高光：一大一小
+    ctx.fillStyle = p === BLACK ? 'rgba(190,205,235,.34)' : 'rgba(255,255,255,1)';
+    ctx.beginPath();
+    ctx.ellipse(cx - r * 0.34, cy - r * 0.42, r * 0.24, r * 0.15, -0.62, 0, TAU);
+    ctx.fill();
+    ctx.fillStyle = p === BLACK ? 'rgba(235,242,255,.45)' : 'rgba(255,255,255,.9)';
+    ctx.beginPath();
+    ctx.arc(cx - r * 0.46, cy - r * 0.2, r * 0.075, 0, TAU);
+    ctx.fill();
+
+    // 边缘反光：整圈微光 + 下半弧更亮
+    ctx.strokeStyle = p === BLACK ? 'rgba(150,172,214,.20)' : 'rgba(255,255,255,.55)';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(cx, cy, r - 1, 0, TAU); ctx.stroke();
+    ctx.strokeStyle = p === BLACK ? 'rgba(186,205,240,.42)' : 'rgba(255,255,255,.9)';
+    ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.arc(cx, cy, r - 1, 0.14 * Math.PI, 0.86 * Math.PI); ctx.stroke();
+
+    // 外沿描边
+    ctx.strokeStyle = p === BLACK ? 'rgba(0,0,0,.62)' : 'rgba(88,102,126,.42)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, TAU); ctx.stroke();
   }
   function roundRect(x, y, w, h, r) {
     ctx.beginPath();
@@ -309,6 +417,108 @@
   const sndPlace = () => { beep(660, 0.08, 'triangle', 0.18); setTimeout(() => beep(440, 0.06, 'triangle', 0.1), 30); };
   const sndWin = () => { [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => beep(f, 0.18, 'sine', 0.16), i * 110)); };
   const sndLose = () => { [330, 262, 196].forEach((f, i) => setTimeout(() => beep(f, 0.25, 'sine', 0.16), i * 150)); };
+
+  // ---------- 背景音乐（WebAudio 合成，无外部音频文件） ----------
+  let musicOn = localStorage.getItem('gomoku-music') !== '0';
+  let musicBus = null, musicTimer = null, barIdx = 0;
+  const BAR = 6.4;
+
+  // 和弦走向：Am7 - Fmaj7 - Cmaj7 - G6，速度很慢、音量很轻
+  const PROG = [
+    { bass: 110.00, notes: [261.63, 329.63, 392.00] },
+    { bass:  87.31, notes: [220.00, 261.63, 329.63] },
+    { bass: 130.81, notes: [329.63, 392.00, 493.88] },
+    { bass:  98.00, notes: [246.94, 293.66, 392.00] },
+  ];
+  const PENTA = [440.00, 523.25, 587.33, 659.25, 783.99, 880.00];
+
+  function buildMusicBus() {
+    if (!AC || musicBus) return;
+    const master = AC.createGain();
+    master.gain.value = 0.0001;
+    master.connect(AC.destination);
+
+    const pad = AC.createGain();
+    pad.gain.value = 1;
+    const lp = AC.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 2300; lp.Q.value = 0.4;
+    pad.connect(lp); lp.connect(master);
+
+    const mel = AC.createGain();
+    mel.gain.value = 1;
+    mel.connect(master);                       // 干声
+    const dly = AC.createDelay(1.5);
+    dly.delayTime.value = 0.46;
+    const fb = AC.createGain(); fb.gain.value = 0.3;
+    const wet = AC.createGain(); wet.gain.value = 0.42;
+    mel.connect(dly); dly.connect(fb); fb.connect(dly);
+    dly.connect(wet); wet.connect(master);     // 湿声（回声）
+
+    musicBus = { master, pad, mel };
+  }
+
+  function musicTone(freq, at, dur, type, vol, dest, attack, release) {
+    const o = AC.createOscillator(), g = AC.createGain();
+    o.type = type;
+    o.frequency.value = freq;
+    o.detune.value = (Math.random() - 0.5) * 7;
+    const a = attack || 1.2, r = release || 2.2;
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.linearRampToValueAtTime(vol, at + a);
+    g.gain.setValueAtTime(vol, at + Math.max(a, dur - r));
+    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+    o.connect(g); g.connect(dest);
+    o.start(at); o.stop(at + dur + 0.08);
+  }
+
+  function scheduleBar() {
+    if (!AC || !musicBus || !musicOn) return;
+    const t = AC.currentTime + 0.12;
+    const p = PROG[barIdx % PROG.length];
+    barIdx++;
+    musicTone(p.bass, t, BAR, 'sine', 0.05, musicBus.pad, 1.8, 2.8);
+    for (let i = 0; i < p.notes.length; i++) {
+      musicTone(p.notes[i], t + i * 0.09, BAR, 'triangle', 0.027, musicBus.pad, 2.0, 2.9);
+    }
+    musicTone(p.notes[0] * 2, t + 0.5, BAR * 0.72, 'sine', 0.014, musicBus.pad, 2.4, 2.2);
+    // 稀疏旋律
+    const cnt = 1 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < cnt; i++) {
+      const nt = PENTA[Math.floor(Math.random() * PENTA.length)];
+      const off = 0.7 + Math.random() * (BAR - 2.6);
+      musicTone(nt, t + off, 2.8, 'sine', 0.036, musicBus.mel, 0.04, 2.4);
+    }
+  }
+
+  function startMusic() {
+    if (!musicOn) return;
+    initAudio();
+    if (!AC) return;
+    if (AC.state === 'suspended') { try { AC.resume(); } catch (e) {} }
+    buildMusicBus();
+    if (musicTimer) return;
+    const t = AC.currentTime;
+    musicBus.master.gain.cancelScheduledValues(t);
+    musicBus.master.gain.setValueAtTime(Math.max(0.0001, musicBus.master.gain.value), t);
+    musicBus.master.gain.linearRampToValueAtTime(0.6, t + 4);
+    barIdx = 0;
+    scheduleBar();
+    musicTimer = setInterval(scheduleBar, BAR * 1000);
+  }
+
+  function stopMusic(fade) {
+    if (musicTimer) { clearInterval(musicTimer); musicTimer = null; }
+    if (AC && musicBus) {
+      const t = AC.currentTime;
+      musicBus.master.gain.cancelScheduledValues(t);
+      musicBus.master.gain.setValueAtTime(Math.max(0.0001, musicBus.master.gain.value), t);
+      musicBus.master.gain.linearRampToValueAtTime(0.0001, t + (fade || 1.2));
+    }
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopMusic(0.4);
+    else if (musicOn && state !== 'idle') startMusic();
+  });
 
   // ---------- 规则 ----------
   const DIRS = [[1,0],[0,1],[1,1],[1,-1]];
@@ -627,7 +837,7 @@
     else { record.d++; ovBadge.textContent = '🤝'; ovTitle.textContent = '平局'; ovTitle.classList.remove('lose'); ovText.textContent = '棋盘下满了，势均力敌。'; }
     saveRecord(); renderRecord();
     ovStats.innerHTML = `<span>共 ${history.length} 手</span><span>胜 ${record.w} · 负 ${record.l} · 平 ${record.d}</span>`;
-    setTimeout(() => { cardStart.style.display = 'none'; cardOver.style.display = ''; overlay.classList.remove('hidden'); }, line ? 900 : 300);
+    setTimeout(() => { cardStart.style.display = 'none'; cardOver.style.display = ''; overlay.classList.remove('hidden'); }, line ? 1700 : 300);
     setHud(); draw();
   }
 
@@ -662,14 +872,20 @@
     if (g >= 0 && g < N && gy >= 0 && gy < N) humanMove(g, gy);
   });
   document.querySelectorAll('#card-start [data-diff]').forEach((b) => {
-    b.addEventListener('click', () => { diff = b.dataset.diff; initAudio(); startGame(); });
+    b.addEventListener('click', () => { diff = b.dataset.diff; initAudio(); startGame(); startMusic(); });
   });
-  againBtn.addEventListener('click', startGame);
+  againBtn.addEventListener('click', () => { startGame(); startMusic(); });
   rediffBtn.addEventListener('click', showStart);
   undoBtn.addEventListener('click', () => {
     if (state !== 'human' || history.length < 2) return;
     unplace(); unplace();   // 撤回 AI + 自己
     setHud(); draw();
+  });
+  musicBtn.addEventListener('click', () => {
+    musicOn = !musicOn;
+    localStorage.setItem('gomoku-music', musicOn ? '1' : '0');
+    musicBtn.textContent = musicOn ? '🎵' : '🔕';
+    if (musicOn) startMusic(); else stopMusic(0.6);
   });
   muteBtn.addEventListener('click', () => {
     mute = !mute;
@@ -711,10 +927,13 @@
     },
     threat: (x, y, p) => threatVal(x, y, p),
     eval: (p) => evalBoard(p || AI),
+    redraw: () => draw(),
+    music: () => ({ on: musicOn, running: !!musicTimer, gain: musicBus ? +musicBus.master.gain.value.toFixed(3) : 0, state: AC ? AC.state : null }),
   };
 
   // ---------- 启动 ----------
   muteBtn.textContent = mute ? '🔇' : '🔊';
+  musicBtn.textContent = musicOn ? '🎵' : '🔕';
   renderRecord();
   fit();
   showStart();
