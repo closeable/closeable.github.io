@@ -15,8 +15,13 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="返回首页">
-      <span class="brand-mark">S</span>
-      <span>sqtds <small>技术手记</small></span>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.4 12 3l9 7.4" /><path d="M5.6 9.3V20h12.8V9.3" /><path d="M10 20v-5h4v5" />
+          <path d="m18.6 2.2.65 1.55 1.55.65-1.55.65-.65 1.55-.65-1.55-1.55-.65 1.55-.65z" />
+        </svg>
+      </span>
+      <span>小天的 AI 小屋 <small>手记 · 游戏</small></span>
     </a>
 
     <nav class="nav" id="site-nav" aria-label="主导航">
@@ -41,6 +46,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
   .icon-sun { display: none; }
   :global([data-theme='dark']) .icon-sun { display: block; }
   :global([data-theme='dark']) .icon-moon { display: none; }
+  .brand-mark svg { width: 19px; height: 19px; }
 </style>
 
 <script>

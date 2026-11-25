@@ -8,7 +8,7 @@ const categories = [...groupBy(posts, (p) => p.data.category).entries()]
   .sort((a, b) => b.count - a.count);
 ---
 
-<BaseLayout title="分类 · sqtds" description="按分类浏览全部文章。">
+<BaseLayout title="分类 · 小天的 AI 小屋" description="按分类浏览全部文章。">
   <div class="container">
     <div class="page-head"><h1>分类</h1><p>共 {categories.length} 个分类。</p></div>
     <div class="tag-cloud">

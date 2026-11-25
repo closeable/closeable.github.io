@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = 'sqtds · 技术手记',
-  description = '关注后端架构、分布式系统与工程实践的技术博客，附 AI 制作的小游戏合集。',
+  title = '小天的 AI 小屋 · 技术手记与 AI 小游戏',
+  description = '小天的 AI 小屋：记录后端架构、分布式系统与工程实践的技术手记，也收藏用 AI 做的小游戏。',
   schema,
 } = Astro.props;
 
@@ -24,7 +24,7 @@ const ogType = Astro.url.pathname.startsWith('/blog/') && Astro.url.pathname !==
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'sqtds · 技术手记',
+  name: '小天的 AI 小屋',
   url: site.href,
   description,
   inLanguage: 'zh-CN',
@@ -41,10 +41,10 @@ const jsonLd = JSON.stringify({
     <meta name="theme-color" content="#5b5bd6" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title="sqtds · 技术手记" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="小天的 AI 小屋" href="/rss.xml" />
 
     <!-- 社交分享卡片（微信/X/Twitter/Telegram 抓取这些字段） -->
-    <meta property="og:site_name" content="sqtds · 技术手记" />
+    <meta property="og:site_name" content="小天的 AI 小屋" />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
