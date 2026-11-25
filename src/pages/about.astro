@@ -73,6 +73,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </section>
 
     <section class="about-section">
+      <h2 class="section-title">聊聊</h2>
+      <div class="contact-card">
+        <a class="qr-link" href="/wechat-qr.png" target="_blank" rel="noopener" aria-label="查看微信二维码大图">
+          <img src="/wechat-qr.png" alt="微信二维码，扫码加好友" loading="lazy" />
+        </a>
+        <div class="contact-copy">
+          <h3>加个微信</h3>
+          <p>聊技术、聊 AI，或者只是打个招呼都欢迎。点二维码可看大图。</p>
+          <span class="contact-hint">微信扫码 · 添加好友</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
       <h2 class="section-title">写作约定</h2>
       <div class="writing-card">
         <ul>
@@ -144,6 +158,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .skill-group { padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
   .skill-group h3 { margin: 0 0 8px; font-size: 15px; }
   .skill-group p { margin: 0; font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+
+  .contact-card {
+    display: flex; align-items: center; gap: 34px;
+    padding: 28px 34px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .qr-link { flex: 0 0 auto; display: block; line-height: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #fff; transition: transform .2s ease; }
+  .qr-link:hover { transform: translateY(-2px); }
+  .qr-link img { display: block; width: 168px; height: 168px; object-fit: contain; }
+  .contact-copy h3 { margin: 0 0 10px; font-size: 20px; letter-spacing: -.02em; }
+  .contact-copy p { margin: 0 0 14px; font-size: 14px; color: var(--text-soft); line-height: 1.75; }
+  .contact-hint { display: inline-block; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12.5px; font-weight: 600; }
+  @media (max-width: 620px) {
+    .contact-card { flex-direction: column; gap: 20px; padding: 24px; text-align: center; }
+    .qr-link img { width: 200px; height: 200px; }
+  }
 
   .writing-card { padding: 24px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
   .writing-card ul { margin: 0 0 16px; padding-left: 22px; }
