@@ -19,7 +19,7 @@ const { game } = Astro.props;
       </div>
       <p class="game-sub">{game.desc}</p>
 
-      <div class="game-frame-wrap" id="game-frame-wrap" style={`aspect-ratio: ${game.aspect || '4 / 3'}`}>
+      <div class:list={['game-frame-wrap', { 'is-square': (game.aspect || '').replace(/\s/g, '') === '1/1' }]} id="game-frame-wrap" style={`aspect-ratio: ${game.aspect || '4 / 3'}`}>
         <iframe
           class="game-frame"
           src={`/play/${game.slug}/index.html`}
@@ -40,8 +40,13 @@ const { game } = Astro.props;
   }
   .back-link { color: var(--muted); font-size: 14px; white-space: nowrap; }
   .back-link:hover { color: var(--accent); }
-  .game-heading { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em; flex: 1; }
+  .game-heading { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em; flex: 1; min-width: 0; }
   .fullscreen-btn { white-space: nowrap; cursor: pointer; }
+  @media (max-width: 520px) {
+    .game-head { flex-wrap: wrap; gap: 8px 12px; }
+    .game-heading { font-size: 21px; flex: 1 1 auto; white-space: nowrap; }
+    .back-link { flex: 1 1 100%; order: -1; }
+  }
   .game-sub { color: var(--text-soft); font-size: 14.5px; margin: 10px 0 20px; }
   .game-frame-wrap {
     position: relative; border-radius: var(--radius); overflow: hidden;
@@ -54,6 +59,10 @@ const { game } = Astro.props;
     aspect-ratio: auto; max-height: none; border-radius: 0; border: none;
   }
   .game-frame { width: 100%; height: 100%; border: 0; display: block; }
+  /* 窄屏：方形棋盘（贪吃蛇/五子棋）给竖向更高的框，否则棋盘会被 1:1 压得很小 */
+  @media (max-width: 720px) {
+    .game-frame-wrap.is-square { aspect-ratio: 1 / 1.32 !important; }
+  }
   .game-tip { color: var(--muted); font-size: 13px; margin-top: 14px; }
 </style>
 

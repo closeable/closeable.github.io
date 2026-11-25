@@ -13,6 +13,16 @@ export interface Game {
 //          2) 在下面数组里加一条即可
 export const games: Game[] = [
   {
+    slug: 'gomoku',
+    title: '霓虹五子棋',
+    emoji: '⚫',
+    cover: '/play/gomoku/preview.png',
+    desc: '经典五子棋人机对战：你执黑先行，AI 执白应战。三档难度（贪心 / 搜索二层 / 搜索四层），支持悔棋、胜负战绩统计与音效。',
+    tag: '益智',
+    aspect: '1 / 1',
+    date: '2026-11-25',
+  },
+  {
     slug: 'devour-planet',
     title: '吞噬星球',
     emoji: '🌍',
