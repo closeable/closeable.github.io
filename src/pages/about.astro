@@ -2,25 +2,175 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="关于 · 小天的 AI 小屋" description="关于小天的 AI 小屋：一半技术手记，一半 AI 小游戏。">
+<BaseLayout title="关于 · 小天的 AI 小屋" description="关于小天：15 年后端研发与架构经验，快手技术专家、前 58 同城资深工程师，一边写代码一边做 AI 小游戏。">
   <div class="container">
-    <div class="page-head"><h1>关于小屋</h1><p>一点点背景，和这间屋子打算放些什么。</p></div>
-    <div class="about-card">
-      <h2>你好，这里是小天的 AI 小屋</h2>
-      <p>这里是一间小而杂的屋子：一半放着技术手记，一半放着用 AI 做的小游戏。手记来自日常工作中的问题、读论文和源码时的笔记，以及把某个概念真正想明白之后的复盘；小游戏则是想到什么就动手做什么，做好了就放在这里，点开即玩。</p>
-      <p>文章关注的方向包括后端架构、分布式系统、云原生与工程效率，尽量做到两件事：把原理讲清楚，把坑标出来。游戏那边则简单很多——好玩就行。</p>
-      <h3>写作约定</h3>
-      <ul>
-        <li>优先写“为什么”，而不只是“怎么做”。</li>
-        <li>能配图就配图，能被验证的结论就给出验证方式。</li>
-        <li>不确定的地方会明确标注，避免把猜测写成结论。</li>
-      </ul>
-      <h3>技术栈</h3>
-      <p>本站由 Astro 构建，使用 Content Collections 管理 Markdown 文章，无前端运行时框架，静态输出；小游戏是单文件 HTML，用 Canvas 与 WebAudio 实现。</p>
-      <div class="stack-list">
-        <span>Astro</span><span>Markdown / MDX</span><span>TypeScript</span><span>Canvas</span><span>RSS</span><span>静态托管</span>
+    <div class="page-head"><h1>关于小屋</h1><p>一点背景，和这间屋子的主人。</p></div>
+
+    <section class="intro-card">
+      <div class="intro-copy">
+        <span class="intro-badge"><span class="badge-dot"></span> 后端架构 · 分布式 · 大模型工程化</span>
+        <h2>你好，我是小天</h2>
+        <p>孙天成，15 年后端研发与架构经验，现任快手技术专家，此前在 58 同城做了近六年资深工程师。长期负责亿级流量 C 端系统与企业级中台的建设与治理，近年牵头大模型在业务场景里的工程化落地。</p>
+        <p>这间屋子一半放技术手记——把读过的论文、踩过的坑和想明白的问题写成能复用的笔记；一半放用 AI 做的小游戏——想到什么就动手做什么，做好了就放上来，点开即玩。</p>
       </div>
-      <p style="margin-top:28px">想交流的话，可以通过页面底部的 RSS 订阅更新。</p>
-    </div>
+      <div class="intro-stats">
+        <div><b>15</b><span>年研发经验</span></div>
+        <div><b>4</b><span>家公司</span></div>
+        <div><b>亿级</b><span>流量系统</span></div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2 class="section-title">经历时间线</h2>
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-year"><span class="tl-dot"></span>2021.04 — 至今</div>
+          <div class="tl-body">
+            <div class="tl-head"><h3>快手</h3><span>技术专家</span></div>
+            <p>负责本地生活用户平台的架构规划与后端研发，聚焦亿级流量系统稳定性、性能优化与技术债治理，牵头大模型工程化落地。</p>
+            <ul>
+              <li>主导短视频 PLC 性能专项（QPS 10w+），集群算力 4000C 缩容至 1000C，单核 QPS 提升 4 倍</li>
+              <li>负责短视频 PLC、搜索、团首等核心场域后端架构，保障大促瞬时高流量稳定交付</li>
+              <li>商品智能排序、门店评价智能生成等大模型能力 0→1 研发上线，负责输出质量把关与线上效果评估</li>
+              <li>牵头方案审核与技术风险管控，带教新人与技术文档沉淀</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year"><span class="tl-dot"></span>2015.09 — 2021.04</div>
+          <div class="tl-body">
+            <div class="tl-head"><h3>58 同城</h3><span>资深工程师</span></div>
+            <p>任职应用服务、区块链、基础服务等核心部门，主导企业级中台体系规划与落地。</p>
+            <ul>
+              <li>从 0 到 1 搭建 WRedis 缓存平台（900+ 集群、内存 3T）、日志分析平台（每秒写入 5 万条、日均 20TB）、担保交易平台、区块链 BaaS、开放平台、VR 全景平台六大中台</li>
+              <li>负责 58 详情页等亿级流量系统架构迭代（日调用 5 亿次、峰值 QPS 4000+）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year"><span class="tl-dot"></span>2013.04 — 2015.08</div>
+          <div class="tl-body">
+            <div class="tl-head"><h3>北京恒泰实达科技</h3><span>Java 高级工程师</span></div>
+            <p>大数据 ETL 工具与 BI 数据可视化系统后端研发，基于 Java 技术栈定制 Kettle、Mondrian 等开源组件。</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year"><span class="tl-dot"></span>2011.03 — 2013.03</div>
+          <div class="tl-body">
+            <div class="tl-head"><h3>拓维信息</h3><span>Java 开发工程师</span></div>
+            <p>基于 Netty 自研高性能短信发送网关，构建高吞吐、低延迟消息服务。</p>
+          </div>
+        </div>
+        <div class="tl-item edu">
+          <div class="tl-year"><span class="tl-dot"></span>2007.09 — 2011.06</div>
+          <div class="tl-body">
+            <div class="tl-head"><h3>中南林业科技大学</h3><span>计算机科学与技术 · 本科</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2 class="section-title">专业方向</h2>
+      <div class="skills">
+        <div class="skill-group"><h3>语言与并发</h3><p>Java（多线程并发、JVM 调优）、SQL、Shell、Python</p></div>
+        <div class="skill-group"><h3>框架与中间件</h3><p>Spring 全家桶、Dubbo、Redis、Kafka、RocketMQ</p></div>
+        <div class="skill-group"><h3>数据库</h3><p>MySQL 索引优化、事务与锁、分库分表、慢 SQL 治理</p></div>
+        <div class="skill-group"><h3>云原生</h3><p>Docker、Kubernetes、CI/CD、Linux、Arthas 线上诊断</p></div>
+        <div class="skill-group"><h3>AI 工程</h3><p>大模型工程化落地、RAG 与模型服务集成、Prompt 设计与输出质量评估</p></div>
+        <div class="skill-group"><h3>开源</h3><p>参与 Spring Cloud Gateway、Apache Dubbo、Hyperledger Fabric 代码迭代与优化</p></div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2 class="section-title">写作约定</h2>
+      <div class="writing-card">
+        <ul>
+          <li>优先写“为什么”，而不只是“怎么做”。</li>
+          <li>能配图就配图，能被验证的结论就给出验证方式。</li>
+          <li>不确定的地方会明确标注，避免把猜测写成结论。</li>
+        </ul>
+        <p>本站由 Astro 构建，Content Collections 管理 Markdown 文章，静态输出；小游戏是单文件 HTML，用 Canvas 与 WebAudio 实现。想跟踪更新，可以用页面底部的 RSS。</p>
+      </div>
+    </section>
   </div>
 </BaseLayout>
+
+<style>
+  .intro-card {
+    display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 40px; align-items: center;
+    padding: 36px 38px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .intro-badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); font-size: 12.5px; font-weight: 600;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .intro-copy h2 { margin: 18px 0 16px; font-size: 30px; letter-spacing: -.03em; }
+  .intro-copy p { margin: 0 0 14px; color: var(--text-soft); font-size: 15px; line-height: 1.85; }
+  .intro-copy p:last-child { margin-bottom: 0; }
+  .intro-stats {
+    display: flex; flex-direction: column; gap: 22px; padding-left: 34px;
+    border-left: 1px solid var(--border);
+  }
+  .intro-stats b { display: block; font-size: 30px; line-height: 1.1; letter-spacing: -.03em; color: var(--accent); }
+  .intro-stats span { font-size: 13px; color: var(--muted); }
+
+  .about-section { margin-top: 60px; }
+  .section-title { margin: 0 0 24px; font-size: 22px; letter-spacing: -.03em; }
+  .timeline { position: relative; padding-left: 4px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 118px; top: 10px; bottom: 12px;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { display: grid; grid-template-columns: 118px minmax(0, 1fr); gap: 32px; position: relative; padding-bottom: 30px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-year {
+    position: relative; padding-top: 4px; color: var(--muted); font-size: 12.5px;
+    font-variant-numeric: tabular-nums; text-align: right; padding-right: 18px;
+  }
+  .tl-dot {
+    position: absolute; right: -4.5px; top: 10px; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--muted);
+  }
+  .tl-item.current .tl-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .tl-item.current .tl-year { color: var(--accent); font-weight: 600; }
+  .tl-item.edu .tl-dot { border-style: dashed; }
+  .tl-body {
+    padding: 18px 22px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; box-shadow: var(--shadow);
+  }
+  .tl-item.current .tl-body { border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+  .tl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+  .tl-head h3 { margin: 0; font-size: 17px; letter-spacing: -.02em; }
+  .tl-head span { font-size: 12.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 9px; border-radius: 999px; }
+  .tl-body p { margin: 0; font-size: 14px; color: var(--text-soft); line-height: 1.75; }
+  .tl-body ul { margin: 12px 0 0; padding-left: 20px; }
+  .tl-body li { font-size: 13.5px; color: var(--text-soft); line-height: 1.75; margin-bottom: 5px; }
+  .tl-body li::marker { color: var(--accent); }
+
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .skill-group { padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+  .skill-group h3 { margin: 0 0 8px; font-size: 15px; }
+  .skill-group p { margin: 0; font-size: 13.5px; color: var(--text-soft); line-height: 1.7; }
+
+  .writing-card { padding: 24px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+  .writing-card ul { margin: 0 0 16px; padding-left: 22px; }
+  .writing-card li { color: var(--text-soft); font-size: 14px; margin-bottom: 6px; }
+  .writing-card li::marker { color: var(--accent); }
+  .writing-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+  @media (max-width: 820px) {
+    .intro-card { grid-template-columns: 1fr; gap: 26px; padding: 28px; }
+    .intro-stats { flex-direction: row; gap: 36px; padding-left: 0; padding-top: 22px; border-left: 0; border-top: 1px solid var(--border); }
+    .skills { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .timeline::before { left: 6px; }
+    .tl-item { grid-template-columns: 1fr; gap: 10px; padding-left: 26px; }
+    .tl-year { text-align: left; padding: 0; }
+    .tl-dot { left: -26px; right: auto; top: 6px; }
+    .tl-body { padding: 16px 18px; }
+  }
+</style>
