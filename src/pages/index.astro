@@ -34,6 +34,7 @@ const rooms = [
           <a class="btn btn-ghost" href="/prompts/">翻提示词库</a>
           <a class="btn btn-ghost" href="/blog/">读技术手记</a>
         </div>
+        <p class="hero-hint">想找什么？按 <kbd class="hint-mac">⌘K</kbd><kbd class="hint-win">Ctrl K</kbd> 搜遍全站</p>
         <div class="hero-stats">
           <div class="stat"><b>{posts.length}</b><span>篇文章</span></div>
           <div class="stat"><b>{games.length}</b><span>款小游戏</span></div>
@@ -72,7 +73,7 @@ const rooms = [
 
   <section class="section rooms-section">
     <div class="container">
-      <div class="section-head"><div><h2>小屋里有什么</h2><p>四个房间，随便逛</p></div></div>
+      <div class="section-head"><div><h2>小屋里有什么</h2><p>五个房间，随便逛</p></div></div>
       <div class="room-grid">
         {rooms.map((room) => (
           <a class="room" href={room.href}>
@@ -172,6 +173,13 @@ const rooms = [
 <style>
   .hero-inner { max-width: none; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: 48px; align-items: center; }
   .hero-copy { max-width: 720px; }
+  .hero-hint { margin: 16px 0 0; font-size: 12.5px; color: var(--muted); }
+  .hero-hint kbd {
+    display: inline-block; margin: 0 2px; padding: 2px 6px; border-radius: 5px;
+    border: 1px solid var(--border); background: var(--surface-2);
+    color: var(--text-soft); font-family: inherit; font-size: 11px;
+  }
+  .hero-hint .hint-win { display: none; }
   .hero-art { display: grid; place-items: center; }
   .hero-art svg { width: min(100%, 360px); height: auto; filter: drop-shadow(0 18px 40px color-mix(in srgb, var(--accent) 18%, transparent)); animation: float 7s ease-in-out infinite; }
   @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
