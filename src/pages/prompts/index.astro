@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { prompts, promptCategories } from '../../data/prompts';
+---
+
+<BaseLayout title="AI 提示词库 · 小天的 AI 小屋" description="15 个真正能用的 AI 提示词模板：代码审查、调试排障、SQL 优化、论文速读、写作润色、周报纪要、创意脑暴。按分类筛选，一键复制。">
+  <div class="container">
+    <div class="page-head">
+      <h1>AI 提示词库</h1>
+      <p>收集了一些真正能用的提示词模板。不是“你是一个专家”那种套话，而是把问题拆开、把要求说清楚的结构化指令。共 {prompts.length} 条，按分类筛选，一键复制。</p>
+    </div>
+
+    <div class="toolbar">
+      <button class="filter-btn active" data-filter="all">全部 {prompts.length}</button>
+      {promptCategories.map((cat) => (
+        <button class="filter-btn" data-filter={cat}>{cat} {prompts.filter((p) => p.category === cat).length}</button>
+      ))}
+      <input class="search-input" id="prompt-search" type="search" placeholder="搜索提示词…" aria-label="搜索提示词" />
+    </div>
+
+    <div class="prompt-grid" id="prompt-grid">
+      {prompts.map((p) => (
+        <article
+          class="prompt-card"
+          id={p.id}
+          data-category={p.category}
+          data-search={`${p.title} ${p.desc} ${p.category} ${p.tags.join(' ')} ${p.content}`.toLowerCase()}
+        >
+          <div class="prompt-top">
+            <span class="badge">{p.category}</span>
+            <button class="copy-btn" data-copy type="button" aria-label={`复制「${p.title}」提示词`}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <span>复制</span>
+            </button>
+          </div>
+          <h3 class="prompt-title">{p.title}</h3>
+          <p class="prompt-desc">{p.desc}</p>
+          <div class="tag-list prompt-tags">
+            {p.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+          <details class="prompt-details">
+            <summary>查看完整提示词 <span aria-hidden="true">↓</span></summary>
+            <pre class="prompt-content">{p.content}</pre>
+          </details>
+        </article>
+      ))}
+    </div>
+    <p class="empty" id="prompt-empty" hidden>没有找到匹配的提示词，换个关键词试试。</p>
+
+    <p class="prompt-tip">用法：复制后把模板里的 <code>{'{{...}}'}</code> 占位符换成你自己的内容。多数提示词也适用于国内主流大模型。</p>
+  </div>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const input = document.getElementById('prompt-search') as HTMLInputElement | null;
+  const cards = document.querySelectorAll<HTMLElement>('.prompt-card');
+  const empty = document.getElementById('prompt-empty');
+  let active = 'all';
+
+  function apply() {
+    const keyword = (input?.value ?? '').trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((card) => {
+      const matchCategory = active === 'all' || card.dataset.category === active;
+      const matchText = !keyword || (card.dataset.search ?? '').includes(keyword);
+      const show = matchCategory && matchText;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  buttons.forEach((btn) => btn.addEventListener('click', () => {
+    buttons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    active = btn.dataset.filter ?? 'all';
+    apply();
+  }));
+  input?.addEventListener('input', apply);
+
+  async function copyText(text: string): Promise<boolean> {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      ta.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const card = btn.closest('.prompt-card') as HTMLElement | null;
+      const text = card?.querySelector('.prompt-content')?.textContent ?? '';
+      const ok = await copyText(text.trim());
+      const label = btn.querySelector('span');
+      const original = label?.textContent ?? '复制';
+      if (label) label.textContent = ok ? '已复制' : '复制失败';
+      btn.classList.toggle('copied', ok);
+      setTimeout(() => {
+        if (label) label.textContent = original;
+        btn.classList.remove('copied');
+      }, 1600);
+    });
+  });
+</script>
+
+<style>
+  .prompt-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px; margin: 8px 0 24px;
+  }
+  .prompt-card {
+    scroll-margin-top: 88px;
+    display: flex; flex-direction: column; padding: 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    transition: transform .2s ease, border-color .2s, box-shadow .2s;
+  }
+  .prompt-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 16px 42px rgba(31, 41, 79, .10);
+  }
+  .prompt-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .copy-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px;
+    border: 1px solid var(--border); border-radius: 9px; background: var(--surface-2);
+    color: var(--text-soft); font-size: 12.5px; cursor: pointer; transition: all .18s;
+  }
+  .copy-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .copy-btn.copied { color: #0a7f5a; border-color: #0a7f5a; background: transparent; }
+  .copy-btn svg { width: 14px; height: 14px; }
+  .prompt-title { margin: 0 0 10px; font-size: 19px; letter-spacing: -.02em; }
+  .prompt-desc { margin: 0 0 16px; color: var(--text-soft); font-size: 14px; line-height: 1.7; flex: 1; }
+  .prompt-tags { margin-bottom: 16px; }
+  .prompt-details { border-top: 1px solid var(--border); padding-top: 14px; }
+  .prompt-details summary {
+    list-style: none; cursor: pointer; color: var(--accent); font-size: 13px; font-weight: 600;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .prompt-details summary::-webkit-details-marker { display: none; }
+  .prompt-details[open] summary span { transform: rotate(180deg); }
+  .prompt-content {
+    margin: 14px 0 0; padding: 14px 16px; border-radius: 10px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    font-family: var(--mono); font-size: 12px; line-height: 1.7;
+    color: var(--text-soft); white-space: pre-wrap; word-break: break-word;
+    max-height: 320px; overflow: auto;
+  }
+  .prompt-tip { margin: 26px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+  .prompt-tip code { font-family: var(--mono); font-size: .92em; color: var(--accent); }
+  @media (max-width: 620px) {
+    .prompt-grid { grid-template-columns: 1fr; }
+    .search-input { margin-left: 0; width: 100%; }
+  }
+</style>

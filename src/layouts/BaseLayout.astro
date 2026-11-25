@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SearchDialog from '../components/SearchDialog.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -93,5 +94,6 @@ const jsonLd = JSON.stringify({
     <Header />
     <main><slot /></main>
     <Footer />
+    <SearchDialog />
   </body>
 </html>

@@ -7,6 +7,7 @@ const links = [
   { href: '/tags/', label: '标签' },
   { href: '/archives/', label: '归档' },
   { href: '/games/', label: '小游戏' },
+  { href: '/prompts/', label: '提示词' },
   { href: '/about/', label: '关于' },
 ];
 const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
@@ -32,6 +33,11 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
       ))}
     </nav>
 
+    <button class="icon-btn search-trigger" data-search-open aria-label="搜索全站（Ctrl 或 ⌘ + K）" title="搜索全站">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+      </svg>
+    </button>
     <button class="icon-btn" id="theme-toggle" aria-label="切换深色模式" title="切换主题">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -47,6 +53,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
   :global([data-theme='dark']) .icon-sun { display: block; }
   :global([data-theme='dark']) .icon-moon { display: none; }
   .brand-mark svg { width: 19px; height: 19px; }
+  @media (max-width: 720px) { .search-trigger { margin-left: auto; } }
 </style>
 
 <script>
