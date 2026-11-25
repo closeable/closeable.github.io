@@ -31,14 +31,14 @@ export const GET: APIRoute = async () => {
       url: `/prompts/#${p.id}`,
       type: '提示词' as const,
     })),
-    { title: '首页', desc: '小天的 AI 小屋，技术手记与 AI 小游戏', category: '页面', tags: [], url: '/', type: '页面' as const },
+    { title: '首页', desc: '小天的 AI 小作坊，技术手记与 AI 小游戏', category: '页面', tags: [], url: '/', type: '页面' as const },
     { title: '全部文章', desc: '按分类筛选或搜索所有技术手记', category: '页面', tags: [], url: '/blog/', type: '页面' as const },
     { title: '小游戏合集', desc: '用 AI 做的轻松一刻，点开即玩', category: '页面', tags: [], url: '/games/', type: '页面' as const },
     { title: 'AI 提示词库', desc: '结构化提示词模板，按分类筛选、一键复制', category: '页面', tags: [], url: '/prompts/', type: '页面' as const },
     { title: '分类索引', desc: '按主题浏览所有文章', category: '页面', tags: [], url: '/categories/', type: '页面' as const },
     { title: '标签索引', desc: '按标签浏览所有文章', category: '页面', tags: [], url: '/tags/', type: '页面' as const },
     { title: '归档', desc: '按时间线浏览所有文章', category: '页面', tags: [], url: '/archives/', type: '页面' as const },
-    { title: '关于小屋', desc: '关于小天和这间屋子，含联系方式', category: '页面', tags: [], url: '/about/', type: '页面' as const },
+    { title: '关于作坊', desc: '关于小天和这间作坊，含联系方式', category: '页面', tags: [], url: '/about/', type: '页面' as const },
   ];
 
   return new Response(JSON.stringify(items), {

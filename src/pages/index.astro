@@ -18,7 +18,7 @@ const rooms = [
   { href: '/games/', icon: '🎮', title: 'AI 小游戏', desc: '点开即玩，轻松一刻' },
   { href: '/prompts/', icon: '✨', title: '提示词库', desc: '结构化指令，一键复制' },
   { href: '/categories/', icon: '🗂️', title: '分类索引', desc: '按方向挑着读' },
-  { href: '/about/', icon: '🏠', title: '关于小屋', desc: '这里是谁、写什么' },
+  { href: '/about/', icon: '🏠', title: '关于作坊', desc: '这里是谁、写什么' },
 ];
 ---
 
@@ -26,9 +26,9 @@ const rooms = [
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow"><span class="dot"></span> 代码、思考与好奇心的小屋</span>
-        <h1>欢迎来到<br /><span class="gradient">小天的 AI 小屋</span></h1>
-        <p>一半是写给工程实践的技术手记，一半是用 AI 做的小游戏。把读过的论文、踩过的坑和突然冒出来的点子，一点点搬进这间屋子里。</p>
+        <span class="eyebrow"><span class="dot"></span> 代码、思考与好奇心的作坊</span>
+        <h1>欢迎来到<br /><span class="gradient">小天的 AI 小作坊</span></h1>
+        <p>一半是写给工程实践的技术手记，一半是用 AI 做的小游戏。把读过的论文、踩过的坑和突然冒出来的点子，一点点搬进这间作坊里。</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/games/">去玩小游戏 <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="/prompts/">翻提示词库</a>
@@ -73,7 +73,7 @@ const rooms = [
 
   <section class="section rooms-section">
     <div class="container">
-      <div class="section-head"><div><h2>小屋里有什么</h2><p>五个房间，随便逛</p></div></div>
+      <div class="section-head"><div><h2>作坊里有什么</h2><p>五个角落，随便逛</p></div></div>
       <div class="room-grid">
         {rooms.map((room) => (
           <a class="room" href={room.href}>

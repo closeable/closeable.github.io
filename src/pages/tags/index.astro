@@ -8,7 +8,7 @@ const tags = [...groupBy(posts.flatMap((p) => p.data.tags), (tag) => tag).entrie
   .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-CN'));
 ---
 
-<BaseLayout title="标签 · 小天的 AI 小屋" description="按标签浏览全部文章。">
+<BaseLayout title="标签 · 小天的 AI 小作坊" description="按标签浏览全部文章。">
   <div class="container">
     <div class="page-head"><h1>标签</h1><p>共 {tags.length} 个标签。</p></div>
     <div class="tag-cloud">
