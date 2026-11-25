@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import { games } from '../data/games';
 import { prompts } from '../data/prompts';
+import { tools } from '../data/tools';
 import { getAllPosts, groupBy, categoryUrl } from '../utils/posts';
 
 const posts = await getAllPosts();
@@ -17,6 +18,7 @@ const rooms = [
   { href: '/blog/', icon: '📖', title: '技术手记', desc: '架构、分布式与工程实践' },
   { href: '/games/', icon: '🎮', title: 'AI 小游戏', desc: '点开即玩，轻松一刻' },
   { href: '/prompts/', icon: '✨', title: '提示词库', desc: '结构化指令，一键复制' },
+  { href: '/tools/', icon: '🧰', title: '开源工具', desc: '好用的 AI 项目合集' },
   { href: '/categories/', icon: '🗂️', title: '分类索引', desc: '按方向挑着读' },
   { href: '/about/', icon: '🏠', title: '关于作坊', desc: '这里是谁、写什么' },
 ];
@@ -39,6 +41,7 @@ const rooms = [
           <div class="stat"><b>{posts.length}</b><span>篇文章</span></div>
           <div class="stat"><b>{games.length}</b><span>款小游戏</span></div>
           <div class="stat"><b>{prompts.length}</b><span>条提示词</span></div>
+          <div class="stat"><b>{tools.length}</b><span>个开源工具</span></div>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -73,7 +76,7 @@ const rooms = [
 
   <section class="section rooms-section">
     <div class="container">
-      <div class="section-head"><div><h2>作坊里有什么</h2><p>五个角落，随便逛</p></div></div>
+      <div class="section-head"><div><h2>作坊里有什么</h2><p>六个角落，随便逛</p></div></div>
       <div class="room-grid">
         {rooms.map((room) => (
           <a class="room" href={room.href}>
@@ -124,6 +127,24 @@ const rooms = [
             <b>{p.title}</b>
             <small>{p.desc}</small>
             <span class="prompt-preview-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tools-section">
+    <div class="container">
+      <div class="section-head">
+        <div><h2>开源 AI 工具</h2><p>自己用着顺手，也值得推荐</p></div>
+        <a class="text-link" href="/tools/">全部工具 →</a>
+      </div>
+      <div class="tool-preview-grid">
+        {tools.slice(0, 4).map((t) => (
+          <a class="tool-preview" href={`/tools/#${t.id}`}>
+            <span class="tool-preview-cat">{t.category}</span>
+            <b>{t.name} <span aria-hidden="true">↗</span></b>
+            <small>{t.desc}</small>
           </a>
         ))}
       </div>
@@ -237,10 +258,28 @@ const rooms = [
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .prompt-preview-arrow { position: absolute; bottom: 16px; right: 18px; color: var(--accent); opacity: .7; }
 
+  .tools-section { padding-top: 8px; padding-bottom: 56px; }
+  .tool-preview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+  .tool-preview {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 18px 20px; min-height: 148px; text-decoration: none;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: var(--shadow); transition: transform .2s, border-color .2s;
+  }
+  .tool-preview:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+  .tool-preview-cat {
+    align-self: flex-start; padding: 2px 9px; border-radius: 999px;
+    font-size: 11px; color: var(--accent); background: var(--accent-soft); font-weight: 600;
+  }
+  .tool-preview b { font-size: 15px; margin-top: 4px; color: var(--text); }
+  .tool-preview b span { color: var(--accent); font-size: 13px; }
+  .tool-preview small { font-size: 12.5px; color: var(--muted); line-height: 1.6; flex: 1;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; gap: 12px; }
     .hero-art { display: none; }
-    .room-grid, .mini-game-grid, .prompt-preview-grid { grid-template-columns: repeat(2, 1fr); }
+    .room-grid, .mini-game-grid, .prompt-preview-grid, .tool-preview-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 520px) {
     .hero { padding: 56px 0 48px; }

@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { tools, toolCategories } from '../../data/tools';
+---
+
+<BaseLayout title="开源 AI 工具 · 小天的 AI 小作坊" description="精选 27 个真正能用的开源 AI 工具：本地推理、AI 编程、绘画、Agent、知识库、语音视频，按分类筛选，直达 GitHub。">
+  <div class="container">
+    <div class="page-head">
+      <h1>开源 AI 工具</h1>
+      <p>自己用着顺手、也愿意推荐给别人的开源项目，共 {tools.length} 个。按方向分了类，点标题或「GitHub」直接进仓库。星数只是量级参考，会变；许可证以仓库为准。</p>
+    </div>
+
+    <div class="toolbar">
+      <button class="filter-btn active" data-filter="all">全部 {tools.length}</button>
+      {toolCategories.map((cat) => (
+        <button class="filter-btn" data-filter={cat}>{cat} {tools.filter((t) => t.category === cat).length}</button>
+      ))}
+      <input class="search-input" id="tool-search" type="search" placeholder="搜索工具…" aria-label="搜索工具" />
+    </div>
+
+    <div class="tool-grid" id="tool-grid">
+      {tools.map((t) => (
+        <article
+          class="tool-card"
+          id={t.id}
+          data-category={t.category}
+          data-search={`${t.name} ${t.desc} ${t.category} ${t.tags.join(' ')} ${t.license}`.toLowerCase()}
+        >
+          <div class="tool-top">
+            <span class="badge">{t.category}</span>
+            <span class="tool-stars" title="GitHub Star 量级（参考）">★ {t.stars}</span>
+          </div>
+          <h3 class="tool-title">
+            <a href={t.url} target="_blank" rel="noopener noreferrer">{t.name}<span aria-hidden="true"> ↗</span></a>
+          </h3>
+          <p class="tool-desc">{t.desc}</p>
+          <div class="tag-list tool-tags">
+            {t.tags.map((tag) => <span class="tag">{tag}</span>)}
+          </div>
+          <div class="tool-foot">
+            <span class="tool-license">{t.license}</span>
+            <a class="tool-link" href={t.url} target="_blank" rel="noopener noreferrer" aria-label={`在 GitHub 打开 ${t.name}`}>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.09.68-.22.68-.49v-1.87c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.58.69.49A10.23 10.23 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="empty" id="tool-empty" hidden>没有找到匹配的工具，换个关键词试试。</p>
+
+    <p class="tool-tip">说明：这里只收真正开源、能自己部署或免费用的项目，不放闭源服务。看到好工具可以在留言里告诉我。</p>
+  </div>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const input = document.getElementById('tool-search') as HTMLInputElement | null;
+  const cards = document.querySelectorAll<HTMLElement>('.tool-card');
+  const empty = document.getElementById('tool-empty');
+  let active = 'all';
+
+  function apply() {
+    const keyword = (input?.value ?? '').trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((card) => {
+      const matchCategory = active === 'all' || card.dataset.category === active;
+      const matchText = !keyword || (card.dataset.search ?? '').includes(keyword);
+      const show = matchCategory && matchText;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (empty) empty.hidden = visible !== 0;
+  }
+
+  buttons.forEach((btn) => btn.addEventListener('click', () => {
+    buttons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    active = btn.dataset.filter ?? 'all';
+    apply();
+  }));
+  input?.addEventListener('input', apply);
+</script>
+
+<style>
+  .tool-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px; margin: 8px 0 24px;
+  }
+  .tool-card {
+    scroll-margin-top: 88px;
+    display: flex; flex-direction: column; padding: 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    transition: transform .2s ease, border-color .2s, box-shadow .2s;
+  }
+  .tool-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: 0 16px 42px rgba(31, 41, 79, .10);
+  }
+  .tool-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .tool-stars { font-size: 12.5px; color: var(--gold, #d99a1c); font-weight: 600; white-space: nowrap; }
+  .tool-title { margin: 0 0 10px; font-size: 20px; letter-spacing: -.02em; }
+  .tool-title a { color: var(--text); text-decoration: none; }
+  .tool-title a:hover, .tool-title a span { color: var(--accent); }
+  .tool-title a span { font-size: 14px; }
+  .tool-desc { margin: 0 0 16px; color: var(--text-soft); font-size: 14px; line-height: 1.7; flex: 1; }
+  .tool-tags { margin-bottom: 16px; }
+  .tool-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    border-top: 1px solid var(--border); padding-top: 14px;
+  }
+  .tool-license {
+    font-family: var(--mono); font-size: 11.5px; color: var(--muted);
+    padding: 3px 8px; border-radius: 6px; background: var(--surface-2);
+  }
+  .tool-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--accent); font-size: 13px; font-weight: 600; text-decoration: none;
+    padding: 5px 11px; border: 1px solid var(--border); border-radius: 9px;
+    transition: all .18s;
+  }
+  .tool-link:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .tool-link svg { width: 15px; height: 15px; }
+  .tool-tip { margin: 26px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+  @media (max-width: 620px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .search-input { margin-left: 0; width: 100%; }
+  }
+</style>
