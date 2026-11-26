@@ -45,7 +45,6 @@ export const GET: APIRoute = async () => {
     { title: '小游戏合集', desc: '用 AI 做的轻松一刻，点开即玩', category: '页面', tags: [], url: '/games/', type: '页面' as const },
     { title: 'AI 提示词库', desc: '结构化提示词模板，按分类筛选、一键复制', category: '页面', tags: [], url: '/prompts/', type: '页面' as const },
     { title: '开源 AI 工具', desc: '精选开源 AI 项目，按分类筛选、直达 GitHub', category: '页面', tags: [], url: '/tools/', type: '页面' as const },
-    { title: '归档', desc: '按时间线浏览所有文章', category: '页面', tags: [], url: '/archives/', type: '页面' as const },
     { title: '创业专栏', desc: '一个人用 AI 做产品、上架、算账的过程记录：在做的项目、选题计划与复盘', category: '页面', tags: ['创业', '独立开发', '小程序'], url: '/startup/', type: '页面' as const },
     { title: '关于作坊', desc: '关于小天和这间作坊，含联系方式', category: '页面', tags: [], url: '/about/', type: '页面' as const },
   ];
