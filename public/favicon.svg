@@ -1,7 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <path d="M32 9c1 14 9 22 23 23-14 1-22 9-23 23-1-14-9-22-23-23 14-1 22-9 23-23z" fill="#fff"/>
-  <path d="M50 7c.5 5 3 7.5 8 8-5 .5-7.5 3-8 8-.5-5-3-7.5-8-8 5-.5 7.5-3 8-8z" fill="#fff" opacity=".9"/>
-  <circle cx="14" cy="51" r="2.4" fill="#fff" opacity=".8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.78" y2="1">
+      <stop offset="0" stop-color="#6d6ef5"/>
+      <stop offset="0.44" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#0e9fd8"/>
+    </linearGradient>
+    <radialGradient id="hl" cx="0.24" cy="0.14" r="0.62">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.46"/>
+      <stop offset="0.4" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="rc"><rect width="64" height="64" rx="15.4"/></clipPath>
+  </defs>
+  <g clip-path="url(#rc)">
+    <rect width="64" height="64" fill="url(#bg)"/>
+    <rect width="64" height="64" fill="url(#hl)"/>
+    <circle cx="32" cy="33.3" r="24.5" fill="url(#halo)"/>
+    <g transform="translate(13.44 14.72) scale(0.1856)">
+      <path d="M100 0C104 56 144 96 200 100C144 104 104 144 100 200C96 144 56 104 0 100C56 96 96 56 100 0Z" fill="#ffffff"/>
+    </g>
+    <g transform="translate(30.208 6.528) scale(0.03584)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.92" transform="translate(47.872 15.232) scale(0.02816)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.74" transform="translate(55.328 34.848) scale(0.01984)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.9" transform="translate(34.432 55.552) scale(0.02816)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.78" transform="translate(16.224 50.784) scale(0.02112)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.9" transform="translate(5.632 32.512) scale(0.02816)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.74" transform="translate(22.048 13.728) scale(0.01984)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.7" transform="translate(44.512 20.192) scale(0.01856)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+    <g opacity="0.7" transform="translate(24.032 53.472) scale(0.01856)"><path d="M50 0c2 27 18 43 45 50-27 7-43 23-45 50C48 73 32 57 5 50 32 43 48 27 50 0z" fill="#ffffff"/></g>
+  </g>
+  <text x="7" y="12.85" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="8.96" font-weight="700" fill="#ffffff">小</text>
+  <text x="48" y="57" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif" font-size="8.96" font-weight="700" fill="#ffffff">天</text>
 </svg>
