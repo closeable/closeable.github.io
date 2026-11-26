@@ -19,6 +19,7 @@ const rooms = [
   { href: '/games/', icon: '🎮', title: 'AI 小游戏', desc: '点开即玩，轻松一刻' },
   { href: '/prompts/', icon: '✨', title: '提示词库', desc: '结构化指令，一键复制' },
   { href: '/tools/', icon: '🧰', title: '开源工具', desc: '好用的 AI 项目合集' },
+  { href: '/products/', icon: '🧩', title: '产品', desc: '上线了的小程序与网页实验' },
   { href: '/startup/', icon: '🚀', title: '创业专栏', desc: '一个人做产品的记录' },
   { href: '/about/', icon: '🏠', title: '关于作坊', desc: '这里是谁、写什么' },
 ];
@@ -76,7 +77,7 @@ const rooms = [
 
   <section class="section rooms-section">
     <div class="container">
-      <div class="section-head"><div><h2>作坊里有什么</h2><p>六个角落，随便逛</p></div></div>
+      <div class="section-head"><div><h2>作坊里有什么</h2><p>七个角落，随便逛</p></div></div>
       <div class="room-grid">
         {rooms.map((room) => (
           <a class="room" href={room.href}>
@@ -207,7 +208,7 @@ const rooms = [
   @media (prefers-reduced-motion: reduce) { .hero-art svg { animation: none; } }
 
   .rooms-section { padding-bottom: 24px; }
-  .room-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 28px; }
+  .room-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
   .room {
     position: relative; display: flex; flex-direction: column; gap: 4px;
     padding: 20px 20px 22px; min-height: 132px;

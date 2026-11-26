@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products, upcoming } from '../../data/products';
+import { games } from '../../data/games';
+
+const sortedGames = [...games].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<BaseLayout
+  title="产品 · 小天的AI作坊"
+  description="已经上线、能被别人真正用起来的东西：微信小程序、网页小游戏。没做出来的一律标清楚状态，不拿半成品充数。"
+>
+  <div class="container products">
+    <div class="page-head">
+      <h1>产品</h1>
+      <p>
+        这里只放<strong>能被人用起来</strong>的东西。上线了就写已上线，卡住了就写卡在哪——
+        做产品最没意义的动作是把 demo 说成产品。
+      </p>
+    </div>
+
+    {/* 已上线 / 开发中 */}
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">已上线</h2>
+        <span class="block-note">{products.length} 个</span>
+      </div>
+
+      <div class="product-list">
+        {products.map((p) => (
+          <article class="product" id={p.id}>
+            <div class="product-main">
+              <div class="product-top">
+                <span class="badge live">{p.status}</span>
+                <span class="platform">{p.platform}</span>
+                <span class="p-date">{p.date}</span>
+              </div>
+
+              <h3>{p.name}</h3>
+              <p class="tagline">{p.tagline}</p>
+              <p class="desc">{p.desc}</p>
+
+              <ul class="features">
+                {p.features.map((f) => <li>{f}</li>)}
+              </ul>
+
+              {p.article && (
+                <a class="article-link" href={p.article.href}>
+                  {p.article.label} <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </div>
+
+            {p.qr && (
+              <div class="product-side">
+                <figure class="qr-block">
+                  <img src={p.qr} alt={`${p.name}小程序码`} width="430" height="430" loading="lazy" />
+                  <figcaption>微信扫码直接打开</figcaption>
+                </figure>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {/* 网页即玩 */}
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">网页小游戏</h2>
+        <span class="block-note">{sortedGames.length} 款 · 点开即玩</span>
+      </div>
+      <p class="block-desc">不下载、不登录，浏览器里直接跑。都是单文件，塞进静态托管就能跑。</p>
+
+      <div class="mini-grid">
+        {sortedGames.map((g) => (
+          <a class="mini" href={`/games/${g.slug}/`}>
+            <span class="mini-emoji" aria-hidden="true">{g.emoji}</span>
+            <span class="mini-body">
+              <b>{g.title}</b>
+              <small>{g.tag} · {g.date}</small>
+            </span>
+            <span class="mini-go" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {/* 在做 */}
+    <section class="block">
+      <div class="block-head">
+        <h2 class="block-title">还在做</h2>
+        <span class="block-note">不能当成品用</span>
+      </div>
+
+      {upcoming.map((u) => (
+        <div class="upcoming">
+          <div>
+            <span class="badge todo">{u.status}</span>
+            <h3>{u.name}</h3>
+            <p>{u.desc}</p>
+          </div>
+          <a class="article-link" href={u.href}>{u.label} <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </section>
+
+    <p class="foot-note">
+      所有产品的做法都写成了手记，从选题、开发到提审被拒的过程在<a href="/blog/">文章</a>里；
+      还没上线的项目进度在<a href="/startup/">创业专栏</a>。
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .products { padding-bottom: 72px; }
+
+  .page-head p { max-width: 620px; }
+  .page-head strong { color: var(--text); }
+
+  .block { margin-top: 46px; }
+  .block-head {
+    display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .block-title { font-size: 17px; font-weight: 650; letter-spacing: -.01em; }
+  .block-note { font-size: 12.5px; color: var(--muted); }
+  .block-desc { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+  /* 主产品卡 */
+  .product-list { display: grid; gap: 18px; margin-top: 20px; }
+  .product {
+    display: grid; grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 30px; align-items: start;
+    padding: 26px 28px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .product-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11.5px; font-weight: 600; letter-spacing: .02em;
+    padding: 3px 9px; border-radius: 999px;
+  }
+  .badge.live { color: #047857; background: #ecfdf5; border: 1px solid #a7f3d0; }
+  .badge.todo { color: var(--muted); background: var(--surface-2); border: 1px solid var(--border); }
+  .platform { font-size: 12.5px; color: var(--text-soft); }
+  .p-date { margin-left: auto; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .product h3 { margin-top: 12px; font-size: 22px; letter-spacing: -.015em; }
+  .tagline { margin-top: 6px; font-size: 15px; color: var(--text-soft); }
+  .desc { margin-top: 10px; font-size: 14px; line-height: 1.75; color: var(--muted); }
+
+  .features { margin-top: 16px; display: grid; gap: 7px; }
+  .features li {
+    position: relative; padding-left: 16px;
+    font-size: 13.5px; line-height: 1.7; color: var(--text-soft);
+  }
+  .features li::before {
+    content: ''; position: absolute; left: 2px; top: .66em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+  }
+
+  .article-link {
+    display: inline-block; margin-top: 18px;
+    font-size: 13.5px; color: var(--accent); text-decoration: none; font-weight: 500;
+  }
+  .article-link:hover { text-decoration: underline; }
+
+  /* 小程序码 */
+  .product-side { display: flex; justify-content: center; padding-top: 4px; }
+  .qr-block {
+    margin: 0; padding: 10px; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 14px; text-align: center;
+  }
+  .qr-block img { display: block; width: 180px; height: auto; border-radius: 8px; }
+  .qr-block figcaption { margin-top: 8px; font-size: 11.5px; color: var(--muted); }
+
+  /* 小游戏 */
+  .mini-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px; margin-top: 18px;
+  }
+  .mini {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    text-decoration: none; transition: border-color .18s, transform .18s;
+  }
+  .mini:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .mini-emoji { font-size: 20px; line-height: 1; }
+  .mini-body { display: grid; gap: 2px; min-width: 0; }
+  .mini-body b { font-size: 14px; font-weight: 600; color: var(--text); }
+  .mini-body small { font-size: 11.5px; color: var(--muted); }
+  .mini-go { margin-left: auto; color: var(--muted); font-size: 14px; }
+
+  /* 在做 */
+  .upcoming {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    margin-top: 18px; padding: 20px 22px;
+    border: 1px dashed var(--border); border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .upcoming h3 { margin-top: 8px; font-size: 16px; }
+  .upcoming p { margin-top: 6px; font-size: 13.5px; line-height: 1.7; color: var(--muted); max-width: 560px; }
+  .upcoming .article-link { margin-top: 0; white-space: nowrap; }
+
+  .foot-note {
+    margin-top: 40px; font-size: 13px; line-height: 1.8; color: var(--muted);
+  }
+  .foot-note a { color: var(--accent); text-decoration: none; }
+  .foot-note a:hover { text-decoration: underline; }
+
+  @media (max-width: 760px) {
+    .block { margin-top: 34px; }
+    .product { grid-template-columns: 1fr; gap: 20px; padding: 22px 20px; }
+    .product-side { justify-content: flex-start; }
+    .upcoming { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+</style>

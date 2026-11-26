@@ -45,6 +45,8 @@ export const GET: APIRoute = async () => {
     { title: '小游戏合集', desc: '用 AI 做的轻松一刻，点开即玩', category: '页面', tags: [], url: '/games/', type: '页面' as const },
     { title: 'AI 提示词库', desc: '结构化提示词模板，按分类筛选、一键复制', category: '页面', tags: [], url: '/prompts/', type: '页面' as const },
     { title: '开源 AI 工具', desc: '精选开源 AI 项目，按分类筛选、直达 GitHub', category: '页面', tags: [], url: '/tools/', type: '页面' as const },
+    { title: '产品', desc: '已经上线、能被人用起来的东西：微信小程序与网页小游戏，附状态与入口', category: '页面', tags: ['产品', '小程序', '小游戏'], url: '/products/', type: '页面' as const },
+    { title: '养老金测算器', desc: '微信小程序：选城市、填年限，按官方公式测算退休后每月能领多少，支持方案保存与结果分享', category: '产品', tags: ['小程序', '工具', '养老金'], url: '/products/#pension-calculator', type: '产品' as const },
     { title: '创业专栏', desc: '一个人用 AI 做产品、上架、算账的过程记录：在做的项目、选题计划与复盘', category: '页面', tags: ['创业', '独立开发', '小程序'], url: '/startup/', type: '页面' as const },
     { title: 'AI 虚拟产品实战手册', desc: '选品、对标、封面标题、开店上架、数据复盘，10 章完整流程与判断标准', category: '创业', tags: ['虚拟产品', '小红书', '选品', '副业'], url: '/startup/handbook/', type: '页面' as const },
     { title: 'Chrome 插件实战手册', desc: '用 AI 写浏览器插件并上架收费：选需求、搭骨架、过审核、定价、获客与止损，附六个真实案例', category: '创业', tags: ['Chrome 插件', '浏览器扩展', 'AI 编程', '独立开发'], url: '/startup/plugin-handbook/', type: '页面' as const },
