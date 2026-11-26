@@ -282,6 +282,21 @@ button, input { font: inherit; }
   .toc ul { display: flex; flex-wrap: wrap; gap: 4px 14px; border: 0; }
   .toc li.level-3 a { padding-left: 12px; }
 }
+/* 721–900px（如 iPad 竖屏）：横向导航 + 搜索 + 图标挤不下，提前折叠成汉堡菜单 */
+@media (max-width: 900px) {
+  .header-inner { gap: 14px; }
+  .mobile-toggle { display: grid; }
+  .nav {
+    position: absolute; top: 68px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    padding: 12px 16px 18px; background: var(--surface);
+    border-bottom: 1px solid var(--border); box-shadow: var(--shadow);
+    display: none;
+  }
+  .nav.open { display: flex; }
+  .nav-link { padding: 10px 14px; }
+}
+
 @media (max-width: 720px) {
   .container { width: min(100% - 32px, 1120px); }
   .header-inner { height: 60px; gap: 12px; }
