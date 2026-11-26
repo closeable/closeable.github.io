@@ -233,6 +233,13 @@ AI 实现的链路是四步：
 
 祝你的第一个小程序早日上线。
 
+如果不想看过程，想直接上手试：小程序已经上线了，微信扫码就能算。
+
+<figure class="qr">
+  <img src="/images/pension-miniprogram-qr.png" alt="养老金测算器微信小程序码，扫码可直接进入测算页" width="430" height="430" loading="lazy" />
+  <figcaption>扫码试算：选城市、填年限和档次，一步出结果。数据只存在你自己手机里。</figcaption>
+</figure>
+
 ---
 
 *相关：上线前绕不过的那一关，单独写了一篇《[个人主体做小程序：备案、认证、执照，三件事别搞混](/blog/miniprogram-filing-for-individuals/)》——备案多久、会被什么理由驳回、领失业金期间能不能备。*
