@@ -17,6 +17,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 主站域名。在仓库 Settings → Secrets and variables → Actions → Variables
+    # 里新增 SITE_URL（例如 https://xxx.edgeone.app）后，这个渠道产出的
+    # canonical / og:url / sitemap 会指向主站，避免两个域名互相声明重复内容。
+    # 未设置时为空，astro.config.mjs 回落到 https://closeable.github.io。
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
