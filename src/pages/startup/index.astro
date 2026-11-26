@@ -26,14 +26,25 @@ const statusClass = (s: string) => (s === '已发布' ? 'done' : s === '写作�
       {principles.map((t) => <li>{t}</li>)}
     </ul>
 
-    <a class="handbook" href="/startup/handbook/">
-      <div class="handbook-body">
-        <span class="handbook-tag">手册 · 10 章</span>
-        <h2>AI 虚拟产品实战手册</h2>
-        <p>从选品、对标、封面标题，到开店上架、数据复盘。每一步给判断标准，不给「月入十万」。</p>
-      </div>
-      <span class="handbook-arrow" aria-hidden="true">→</span>
-    </a>
+    <div class="handbook-list">
+      <a class="handbook" href="/startup/handbook/">
+        <div class="handbook-body">
+          <span class="handbook-tag">手册 01 · 10 章</span>
+          <h2>AI 虚拟产品实战手册</h2>
+          <p>从选品、对标、封面标题，到开店上架、数据复盘。每一步给判断标准，不给「月入十万」。</p>
+        </div>
+        <span class="handbook-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="handbook" href="/startup/plugin-handbook/">
+        <div class="handbook-body">
+          <span class="handbook-tag">手册 02 · 10 章</span>
+          <h2>Chrome 插件实战手册</h2>
+          <p>用 AI 写一个浏览器插件并上架收费：选需求、搭骨架、过审核、定价、止损，附六个真实案例拆解。</p>
+        </div>
+        <span class="handbook-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
 
     <section class="block">
       <h2 class="block-title">在做的项目</h2>
@@ -122,9 +133,13 @@ const statusClass = (s: string) => (s === '已发布' ? 'done' : s === '写作�
   }
 
   /* 手册入口卡 */
+  .handbook-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px; margin-top: 18px;
+  }
   .handbook {
-    display: flex; align-items: center; gap: 24px;
-    margin-top: 18px; padding: 22px 26px;
+    display: flex; align-items: center; gap: 18px;
+    padding: 22px 24px;
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius); text-decoration: none;
     box-shadow: var(--shadow);
@@ -227,6 +242,10 @@ const statusClass = (s: string) => (s === '已发布' ? 'done' : s === '写作�
     font-size: 13.5px; color: var(--muted); line-height: 1.8;
   }
   .outro a { color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .handbook-list { grid-template-columns: 1fr; }
+  }
 
   @media (max-width: 640px) {
     .handbook { padding: 18px 20px; gap: 14px; }

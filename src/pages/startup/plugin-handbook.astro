@@ -1,0 +1,802 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+/**
+ * 创业手册 02：Chrome 插件（AI 编程方向）
+ * 材料：资料库项目文档《023_Chrome AI插件开发》（55 条主题 / 41 条全文，2026-11-20 更新）
+ * 说明：真正与插件相关的只有 6 条，其余为内容号风向标；方法部分按自己的判断补全，非原文转载。
+ */
+
+const toc = [
+  { id: 'overview', n: '00', title: '一页速览' },
+  { id: 'what', n: '01', title: '这门生意长什么样' },
+  { id: 'pick', n: '02', title: '选一个窄到能做完的需求' },
+  { id: 'stack', n: '03', title: '技术底座与 AI 编程' },
+  { id: 'cases', n: '04', title: '六个真实起点' },
+  { id: 'store', n: '05', title: '上架 Chrome 商店' },
+  { id: 'price', n: '06', title: '收费：买断还是订阅' },
+  { id: 'grow', n: '07', title: '没有商店流量怎么办' },
+  { id: 'data', n: '08', title: '数据与止损' },
+  { id: 'risk', n: '09', title: '权限、隐私与下架风险' },
+];
+---
+
+<BaseLayout
+  title="Chrome 插件实战手册 · 创业专栏 · 小天的AI作坊"
+  description="用 AI 写一个浏览器插件并上架收费的完整流程：选需求、搭骨架、做功能、上架审核、定价、获客、止损。附六个真实案例的拆解与数据。"
+>
+  <div class="container hb">
+    <div class="page-head">
+      <p class="hb-kicker">创业手册 · 2026 年 11 月整理</p>
+      <h1>Chrome 插件实战手册</h1>
+      <p>
+        这台电脑上你每天要重复的那些小动作——复制、截图、对齐、查词、切标签页——
+        都有人做成插件，并且真的在收费。AI 把「想法变成能跑的代码」这一段从几周压到了几小时，
+        剩下的门槛不在技术，在选一个值得做的需求，和上架之后怎么活下去。
+      </p>
+      <p class="hb-source">
+        材料来自资料库项目文档《023_Chrome AI插件开发》：55 条主题、41 条全文，2026 年 11 月 20 日更新。
+        需要说明的是，这 55 条里真正跟插件相关的只有 6 条，其余是内容号风向标。
+        所以本手册的案例只取这 6 条，方法部分按自己的判断补全——案例标了出处和数据，
+        没有出处的地方就是推断，别当结论看。
+      </p>
+    </div>
+
+    <div class="hb-layout">
+      <aside class="hb-toc" aria-label="手册目录">
+        <div class="toc-head">目录</div>
+        <nav id="toc-nav">
+          {toc.map((t) => (
+            <a href={`#${t.id}`} data-target={t.id}>
+              <span class="toc-n">{t.n}</span>
+              <span>{t.title}</span>
+            </a>
+          ))}
+        </nav>
+      </aside>
+
+      <div class="hb-main">
+        <details class="hb-toc-mobile">
+          <summary>目录 · 共 {toc.length} 章</summary>
+          <nav>
+            {toc.map((t) => (
+              <a href={`#${t.id}`}><span class="toc-n">{t.n}</span>{t.title}</a>
+            ))}
+          </nav>
+        </details>
+
+        <!-- 00 -->
+        <section id="overview" class="hb-sec">
+          <h2><span class="sec-n">00</span>一页速览</h2>
+          <p class="sec-lead">从「我想做个插件」到「有人在用、有人付钱」，一共六步。</p>
+
+          <div class="flow">
+            {[
+              ['01', '选需求', '一天用三次、现在只能手动忍着的活'],
+              ['02', '搭空壳', 'manifest + popup + content script，先跑通一个按钮'],
+              ['03', '做功能', '一次只加一个能力，跑通再下一个'],
+              ['04', '上架', '5 美元开发者账号，权限逐条写清理由'],
+              ['05', '收钱', '先买断，验证有人付再考虑订阅'],
+              ['06', '看数与止损', '装机、7 日留存、付费率，三个月不动就停'],
+            ].map(([n, t, d]) => (
+              <div class="flow-item">
+                <span class="flow-n">{n}</span>
+                <b>{t}</b>
+                <small>{d}</small>
+              </div>
+            ))}
+          </div>
+
+          <h3>先接受三个事实</h3>
+          <ul>
+            <li><b>插件不是产品，是寄生在别人网页上的一个功能。</b>宿主改一次版，你可能就得连夜改代码。这不是意外，是常态。</li>
+            <li><b>商店不给流量。</b>上架不等于有人看见，搜索排名靠关键词、截图和评分，前三项都能被人为优化，但优化不出一条赛道。</li>
+            <li><b>门槛低是双向的。</b>你能三小时做完，别人也能三小时抄完。护城河只有两条：更新速度，和用户认你这个人。</li>
+          </ul>
+
+          <div class="callout callout-tip">
+            <b>如果你只能记住一句</b>
+            <p>先做一个只服务你自己的插件。自己不用、只是觉得「应该有人要」的想法，九成会在第三周死掉——这不是悲观，是这类项目最常见的死法。</p>
+          </div>
+        </section>
+
+        <!-- 01 -->
+        <section id="what" class="hb-sec">
+          <h2><span class="sec-n">01</span>这门生意长什么样</h2>
+          <p class="sec-lead">它不是一门新生意，是「小工具」这门老生意换了分发渠道。</p>
+
+          <p>
+            浏览器插件的技术形态很固定：一段跑在 Chrome 里的 JavaScript，能读到当前页面、能改页面、
+            能加自己的界面。所以它天然适合做两类事——<b>处理你正在看的网页</b>（提取、改写、翻译、截图），
+            和<b>在网页旁边开一块自己的地方</b>（笔记、提示词库、待办）。
+          </p>
+          <p>
+            它能收钱，是因为它解决的问题足够小、足够高频，小到用户懒得自己动手，高频到他愿意为「省一步」付费。
+            这决定了它的天花板：单价不会高，但边际成本几乎为零。
+          </p>
+
+          <h3>四种收钱方式，分别适合谁</h3>
+          <table>
+            <thead>
+              <tr><th>方式</th><th>常见价位</th><th>适合</th><th>代价</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>一次买断</b></td>
+                <td>19–99 元 / 3–15 美元</td>
+                <td>功能边界清楚、不需要服务器的小工具</td>
+                <td>收入一次性，老用户不再贡献</td>
+              </tr>
+              <tr>
+                <td><b>订阅</b></td>
+                <td>9–29 元 / 月</td>
+                <td>有持续成本的功能：AI 调用、云端同步、数据更新</td>
+                <td>要持续交付，退订率会教你做人</td>
+              </tr>
+              <tr>
+                <td><b>免费 + 广告 / 导流</b></td>
+                <td>按量，通常很低</td>
+                <td>先用免费换装机量，再往别处导</td>
+                <td>收入不稳，且容易招来差评</td>
+              </tr>
+              <tr>
+                <td><b>接单定制</b></td>
+                <td>几千到几万元 / 单</td>
+                <td>你已经能稳定交付，且有 B 端人脉</td>
+                <td>本质是外包，不是产品，时间换钱</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>AI 到底把哪一段成本降下来了</h3>
+          <p>
+            不是需求判断，不是审美，是把「想法」变成「能跑的代码」这一段。
+            资料里最早那条案例是 2023 年 4 月，一个自称完全不懂代码的人用 ChatGPT-3.5 做出了全屏截图插件，
+            过程写得啰嗦、走了不少弯路，但那篇记录拿到 439 个赞、两万多阅读——说明当时「非程序员也能做出来」这件事本身就是新闻。
+          </p>
+          <p>
+            一年半后，同类的记录变成「不写一行代码，3 分钟用 Cursor 做一个插件」。
+            工具换了，从聊天窗口换成编辑器里的 Agent，但套路没变：<b>你负责说清楚要什么，它负责写，你负责试。</b>
+            所以真正稀缺的东西被推到了后面——判断做什么，比会做值钱。
+          </p>
+        </section>
+
+        <!-- 02 -->
+        <section id="pick" class="hb-sec">
+          <h2><span class="sec-n">02</span>选一个窄到能做完的需求</h2>
+          <p class="sec-lead">选错需求，后面每一章的努力都是加倍亏损。</p>
+
+          <p>拿到一个想法，先过这五道问题。任何一道答不上来，就先别动手写代码。</p>
+          <ol>
+            <li><b>你自己每天用不用？</b>不是「会不会用」，是今天已经用过三次的那种。</li>
+            <li><b>现在这件事要几步？最烦的是哪一步？</b>说不出具体那一步，说明你还没真的做过这件事。</li>
+            <li><b>它只在一个网站发生，还是所有网站？</b>这直接决定你要申请的权限范围，也决定审核难度。</li>
+            <li><b>用户能在 10 秒内看懂它是干什么的吗？</b>看不懂就不会装，商店截图再漂亮也没用。</li>
+            <li><b>如果明天插件被下架，你会损失什么？</b>答案是「没什么」的话，它对你也不重要。</li>
+          </ol>
+
+          <h3>反面例子：别做第 11 个截图插件</h3>
+          <p>
+            资料里有一条在推 FireShot——整页截图、区域截图、标注、导出 PDF，一套做全。
+            这类产品已经把「截图」这个需求的每个细分动作都填满了，评分、装机量、口碑都沉淀了十年。
+            你现在做一个更好的截图插件，用户不会为了 5% 的体验提升换掉一个用了三年的工具。
+          </p>
+          <p>
+            判断一个品类是否已经饱和，有个笨但有效的办法：去商店搜关键词，看前五名的评分数量和最近更新时间。
+            <b>前五名都在最近三个月更新过、评分数都是五位数</b>，说明这是个活人战场，换个方向。
+          </p>
+
+          <h3>正面例子：把已有行为接上，而不是新造一个行为</h3>
+          <p>
+            资料里有个叫 EnglishFlow 的产品，一句话说完：<b>把你正在看的网页变成英语课。</b>
+            你本来就在读英文报道、看英文文档，它把生词、长难句标出来当场讲，
+            于是「学习」不需要你额外挤时间——它挂在你本来就要做的事上。
+          </p>
+          <p>
+            作者自己的复盘更值钱：他几次学英语都死在「教材太无聊」，
+            问题不在意志力，在于「学习材料」和「我真正要看的东西」是两回事。
+            这句话可以直接抄成产品原则：<b>别让用户专门来学，让他在本来要做的事情里顺便变强。</b>
+          </p>
+          <div class="callout callout-tip">
+            <b>插件天生适合这条原则</b>
+            <p>因为它就贴在用户正在看的页面旁边。凡是需要用户「打开一个新网站、注册一个账号、再想起来用」的产品，都在跟用户的自律对抗；插件不用，它只是把当前这一步变短。</p>
+          </div>
+
+          <h3>一个可参考的需求清单</h3>
+          <table>
+            <thead>
+              <tr><th>场景</th><th>用户现在的做法</th><th>插件能省掉的步骤</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>写 prompt</td><td>存在备忘录、聊天记录、文档里，用的时候翻半天</td><td>侧边栏常驻，一键填入输入框</td></tr>
+              <tr><td>收集素材</td><td>复制到笔记软件，丢了图、丢了来源</td><td>选中即存，带原文链接</td></tr>
+              <tr><td>读英文文档</td><td>切到翻译网站，贴过去，再贴回来</td><td>原地划词，不离开页面</td></tr>
+              <tr><td>比价 / 查参数</td><td>开五个标签页来回切</td><td>一侧并排，同步滚动</td></tr>
+              <tr><td>重复填表</td><td>每次手打同一套信息</td><td>一键填充，本地保存</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 03 -->
+        <section id="stack" class="hb-sec">
+          <h2><span class="sec-n">03</span>技术底座与 AI 编程</h2>
+          <p class="sec-lead">不用学会写代码，但你得知道每个文件是干什么的，否则 AI 一出错你就只能干瞪眼。</p>
+
+          <p>
+            现在的 Chrome 扩展跑在 Manifest V3 上。一个最小可用的插件只有五个文件，
+            记住它们各自的职责，比记住语法重要得多。
+          </p>
+
+          <table>
+            <thead>
+              <tr><th>文件</th><th>职责</th><th>什么时候要动它</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>manifest.json</b></td><td>插件的身份证：名字、图标、权限、入口</td><td>加功能、改名字、加权限时</td></tr>
+              <tr><td><b>popup.html</b></td><td>点图标弹出的小窗口</td><td>要做设置面板、开关时</td></tr>
+              <tr><td><b>content script</b></td><td>注入到网页里跑的脚本，能读写页面</td><td>要改页面、抓页面内容时</td></tr>
+              <tr><td><b>background（service worker）</b></td><td>常驻后台，处理跨标签页、网络请求、定时任务</td><td>要调 API、要在多个页面间同步时</td></tr>
+              <tr><td><b>options.html</b></td><td>设置页，用户填 key、开关功能的地方</td><td>有需要用户配置的东西时</td></tr>
+            </tbody>
+          </table>
+
+          <p class="path">chrome://extensions → 打开「开发者模式」 → 「加载已解压的扩展程序」 → 选你的文件夹</p>
+
+          <h3>用 AI 写插件的正确姿势</h3>
+          <ol>
+            <li><b>先让它写出能跑的空壳。</b>要求只有一句：点图标能弹出窗口，窗口里有一个按钮。跑通了再加功能。</li>
+            <li><b>一次只加一个能力。</b>「加一个按钮，点了把当前页面标题打印到控制台」——这种颗粒度，AI 几乎不会错。</li>
+            <li><b>报错原文贴回去。</b>不要总结成「它坏了」，把控制台那几行红字整段复制给它，定位速度快十倍。</li>
+            <li><b>每次改动让它解释改了什么。</b>你不必会写，但要知道哪一行在干什么，否则第三次修改就会把之前的成果弄坏。</li>
+            <li><b>每个能跑的版本打包留一份。</b>AI 改坏东西是常态，能回滚比会修更重要。</li>
+          </ol>
+
+          <h3>三个必踩的坑</h3>
+          <ul>
+            <li><b>AI 会给你 Manifest V2 的写法。</b>MV2 已经被逐步停用，看到 <code>background.scripts</code>、<code>browser_action</code> 这类字段，直接让它按 MV3 重写。</li>
+            <li><b>AI 会编造不存在的 API。</b>凡是它写的浏览器接口，去官方文档核一遍名字；对不上就说明是幻觉。</li>
+            <li><b>权限申请得越多，审核越难过。</b>只要「当前标签页」就够的功能，别申请「所有网站的数据」。这一条在第 09 章还会再说一次，因为它是被拒的头号原因。</li>
+          </ul>
+        </section>
+
+        <!-- 04 -->
+        <section id="cases" class="hb-sec">
+          <h2><span class="sec-n">04</span>六个真实起点</h2>
+          <p class="sec-lead">资料里跟插件相关的六条，按「能学到什么」排，不按热度排。</p>
+
+          <table>
+            <thead>
+              <tr><th>案例</th><th>起点</th><th>公开数据</th><th>能拿走的东西</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>全屏截图插件</b><br /><small>阿强 · 2023-04</small></td>
+                <td>完全不懂代码，用 ChatGPT-3.5 从零做到能装</td>
+                <td>439 赞 / 55 评 / 2.08 万阅读</td>
+                <td>证明「做出来」不再是门槛；但他自己也说这不是教程，是一份走弯路的记录</td>
+              </tr>
+              <tr>
+                <td><b>提示词管理助手</b><br /><small>云舒 · 2025-07</small></td>
+                <td>把自己散落在各处的 prompt 收进侧边栏</td>
+                <td>800 装机 / 日活 600（原文口径）</td>
+                <td>小功能也能长成产品，2.0 的每个功能都来自用户提的需求</td>
+              </tr>
+              <tr>
+                <td><b>Cursor 三分钟做插件</b><br /><small>羊仔 · 2024-12</small></td>
+                <td>素材收集：灵感散在微博、知乎，存不住</td>
+                <td>—</td>
+                <td>工具从聊天窗口升级成编辑器 Agent，但起点仍然是「我自己的麻烦」</td>
+              </tr>
+              <tr>
+                <td><b>网页变英语课</b><br /><small>EnglishFlow · 2026-08</small></td>
+                <td>把正在读的网页当教材，划词即讲</td>
+                <td>—</td>
+                <td>最值得抄的产品观：把功能挂到用户已有的行为上</td>
+              </tr>
+              <tr>
+                <td><b>英语学习工具</b><br /><small>Henry · 2025-07</small></td>
+                <td>展示自己孩子的学习过程和效果，吸引同类家长</td>
+                <td>店铺售 2300+ 件 / 纯利 16 万+</td>
+                <td>家长为「看得见的效果」付钱；但注意这是店铺商品，不一定是插件订阅</td>
+              </tr>
+              <tr>
+                <td><b>FireShot</b><br /><small>阿海 · 2025-08</small></td>
+                <td>成熟品类：截图 + 标注 + 导出 PDF</td>
+                <td>—</td>
+                <td>当反面参照：这类需求已经被做满，新人别从这里进场</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>六条案例的共同点</h3>
+          <p>
+            五个真实起点（FireShot 是参照，不是起点）里，有四个是「我每天要干的活太烦了」，
+            只有一个是「我观察到一个市场」。而那个观察市场的，是已经有产品能力、在找第二个方向的人。
+          </p>
+          <p>
+            这不是巧合。插件这种形态太小，小到只有做的人自己天天用，才能撑过前三个月那些「装上去发现不好用就卸载」的反馈。
+            <b>你自己不用，就没有动力改第 12 个版本；而第 12 个版本通常才是能用的那个。</b>
+          </p>
+
+          <div class="callout callout-warn">
+            <b>两个数字要看口径</b>
+            <p>「800 装机、600 日活」这个比例高得反常——正常工具类产品日活能到装机的 10%–20% 已经不错。很可能后台统计的是「启动次数」或「含后台唤醒」，而不是独立用户。看到漂亮数字先问一句「这是怎么算的」，比记住这个数字有用。</p>
+            <p>「2300 单 / 纯利 16 万」同理：这是店铺整体成交，可能是课程、可能是资料包、可能是插件授权码混在一起卖。单看总数会高估插件本身的价值。</p>
+          </div>
+        </section>
+
+        <!-- 05 -->
+        <section id="store" class="hb-sec">
+          <h2><span class="sec-n">05</span>上架 Chrome 商店</h2>
+          <p class="sec-lead">这一段全是流程，没有技巧，但卡在这里的人最多。</p>
+
+          <h3>一次性准备</h3>
+          <ul>
+            <li><b>开发者账号</b>：Chrome Web Store 开发者后台注册，一次性 5 美元，需要一张能扣外币的卡。</li>
+            <li><b>打包</b>：把插件文件夹压成 zip，<b>根目录下就是 manifest.json</b>，不要多套一层文件夹——这是最常见的上传失败原因。</li>
+            <li><b>图标</b>：128×128 的 PNG，商店列表用；插件里还要 16 / 32 / 48 三个尺寸。</li>
+            <li><b>截图</b>：1280×800 或 640×400，至少一张，最多五张。第一张决定点击率，放「用前 / 用后」的对比，别放 logo。</li>
+            <li><b>隐私政策链接</b>：只要收集任何用户数据（包括统计），就必须有一个能打开的页面说明收什么、存哪、给谁。</li>
+          </ul>
+
+          <h3>四类最常见的拒审理由</h3>
+          <table>
+            <thead>
+              <tr><th>理由</th><th>长什么样</th><th>怎么改</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>权限过宽</b></td>
+                <td>一个做笔记的插件申请了「读取所有网站数据」</td>
+                <td>换成 <code>activeTab</code> 或具体域名；权限说明里逐条写清用途</td>
+              </tr>
+              <tr>
+                <td><b>单一用途不清</b></td>
+                <td>又做截图、又做翻译、又做下载</td>
+                <td>拆成多个插件，或砍到只剩一个主功能</td>
+              </tr>
+              <tr>
+                <td><b>远程代码</b></td>
+                <td>从 CDN 加载脚本、用 <code>eval</code> 执行字符串</td>
+                <td>所有逻辑打在包内，MV3 明确禁止远程执行</td>
+              </tr>
+              <tr>
+                <td><b>描述与功能不符</b></td>
+                <td>描述里承诺「AI 总结任意网页」，实际只支持三个站点</td>
+                <td>描述写实，限制写在显眼位置</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            审核时间从几小时到几天不等。被拒不要重提交同一个包，先读拒审邮件里引用的那一条政策，
+            改完在备注里写清「改了什么」，通过率会高很多。
+          </p>
+
+          <div class="callout">
+            <b>关于国内网络</b>
+            <p>开发者后台和商店页需要稳定访问，上传大包时容易断，建议在网络好的时候一次性做完。这属于操作成本，不是技术问题，但确实会劝退一部分人。</p>
+          </div>
+        </section>
+
+        <!-- 06 -->
+        <section id="price" class="hb-sec">
+          <h2><span class="sec-n">06</span>收费：买断还是订阅</h2>
+          <p class="sec-lead">先证明有人愿意付，再考虑怎么付得更久。</p>
+
+          <p>
+            插件收费有个和 SaaS 不一样的现实：它没有服务器成本（除非你调 AI），
+            用户对「一个浏览器里的小工具」的心理价位也低。所以顺序应该是：
+            <b>免费版换装机量 → 买断解锁核心功能 → 有持续成本的部分才做订阅。</b>
+          </p>
+
+          <table>
+            <thead>
+              <tr><th>模式</th><th>适合的阶段</th><th>定价参考</th><th>注意</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>完全免费</b></td><td>0–1000 装机</td><td>—</td><td>先要评分和口碑，别急着收钱</td></tr>
+              <tr><td><b>免费 + 买断 Pro</b></td><td>验证付费意愿</td><td>29–69 元 / 5–15 美元</td><td>免费版要真的能用，不能是残废版</td></tr>
+              <tr><td><b>订阅</b></td><td>功能依赖云端或 AI</td><td>9–29 元 / 月</td><td>必须有持续交付，否则退订率极高</td></tr>
+              <tr><td><b>按次计费</b></td><td>AI 生成类</td><td>按 token / 次</td><td>要预先说清额度，否则差评全在「扣费不明」</td></tr>
+            </tbody>
+          </table>
+
+          <h3>最小可用的收费实现</h3>
+          <p>
+            不要一上来搭一套会员系统。最小实现只有三步：
+            <b>生成一串授权码</b>（可以是随机的，也可以带校验位）→ <b>用户填进设置页</b> →
+            <b>插件把码发到一个校验接口，返回 true/false</b>。
+          </p>
+          <ul>
+            <li><b>校验接口</b>可以用云函数，也可以先用一张静态的授权码表（早期几十个用户足够）。</li>
+            <li><b>收款</b>：海外走 Paddle、Lemon Squeezy 这类 Merchant of Record，它们替你处理税和支付合规；国内早期用个人收款码 + 手动发码，量大了再换。</li>
+            <li><b>离线可用</b>：校验通过后把结果缓存在本地，断网时按缓存走，别让用户每次打开都等一次请求。</li>
+          </ul>
+
+          <div class="callout callout-warn">
+            <b>两种做法会直接毁掉信任</b>
+            <p>一是把 API key 写进插件前端——打包后的代码是明文，等于公开送人；二是「免费试用 3 天后静默扣费」，这是投诉重灾区，也会被商店处理。收费可以贵，但要写在用户看得见的地方。</p>
+          </div>
+        </section>
+
+        <!-- 07 -->
+        <section id="grow" class="hb-sec">
+          <h2><span class="sec-n">07</span>没有商店流量怎么办</h2>
+          <p class="sec-lead">你能控制的只有三件事：商店里的关键词、商店外的一篇文、以及前 20 个评价。</p>
+
+          <h3>商店内</h3>
+          <ul>
+            <li><b>标题带关键词，但别堆。</b>「XX 助手 - 网页划词翻译」比「超级全能效率神器」有用，因为搜索匹配的是前者。</li>
+            <li><b>第一张截图说清一句话。</b>用户滑过去只有两秒，图和字要在他不读描述的情况下讲明白这是什么。</li>
+            <li><b>前 20 个评价决定排名。</b>上架头两周，主动找十个真实用过的人留评价（不要互评，不要买评，商店会查）。</li>
+            <li><b>定期更新。</b>「最近更新」是商店排序里的隐性权重，也是用户判断「这东西还活着」的唯一信号。</li>
+          </ul>
+
+          <h3>商店外</h3>
+          <p>
+            商店不会给你推荐位，流量得自己拉。资料里最有参考价值的一条其实不是插件，
+            而是一个营销逻辑很干净的小生意：小红书上 2419 个粉丝的英语账号，
+            把「每天一条香港新闻的精读」装进小程序，39.9 元卖了 430 份，成交约 1.7 万元。
+          </p>
+          <p>
+            两千粉做出四百多单，说明<b>精准度比粉丝量重要一个量级</b>。
+            她卖的不是资料包，是「每天打开就能学」的过程——新闻每天都有，内容能持续更新，用户为了新材料会不断回来。
+            这套结构可以直接搬到插件上：<b>用一个每天更新的内容场景，养一个只需要装一次的插件。</b>
+          </p>
+
+          <h3>四种拉新的实际做法</h3>
+          <ol>
+            <li><b>写过程，不写教程。</b>资料里那篇两万阅读的截图插件记录，价值不在技术，在「一个不懂代码的人真的做完了」。过程文自带可信度，教程文满地都是。</li>
+            <li><b>做一个落地页。</b>一个页面讲清：解决什么问题、一张动图、一个安装按钮、一句价格。不需要设计得多好，需要能打开。</li>
+            <li><b>去需求发生的地方。</b>做小红书工具就去小红书发，做开发者工具就去即刻、V2EX、GitHub。别在错的地方求曝光。</li>
+            <li><b>把插件当内容的一部分。</b>先有内容账号，再让插件做承接——顺序反了，插件就是个没人知道的空壳。</li>
+          </ol>
+        </section>
+
+        <!-- 08 -->
+        <section id="data" class="hb-sec">
+          <h2><span class="sec-n">08</span>数据与止损</h2>
+          <p class="sec-lead">插件后台的数字很会骗人，只看三个就够了。</p>
+
+          <table>
+            <thead>
+              <tr><th>指标</th><th>怎么算</th><th>看它判断什么</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>周新增装机</b></td><td>商店后台的 weekly installs</td><td>有没有人在找你，还是只在吃老本</td></tr>
+              <tr><td><b>7 日留存</b></td><td>装了之后 7 天内还打开过的比例</td><td>功能是不是真的被用，不是被装</td></tr>
+              <tr><td><b>付费转化</b></td><td>付费人数 / 活跃人数</td><td>这个东西值不值钱，值多少</td></tr>
+            </tbody>
+          </table>
+
+          <p>
+            最容易骗自己的是「总用户数」——它只涨不跌，卸载了也还在里面。
+            一个累计两万装机、日活 40 的插件，比一个累计八百装机、日活 600 的插件差得远。
+          </p>
+
+          <h3>三档判断</h3>
+          <table>
+            <thead>
+              <tr><th>状态</th><th>特征</th><th>该做什么</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>健康</b></td><td>周新增稳定、7 日留存 &gt; 25%、有人主动付费</td><td>加功能，做第二个能收费的点</td></tr>
+              <tr><td><b>观察</b></td><td>新增还可以，留存个位数</td><td>别看新增了，去看用户装完第一分钟做了什么——大概率是没找到入口</td></tr>
+              <tr><td><b>该停</b></td><td>连续 3 个月周新增 &lt; 20、留存 &lt; 15%、零付费</td><td>停更或下架，把时间换到下一个需求</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-tip">
+            <b>止损不是失败</b>
+            <p>一个月做一个插件、试三个方向，比一年磨一个没人要的插件更接近成事。插件这个形态最大的好处就是试错便宜——别把它做成一个舍不得放手的沉没成本。</p>
+          </div>
+        </section>
+
+        <!-- 09 -->
+        <section id="risk" class="hb-sec">
+          <h2><span class="sec-n">09</span>权限、隐私与下架风险</h2>
+          <p class="sec-lead">这一章决定你能做多久，而不是能做多大。</p>
+
+          <h3>权限：能少一条就少一条</h3>
+          <ul>
+            <li><b>只要当前页面</b>就用 <code>activeTab</code>，不要 <code>&lt;all_urls&gt;</code>。前者用户点一下才生效，后者会被审核追问，也会在安装页吓退用户。</li>
+            <li><b>能限定域名就限定</b>。只在某三个站点工作，就把这三个写进 <code>host_permissions</code>，别写「所有网站」。</li>
+            <li><b>每条权限都要能说出用途</b>。审核会问，用户也会问。答不上来的那条，删掉。</li>
+          </ul>
+
+          <h3>隐私：收什么就要说什么</h3>
+          <ul>
+            <li>不收集浏览记录、不读取页面内容上传，是这类工具最基本的信任基础——一旦被发现，商店下架加用户清零。</li>
+            <li>接了第三方统计（GA、埋点）也算收集数据，必须有隐私政策，且要在商店表单里如实勾选。</li>
+            <li>用户填的 API key 存在本地 <code>chrome.storage</code>，不要经过你的服务器，除非你明确告知并加密。</li>
+          </ul>
+
+          <h3>四种会让插件消失的情况</h3>
+          <table>
+            <thead>
+              <tr><th>风险</th><th>触发方式</th><th>能做什么</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>宿主改版</b></td><td>目标网站改了 DOM 结构，你的注入脚本全失效</td><td>选择器写得宽容一点；加一个「页面已改版」的提示，别静默失败</td></tr>
+              <tr><td><b>被站点封禁</b></td><td>站点主动检测并屏蔽扩展</td><td>提前看清对方条款；别做绕过付费墙、批量抓取这类事</td></tr>
+              <tr><td><b>商店政策</b></td><td>单一用途、诱导评价、滥用通知</td><td>上架前把政策页读一遍，比被拒三次省时间</td></tr>
+              <tr><td><b>被抄袭</b></td><td>功能被整包复制，换个图标重新上架</td><td>靠更新速度和用户关系；代码混淆能提高门槛，但拦不住决心</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout callout-warn">
+            <b>一条硬底线</b>
+            <p>不要把 API key、账号密码、用户数据写进前端代码或打包进插件。打包后的 JS 是明文的，任何人解压就能看到。这类事故不是「可能发生」，是「早晚发生」。</p>
+          </div>
+
+          <h3>还有一层：AI 生成代码的账</h3>
+          <ul>
+            <li><b>依赖来源不明</b>：AI 会建议你装一些你没听过的包，装之前查一下下载量和最近维护时间。</li>
+            <li><b>许可证污染</b>：复制来的代码可能带 GPL，商用要看清；不确定就自己重写那一段。</li>
+            <li><b>它写的注释不算文档</b>：三个月后你自己也看不懂，留一份「每个文件干什么」的说明，比省那十分钟值。</li>
+          </ul>
+        </section>
+
+        <div class="hb-foot">
+          <p>
+            这份手册会跟着实操更新。另一本讲在小红书卖虚拟资料的，在<a href="/startup/handbook/">AI 虚拟产品实战手册</a>；
+            想看实际下场的结果，回<a href="/startup/">创业专栏</a>。
+          </p>
+          <p class="hb-foot-note">
+            案例与数据整理自资料库项目文档《023_Chrome AI插件开发》（55 条主题，2026 年 11 月 20 日更新）。
+            其中 6 条与插件直接相关，其余为内容号风向标，未采用。
+            商店政策、审核标准、开发者费用随时会变，动手前请以 Chrome Web Store 官方文档为准。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hb { padding-bottom: 80px; }
+
+  .hb-kicker {
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 10px;
+  }
+  :global(.page-head) .hb-source {
+    margin-top: 14px; max-width: 720px;
+    font-size: 12.5px; line-height: 1.8; color: var(--muted);
+  }
+
+  .hb-layout {
+    display: grid; grid-template-columns: 200px minmax(0, 1fr);
+    gap: 56px; margin-top: 44px; align-items: start;
+  }
+  .hb-toc {
+    position: sticky; top: 96px;
+    max-height: calc(100vh - 130px); overflow-y: auto;
+    padding-right: 6px;
+  }
+  .toc-head {
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px; padding-left: 10px;
+  }
+  .hb-toc nav { display: grid; gap: 1px; }
+  .hb-toc a {
+    display: flex; gap: 9px; align-items: baseline;
+    padding: 7px 10px; border-radius: 8px;
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color .15s, background .15s, border-color .15s;
+  }
+  .hb-toc a:hover { color: var(--text); background: var(--surface-2); }
+  .hb-toc a.active {
+    color: var(--accent); background: var(--accent-soft);
+    border-left-color: var(--accent); font-weight: 600;
+  }
+  .toc-n {
+    font-size: 10.5px; font-variant-numeric: tabular-nums;
+    opacity: .55; flex-shrink: 0;
+  }
+
+  .hb-toc-mobile { display: none; }
+
+  .hb-main { min-width: 0; max-width: 760px; }
+  .hb-sec { scroll-margin-top: 92px; }
+  .hb-sec + .hb-sec { margin-top: 60px; padding-top: 46px; border-top: 1px solid var(--border); }
+
+  .hb-sec h2 {
+    display: flex; align-items: baseline; gap: 12px;
+    font-size: 23px; letter-spacing: -.01em; line-height: 1.4;
+  }
+  .sec-n {
+    font-size: 12px; font-weight: 700; letter-spacing: .06em;
+    color: var(--accent); font-variant-numeric: tabular-nums;
+    padding-top: 3px;
+  }
+  .sec-lead {
+    margin-top: 10px; font-size: 14px; line-height: 1.8;
+    color: var(--muted); padding-left: 32px;
+  }
+
+  .hb-sec h3 {
+    margin-top: 34px; font-size: 16px;
+    padding-left: 12px; border-left: 3px solid var(--accent);
+    line-height: 1.5;
+  }
+  .hb-sec p { margin-top: 13px; font-size: 14.5px; line-height: 1.9; color: var(--text-soft); }
+  .hb-sec ul, .hb-sec ol { margin-top: 13px; padding-left: 22px; display: grid; gap: 9px; }
+  .hb-sec li { font-size: 14.5px; line-height: 1.85; color: var(--text-soft); }
+  .hb-sec li b, .hb-sec p b { color: var(--text); font-weight: 650; }
+  .hb-sec a { color: var(--accent); }
+  .hb-sec code {
+    padding: 1px 5px; border-radius: 4px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: var(--text);
+  }
+
+  .path {
+    margin-top: 10px; padding: 10px 14px;
+    background: var(--surface-2); border-radius: 8px;
+    font-size: 12.5px !important; color: var(--muted) !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    line-height: 1.7 !important; overflow-x: auto; white-space: pre-wrap;
+  }
+
+  table {
+    width: 100%; margin-top: 16px; border-collapse: collapse;
+    font-size: 13px; line-height: 1.75;
+    border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; display: table;
+  }
+  thead th {
+    background: var(--surface-2); text-align: left;
+    padding: 10px 14px; font-weight: 650; color: var(--text);
+    font-size: 12.5px; border-bottom: 1px solid var(--border);
+  }
+  tbody td {
+    padding: 11px 14px; color: var(--text-soft);
+    border-bottom: 1px solid var(--border); vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td b { color: var(--text); }
+  tbody td small { color: var(--muted); font-size: 11.5px; }
+
+  .flow {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-top: 20px;
+  }
+  .flow-item {
+    padding: 15px 16px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+    display: grid; gap: 4px;
+  }
+  .flow-n {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .08em;
+    color: var(--accent); font-variant-numeric: tabular-nums;
+  }
+  .flow-item b { font-size: 14px; }
+  .flow-item small { font-size: 12px; line-height: 1.65; color: var(--muted); }
+
+  .callout {
+    margin-top: 20px; padding: 16px 18px;
+    background: var(--surface-2); border-radius: 12px;
+    border-left: 3px solid var(--border);
+  }
+  .callout > b {
+    display: block; font-size: 13px; color: var(--text);
+    margin-bottom: 6px; letter-spacing: .01em;
+  }
+  .callout p { margin-top: 8px; font-size: 13.5px; line-height: 1.85; }
+  .callout p:first-of-type { margin-top: 0; }
+  .callout-tip { border-left-color: var(--accent); background: var(--accent-soft); }
+  .callout-warn { border-left-color: #f59e0b; background: color-mix(in srgb, #f59e0b 9%, transparent); }
+
+  .hb-foot {
+    margin-top: 64px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px; line-height: 1.85; color: var(--muted);
+  }
+  .hb-foot a { color: var(--accent); }
+  .hb-foot-note { margin-top: 12px; font-size: 12px; opacity: .85; }
+
+  @media (max-width: 1024px) {
+    .hb-layout { grid-template-columns: 170px minmax(0, 1fr); gap: 36px; }
+  }
+
+  @media (max-width: 860px) {
+    .hb-layout { display: block; margin-top: 28px; }
+    .hb-toc { display: none; }
+    .hb-main { max-width: none; }
+
+    .hb-toc-mobile {
+      display: block; margin-bottom: 30px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 4px 16px;
+    }
+    .hb-toc-mobile summary {
+      padding: 12px 0; cursor: pointer; font-size: 13.5px;
+      font-weight: 600; color: var(--text); list-style: none;
+    }
+    .hb-toc-mobile summary::-webkit-details-marker { display: none; }
+    .hb-toc-mobile summary::after { content: '＋'; float: right; color: var(--muted); font-weight: 400; }
+    .hb-toc-mobile[open] summary::after { content: '－'; }
+    .hb-toc-mobile nav { display: grid; gap: 2px; padding: 4px 0 12px; border-top: 1px solid var(--border); }
+    .hb-toc-mobile nav a {
+      display: flex; gap: 9px; padding: 8px 2px;
+      font-size: 13.5px; color: var(--text-soft); text-decoration: none;
+    }
+
+    .flow { grid-template-columns: repeat(2, 1fr); }
+    .hb-sec h2 { font-size: 20px; }
+    .sec-lead { padding-left: 0; }
+    .hb-sec p, .hb-sec li { font-size: 14px; }
+
+    table { font-size: 12.5px; }
+    thead th { padding: 8px 9px; font-size: 11.5px; line-height: 1.5; }
+    tbody td { padding: 9px; line-height: 1.7; }
+    tbody td:first-child { color: var(--text); font-weight: 600; }
+  }
+
+  @media (max-width: 520px) {
+    .flow {
+      grid-template-columns: 1fr; gap: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .flow-item {
+      grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px;
+      padding: 13px 16px; border: none; border-bottom: 1px solid var(--border);
+      border-radius: 0; background: none;
+    }
+    .flow-item:last-child { border-bottom: none; }
+    .flow-n { grid-row: 1 / span 2; align-self: start; padding-top: 2px; }
+    .flow-item b { grid-column: 2; font-size: 13.5px; }
+    .flow-item small { grid-column: 2; font-size: 11.5px; }
+
+    .hb-sec + .hb-sec { margin-top: 48px; padding-top: 36px; }
+  }
+</style>
+
+<script>
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('#toc-nav a'));
+  const secs = Array.from(document.querySelectorAll<HTMLElement>('.hb-sec'));
+  if (links.length && secs.length) {
+    let ticking = false;
+    const update = () => {
+      let current = secs[0];
+      for (const s of secs) {
+        if (s.getBoundingClientRect().top <= 150) current = s;
+      }
+      links.forEach((a) => a.classList.toggle('active', a.dataset.target === current.id));
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+
+  const mobileToc = document.querySelector<HTMLDetailsElement>('.hb-toc-mobile');
+  mobileToc?.querySelectorAll<HTMLAnchorElement>('a').forEach((a) => {
+    a.addEventListener('click', (ev) => {
+      const id = a.getAttribute('href')?.replace('#', '');
+      const el = id ? document.getElementById(id) : null;
+      if (!el) return;
+      ev.preventDefault();
+      mobileToc.open = false;
+      window.setTimeout(() => {
+        const y = Math.max(el.getBoundingClientRect().top + window.scrollY - 96, 0);
+        const root = document.documentElement;
+        const prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, y);
+        root.style.scrollBehavior = prev;
+        history.replaceState(null, '', `#${id}`);
+      }, 60);
+    });
+  });
+</script>
