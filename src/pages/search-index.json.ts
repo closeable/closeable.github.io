@@ -40,7 +40,7 @@ export const GET: APIRoute = async () => {
       url: `/tools/#${t.id}`,
       type: '工具' as const,
     })),
-    { title: '首页', desc: '小天的 AI 小作坊，技术手记与 AI 小游戏', category: '页面', tags: [], url: '/', type: '页面' as const },
+    { title: '首页', desc: '小天的AI作坊，技术手记与 AI 小游戏', category: '页面', tags: [], url: '/', type: '页面' as const },
     { title: '全部文章', desc: '按分类或标签筛选，搜索所有技术手记', category: '页面', tags: [], url: '/blog/', type: '页面' as const },
     { title: '小游戏合集', desc: '用 AI 做的轻松一刻，点开即玩', category: '页面', tags: [], url: '/games/', type: '页面' as const },
     { title: 'AI 提示词库', desc: '结构化提示词模板，按分类筛选、一键复制', category: '页面', tags: [], url: '/prompts/', type: '页面' as const },

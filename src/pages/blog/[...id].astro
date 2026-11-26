@@ -32,11 +32,11 @@ const articleSchema = {
   keywords: post.data.tags.join(', '),
   mainEntityOfPage: new URL(`/blog/${post.id}/`, Astro.site ?? new URL('https://closeable.github.io')).href,
   author: { '@type': 'Person', name: '小天' },
-  publisher: { '@type': 'Organization', name: '小天的 AI 小作坊' },
+  publisher: { '@type': 'Organization', name: '小天的AI作坊' },
 };
 ---
 
-<BaseLayout title={`${post.data.title} · 小天的 AI 小作坊`} description={post.data.description} schema={articleSchema}>
+<BaseLayout title={`${post.data.title} · 小天的AI作坊`} description={post.data.description} schema={articleSchema}>
   <div class="container article-layout">
     <article class="article-main">
       <header class="article-header">

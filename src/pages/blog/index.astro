@@ -12,7 +12,7 @@ const tags = [...groupBy(posts.flatMap((p) => p.data.tags), (tag) => tag).entrie
   .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, 'zh-CN'));
 ---
 
-<BaseLayout title="文章 · 小天的 AI 小作坊" description="所有文章，按分类或标签筛选，也可搜索标题、摘要与标签。">
+<BaseLayout title="文章 · 小天的AI作坊" description="所有文章，按分类或标签筛选，也可搜索标题、摘要与标签。">
   <div class="container">
     <div class="page-head">
       <h1>全部文章</h1>

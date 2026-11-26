@@ -15,7 +15,7 @@ interface Props { category: string; items: Post[]; }
 const { category, items } = Astro.props;
 ---
 
-<BaseLayout title={`${category} · 小天的 AI 小作坊`} description={`${category} 分类下的全部文章。`}>
+<BaseLayout title={`${category} · 小天的AI作坊`} description={`${category} 分类下的全部文章。`}>
   <div class="container">
     <div class="page-head">
       <h1>{category}</h1>
