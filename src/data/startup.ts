@@ -30,6 +30,16 @@ export const principles = [
 
 export const projects: Project[] = [
   {
+    id: 'pension-calculator',
+    name: '养老金测算器',
+    status: '开发完成',
+    progress: 80,
+    desc: '一个工具类微信小程序：选城市自动带出当地计发基数，按官方公式测算退休后每月能领多少，支持保存方案与结果卡片分享。全程没有手写代码。',
+    stack: ['微信小程序', 'AI 视觉识别', '本地存储'],
+    note: '第一版提审因代码包超过 2MB 被拒，排掉图片素材后重新提交。完整过程写在手记《用 AI 做出第一个微信小程序》里。',
+    updated: '2026-11',
+  },
+  {
     id: 'idiom-miniapp',
     name: '成语小程序',
     status: '立项中',
