@@ -320,4 +320,8 @@ button, input { font: inherit; }
   .post-nav { grid-template-columns: 1fr; }
   .post-nav .next { text-align: left; }
   .row-date { width: 68px; }
+  /* 手机端表格：压缩内边距；4 列以上的宽表给单元格保底宽度，靠表格内部横向滚动，而不是把首列挤成竖排 */
+  .prose th, .prose td { padding: 8px 10px; font-size: 13px; }
+  .prose table:has(thead th:nth-child(4)) th,
+  .prose table:has(thead th:nth-child(4)) td { min-width: 104px; }
 }
