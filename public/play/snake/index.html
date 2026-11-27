@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-<title>霓虹贪吃蛇</title>
+<title>小天贪吃蛇</title>
 <style>
   :root {
     --bg: #f7f8fc; --surface: #ffffff; --border: #e6e9f0;
@@ -48,11 +48,12 @@
   }
   .combo-pill.show { display: inline-block; }
   @keyframes comboPop { 0% { transform: scale(.6); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
-  #mute-btn {
+  #mute-btn, #pause-btn {
     border: 1px solid var(--border); background: transparent; color: var(--muted);
     cursor: pointer; font-size: 15px; line-height: 1; padding: 4px 8px; border-radius: 8px;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
   }
-  #mute-btn:hover { color: var(--text); border-color: var(--accent); }
+  #mute-btn:hover, #pause-btn:hover { color: var(--text); border-color: var(--accent); }
   .stage { position: relative; }
   canvas {
     display: block; background: var(--surface);
@@ -68,6 +69,10 @@
     text-align: center; padding: 20px;
   }
   .overlay.hidden { display: none; }
+  .brand-mark {
+    font-size: 11px; font-weight: 700; letter-spacing: .16em;
+    color: var(--muted); opacity: .78;
+  }
   .overlay h2 {
     font-size: 26px; letter-spacing: -.02em;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -95,6 +100,10 @@
   .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 45%, transparent); }
   .btn:active { transform: scale(.97); }
   .tip { font-size: 12.5px; color: var(--muted); }
+  @media (max-width: 420px) {
+    .hud { gap: 10px; padding: 6px 12px; font-size: 14px; }
+    .tip { font-size: 11.5px; }
+  }
   /* 画布较矮时收紧结算卡，保证覆盖层始终收在画布内、不压 HUD */
   @media (max-height: 620px) {
     body { gap: 8px; padding: 8px; }
@@ -112,17 +121,19 @@
     <div><span>得分</span><b id="score">0</b></div>
     <div><span>最高分</span><b id="best">0</b></div>
     <div class="combo-pill" id="combo-pill">x2 连击</div>
+    <button id="pause-btn" title="暂停 / 继续（空格）">⏸</button>
     <button id="mute-btn" title="静音切换">🔊</button>
   </div>
   <div class="stage">
     <canvas id="cv" width="480" height="480"></canvas>
     <div class="overlay" id="overlay">
-      <h2 id="ov-title">🐍 霓虹贪吃蛇</h2>
-      <p id="ov-text">方向键 / WASD 控制方向<br>手机上滑动屏幕即可转向</p>
+      <div class="brand-mark">小天的AI作坊 · 出品</div>
+      <h2 id="ov-title">🐍 小天贪吃蛇</h2>
+      <p id="ov-text">方向键 / WASD 控制方向，空格暂停<br>手机上滑动屏幕即可转向</p>
       <button class="btn" id="start-btn">开始游戏</button>
     </div>
   </div>
-  <div class="tip">按 P 或点击画布暂停 · 连吃有连击加分 · ✦ 金豆限时高分</div>
+  <div class="tip">点画布或空格键暂停 · 连吃有连击加分 · ✦ 金豆限时高分</div>
 
 <script>
 (() => {
@@ -136,6 +147,7 @@
   const startBtn = document.getElementById('start-btn');
   const comboPill = document.getElementById('combo-pill');
   const muteBtn = document.getElementById('mute-btn');
+  const pauseBtn = document.getElementById('pause-btn');
 
   const GRID = 24;
   const CELL = cv.width / GRID;
@@ -144,7 +156,7 @@
   const BASE_TICK = 110;
   const MIN_TICK = 65;
 
-  let snake, prevSnake, dir, nextDir, prevDir, food, special, score, best, alive, running;
+  let snake, prevSnake, dir, dirQueue, prevDir, food, special, score, best, alive, running;
   let interval = BASE_TICK, foodsEaten = 0, level = 0;
   let combo = 0, maxCombo = 0, lastEatAt = 0;
   let headTurnAt = 0, shakeT = 0, flashT = 0;
@@ -196,7 +208,7 @@
   function reset() {
     snake = [{x: 11, y: 12}, {x: 10, y: 12}, {x: 9, y: 12}];
     prevSnake = snake.map(s => ({...s}));
-    dir = {x: 1, y: 0}; nextDir = dir; prevDir = dir;
+    dir = {x: 1, y: 0}; dirQueue = []; prevDir = dir;
     score = 0; alive = true;
     interval = BASE_TICK; foodsEaten = 0; level = 0;
     combo = 0; maxCombo = 0; lastEatAt = 0;
@@ -265,7 +277,7 @@
   function tick() {
     if (!running || !alive) return;
     prevDir = dir;
-    dir = nextDir;
+    if (dirQueue.length) dir = dirQueue.shift();
     prevSnake = snake.map(s => ({...s}));
     const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
     const hitWall = head.x < 0 || head.y < 0 || head.x >= GRID || head.y >= GRID;
@@ -322,7 +334,9 @@
   }
 
   function die() {
+    const prevBest = best;
     alive = false; running = false; acc = 0;
+    pauseBtn.textContent = '⏸';
     comboPill.classList.remove('show');
     shakeT = 1; flashT = 1;
     // 蛇身碎裂爆散
@@ -347,7 +361,7 @@
         `<div class="st"><b>${best}</b>历史最高</div>`;
       ovText.after(st);
       document.querySelector('.overlay .new-best')?.remove();
-      if (score >= best && score > 0) {
+      if (score > prevBest && score > 0) {
         const nb = document.createElement('div');
         nb.className = 'new-best show';
         nb.textContent = '🏆 新纪录！';
@@ -362,27 +376,31 @@
     reset();
     overlay.classList.add('hidden');
     running = true;
+    pauseBtn.textContent = '⏸';
     lastFrame = performance.now();
   }
 
   function togglePause() {
     if (!alive) return;
     running = !running;
+    pauseBtn.textContent = running ? '⏸' : '▶';
     if (running) {
       overlay.classList.add('hidden');
       lastFrame = performance.now();
     } else {
       ovTitle.textContent = '⏸ 已暂停';
-      ovText.textContent = '点击继续按钮回到游戏';
+      ovText.textContent = '点画布、按空格或点按钮继续';
       startBtn.textContent = '继续';
       overlay.classList.remove('hidden');
     }
   }
 
   function setDir(x, y) {
-    if (!running) return;
-    if (dir.x === -x && dir.y === -y) return; // 不能直接掉头
-    nextDir = {x, y};
+    if (!running || !alive) return;
+    const last = dirQueue.length ? dirQueue[dirQueue.length - 1] : dir;
+    if (last.x === x && last.y === y) return;      // 同向无需排队
+    if (last.x === -x && last.y === -y) return;    // 不能直接掉头
+    if (dirQueue.length < 2) dirQueue.push({x, y}); // 最多缓存两步，避免快速连按自杀
   }
 
   // ---------- 特效 ----------
@@ -596,6 +614,10 @@
     else if (['arrowleft', 'a'].includes(k)) { e.preventDefault(); setDir(-1, 0); }
     else if (['arrowright', 'd'].includes(k)) { e.preventDefault(); setDir(1, 0); }
     else if (k === 'p') togglePause();
+    else if (k === ' ' || k === 'spacebar') {
+      e.preventDefault();
+      if (!alive) start(); else togglePause();
+    }
   });
 
   // 触屏滑动
@@ -609,6 +631,12 @@
     if (Math.abs(dx) < 12 && Math.abs(dy) < 12) return;
     if (Math.abs(dx) > Math.abs(dy)) setDir(dx > 0 ? 1 : -1, 0);
     else setDir(0, dy > 0 ? 1 : -1);
+  });
+
+  pauseBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    initAudio();
+    if (!alive) start(); else togglePause();
   });
 
   startBtn.addEventListener('click', () => {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-<title>霓虹跳跃</title>
+<title>小天跳跃</title>
 <style>
   :root {
     --bg: #f7f8fc; --surface: #ffffff; --border: #e6e9f0;
@@ -145,7 +145,7 @@
     <canvas id="cv" width="880" height="420"></canvas>
     <div class="overlay" id="overlay">
       <div class="badge" id="ov-badge">🏃</div>
-      <h2 id="ov-title">霓虹跳跃</h2>
+      <h2 id="ov-title">小天跳跃</h2>
       <p id="ov-text">空格 / ↑ / 点击屏幕跳跃<br>长按跳得更高，躲开地刺和飞鸟</p>
       <div class="stats" id="ov-stats"></div>
       <button class="btn" id="start-btn">开始游戏</button>
@@ -456,7 +456,7 @@
   function showIdle() {
     ovBadge.textContent = '🏃';
     ovTitle.dataset.kind = '';
-    ovTitle.textContent = '霓虹跳跃';
+    ovTitle.textContent = '小天跳跃';
     ovText.innerHTML = '空格 / ↑ / 点击屏幕跳跃<br>长按跳更高 · 空中再点一次二段跳';
     if (best > 0) {
       ovStats.className = 'stats show';

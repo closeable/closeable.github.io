@@ -14,7 +14,7 @@ export interface Game {
 export const games: Game[] = [
   {
     slug: 'gomoku',
-    title: '霓虹五子棋',
+    title: '小天五子棋',
     emoji: '⚫',
     cover: '/play/gomoku/preview.png',
     desc: '经典五子棋人机对战：你执黑先行，AI 执白应战。四档难度（新手 / 会攻防 / 六层算路 / 会算杀），AI 会堵四防三、抢双威胁、连续冲四追胜，配上柔和的背景音乐与落子音效，支持悔棋与胜负战绩统计。',
@@ -34,7 +34,7 @@ export const games: Game[] = [
   },
   {
     slug: 'jump',
-    title: '霓虹跳跃',
+    title: '小天跳跃',
     emoji: '🏃',
     desc: '无尽跑酷躲避：空格 / ↑ / 触屏点击跳跃，长按跳更高，空中还能二段跳。躲开地刺和飞鸟，速度会越跑越快，本地记录最高分。',
     tag: '跑酷',
@@ -43,9 +43,9 @@ export const games: Game[] = [
   },
   {
     slug: 'snake',
-    title: '霓虹贪吃蛇',
+    title: '小天贪吃蛇',
     emoji: '🐍',
-    desc: '经典贪吃蛇的霓虹重制版。方向键 / WASD / 触屏滑动操控，吃豆子变长，撞墙或咬到自己即结束，本地记录最高分。',
+    desc: '经典贪吃蛇的小天定制版。方向键 / WASD / 空格 / 触屏滑动操控，吃豆变长、连击加分、金豆限时，撞墙或咬到自己即结束，本地记录最高分。',
     tag: '街机',
     aspect: '1 / 1',
     date: '2026-11-24',
