@@ -9,7 +9,7 @@ export interface AiTool {
   license: string;
 }
 
-export const toolCategories = ['大模型与推理', 'AI 编程', '绘画与多模态', 'Agent 与工作流', 'RAG 与知识库', '语音与视频'] as const;
+export const toolCategories = ['大模型与推理', 'AI 编程', '绘画与多模态', 'Agent 与工作流', 'RAG 与知识库', '语音与视频', '副业与赚钱'] as const;
 
 export const tools: AiTool[] = [
   // ---- 大模型与推理 ----
@@ -321,6 +321,38 @@ export const tools: AiTool[] = [
     tags: ['字幕', '说话人分离', '对齐'],
     url: 'https://github.com/m-bain/whisperX',
     stars: '12k+',
+    license: 'MIT',
+  },
+
+  // ---- 副业与赚钱 ----
+  {
+    id: 'ai-money-maker-handbook',
+    name: 'AI 搞钱手册',
+    desc: '持续更新的 AI 副业案例与方法合集：卖铲子、做内容、出海 SaaS 都有，还附「程序员副业赚钱宝典」长篇连载。是选题库，不是能跑的代码。',
+    category: '副业与赚钱',
+    tags: ['副业', '案例合集', '中文'],
+    url: 'https://github.com/XiaomingX/ai-money-maker-handbook',
+    stars: '8.2k+',
+    license: 'Apache-2.0',
+  },
+  {
+    id: 'awesome-systematic-trading',
+    name: 'Awesome Systematic Trading',
+    desc: '量化交易的资源总目录：回测与实盘框架、券商 API、数据源、策略、书籍课程都分好类。做策略前先来这里找现成的轮子，省掉自己乱搜的时间。',
+    category: '副业与赚钱',
+    tags: ['量化交易', '资源清单', 'Python'],
+    url: 'https://github.com/paperswithbacktest/awesome-systematic-trading',
+    stars: '15.8k+',
+    license: '未声明',
+  },
+  {
+    id: 'ai-goofish-monitor',
+    name: '闲鱼智能监控',
+    desc: '用 Playwright + AI 盯闲鱼：一句话描述需求，多任务定时抓商品、图片一起判断结果，企业微信 / Bark / Telegram 都能推，带 Web 后台，Docker 一条命令起。注意控制频率、遵守平台规则。',
+    category: '副业与赚钱',
+    tags: ['闲鱼', 'Agent', 'Docker', '中文友好'],
+    url: 'https://github.com/Usagi-org/ai-goofish-monitor',
+    stars: '21k+',
     license: 'MIT',
   },
 ];
