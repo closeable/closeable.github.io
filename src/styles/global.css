@@ -212,6 +212,13 @@ button, input { font: inherit; }
 .prose figure img { display: block; width: 100%; margin: 0; border-radius: 10px; }
 .prose figure.qr { max-width: 264px; margin: 26px auto; padding: 8px; }
 .prose figure.qr figcaption { text-align: center; }
+/* 文中内嵌的架构图 / 流程图：SVG 直接继承主题变量，窄屏横向滚动而不是把字缩没 */
+.prose figure.diagram { overflow-x: auto; padding: 14px 12px 8px; }
+.prose figure.diagram svg {
+  display: block; width: 100%; min-width: 600px; height: auto;
+  font-family: var(--font);
+}
+.prose figure.diagram figcaption { margin-top: 12px; }
 .prose figcaption {
   margin: 8px 6px 4px; font-size: 12.5px; line-height: 1.7;
   color: var(--muted); text-align: center;
