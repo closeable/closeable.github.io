@@ -20,7 +20,7 @@ export const tools: AiTool[] = [
     category: '大模型与推理',
     tags: ['本地部署', '易用'],
     url: 'https://github.com/ollama/ollama',
-    stars: '150k+',
+    stars: '188k+',
     license: 'MIT',
   },
   {
@@ -30,7 +30,7 @@ export const tools: AiTool[] = [
     category: '大模型与推理',
     tags: ['量化', '高性能', 'C++'],
     url: 'https://github.com/ggml-org/llama.cpp',
-    stars: '85k+',
+    stars: '136k+',
     license: 'MIT',
   },
   {
@@ -40,7 +40,7 @@ export const tools: AiTool[] = [
     category: '大模型与推理',
     tags: ['推理服务', '高吞吐', 'Python'],
     url: 'https://github.com/vllm-project/vllm',
-    stars: '60k+',
+    stars: '97k+',
     license: 'Apache-2.0',
   },
   {
@@ -50,7 +50,7 @@ export const tools: AiTool[] = [
     category: '大模型与推理',
     tags: ['模型库', 'Python', '生态'],
     url: 'https://github.com/huggingface/transformers',
-    stars: '145k+',
+    stars: '169k+',
     license: 'Apache-2.0',
   },
   {
@@ -60,7 +60,7 @@ export const tools: AiTool[] = [
     category: '大模型与推理',
     tags: ['Apple Silicon', '本地'],
     url: 'https://github.com/ml-explore/mlx',
-    stars: '18k+',
+    stars: '29k+',
     license: 'MIT',
   },
 
@@ -72,7 +72,7 @@ export const tools: AiTool[] = [
     category: 'AI 编程',
     tags: ['VS Code', 'Agent', '编码'],
     url: 'https://github.com/cline/cline',
-    stars: '45k+',
+    stars: '72k+',
     license: 'Apache-2.0',
   },
   {
@@ -82,8 +82,8 @@ export const tools: AiTool[] = [
     category: 'AI 编程',
     tags: ['终端', 'Git', '编码'],
     url: 'https://github.com/Aider-AI/aider',
-    stars: '38k+',
-    license: 'MIT',
+    stars: '50k+',
+    license: 'Apache-2.0',
   },
   {
     id: 'opencode',
@@ -91,8 +91,8 @@ export const tools: AiTool[] = [
     desc: '终端里的开源 AI 编码 Agent，支持多模型切换，自带 TUI 和 LSP 集成。',
     category: 'AI 编程',
     tags: ['终端', 'TUI', 'Agent'],
-    url: 'https://github.com/sst/opencode',
-    stars: '25k+',
+    url: 'https://github.com/anomalyco/opencode',
+    stars: '229k+',
     license: 'MIT',
   },
   {
@@ -102,17 +102,7 @@ export const tools: AiTool[] = [
     category: 'AI 编程',
     tags: ['IDE', '代码补全', '可定制'],
     url: 'https://github.com/continuedev/continue',
-    stars: '30k+',
-    license: 'Apache-2.0',
-  },
-  {
-    id: 'tabby',
-    name: 'Tabby',
-    desc: '可自托管的 AI 编程助手，代码补全和聊天都有，企业内网也能自己部署一套。',
-    category: 'AI 编程',
-    tags: ['自托管', '代码补全'],
-    url: 'https://github.com/TabbyML/tabby',
-    stars: '17k+',
+    stars: '36k+',
     license: 'Apache-2.0',
   },
 
@@ -123,30 +113,11 @@ export const tools: AiTool[] = [
     desc: '节点式的图像生成工作流，把生成过程拆成可连的模块，玩图和做生产流水线都靠它。',
     category: '绘画与多模态',
     tags: ['图像生成', '工作流', 'Stable Diffusion'],
-    url: 'https://github.com/comfyanonymous/ComfyUI',
-    stars: '105k+',
+    url: 'https://github.com/Comfy-Org/ComfyUI',
+    stars: '148k+',
     license: 'GPL-3.0',
   },
-  {
-    id: 'stable-diffusion-webui',
-    name: 'SD WebUI',
-    desc: 'AUTOMATIC1111 那套经典界面，插件生态庞大，入门 Stable Diffusion 基本绕不开。',
-    category: '绘画与多模态',
-    tags: ['图像生成', 'WebUI', '插件'],
-    url: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui',
-    stars: '130k+',
-    license: 'AGPL-3.0',
-  },
-  {
-    id: 'fooocus',
-    name: 'Fooocus',
-    desc: '把复杂参数收起来的出图工具，不用调一堆 setting 也能出高质量图，新手友好。',
-    category: '绘画与多模态',
-    tags: ['图像生成', '易用'],
-    url: 'https://github.com/lllyasviel/Fooocus',
-    stars: '40k+',
-    license: 'GPL-3.0',
-  },
+
   {
     id: 'flux',
     name: 'FLUX',
@@ -154,7 +125,7 @@ export const tools: AiTool[] = [
     category: '绘画与多模态',
     tags: ['图像模型', '开源权重'],
     url: 'https://github.com/black-forest-labs/flux',
-    stars: '20k+',
+    stars: '26k+',
     license: 'Apache-2.0',
   },
   {
@@ -164,7 +135,7 @@ export const tools: AiTool[] = [
     category: '绘画与多模态',
     tags: ['抠图', '图像处理', '命令行'],
     url: 'https://github.com/danielgatis/rembg',
-    stars: '35k+',
+    stars: '26k+',
     license: 'MIT',
   },
 
@@ -176,7 +147,7 @@ export const tools: AiTool[] = [
     category: 'Agent 与工作流',
     tags: ['低代码', '平台', '中文友好'],
     url: 'https://github.com/langgenius/dify',
-    stars: '110k+',
+    stars: '162k+',
     license: 'Apache-2.0',
   },
   {
@@ -186,7 +157,7 @@ export const tools: AiTool[] = [
     category: 'Agent 与工作流',
     tags: ['自动化', '集成', '工作流'],
     url: 'https://github.com/n8n-io/n8n',
-    stars: '110k+',
+    stars: '212k+',
     license: 'Fair-code',
   },
   {
@@ -196,7 +167,7 @@ export const tools: AiTool[] = [
     category: 'Agent 与工作流',
     tags: ['框架', 'Python', 'TypeScript'],
     url: 'https://github.com/langchain-ai/langchain',
-    stars: '105k+',
+    stars: '150k+',
     license: 'MIT',
   },
   {
@@ -206,19 +177,10 @@ export const tools: AiTool[] = [
     category: 'Agent 与工作流',
     tags: ['Agent', '编排', '状态机'],
     url: 'https://github.com/langchain-ai/langgraph',
-    stars: '20k+',
+    stars: '45k+',
     license: 'MIT',
   },
-  {
-    id: 'flowise',
-    name: 'Flowise',
-    desc: '拖拽式搭 LangChain 应用，画布上连线就能做出能跑的 Agent 和 RAG 链。',
-    category: 'Agent 与工作流',
-    tags: ['低代码', '可视化', 'LangChain'],
-    url: 'https://github.com/FlowiseAI/Flowise',
-    stars: '40k+',
-    license: 'Apache-2.0',
-  },
+
   {
     id: 'dsh-game-studio',
     name: 'DSH 游戏工坊',
@@ -258,7 +220,7 @@ export const tools: AiTool[] = [
     category: 'RAG 与知识库',
     tags: ['知识库', '桌面应用', '私有化'],
     url: 'https://github.com/Mintplex-Labs/anything-llm',
-    stars: '45k+',
+    stars: '69k+',
     license: 'MIT',
   },
   {
@@ -268,7 +230,7 @@ export const tools: AiTool[] = [
     category: 'RAG 与知识库',
     tags: ['RAG', '文档解析', '中文友好'],
     url: 'https://github.com/infiniflow/ragflow',
-    stars: '35k+',
+    stars: '95k+',
     license: 'Apache-2.0',
   },
   {
@@ -278,7 +240,7 @@ export const tools: AiTool[] = [
     category: 'RAG 与知识库',
     tags: ['知识库', '企业', '中文友好'],
     url: 'https://github.com/1Panel-dev/MaxKB',
-    stars: '20k+',
+    stars: '23k+',
     license: 'GPL-3.0',
   },
   {
@@ -288,8 +250,8 @@ export const tools: AiTool[] = [
     category: 'RAG 与知识库',
     tags: ['知识库', '中文', '检索'],
     url: 'https://github.com/netease-youdao/QAnything',
-    stars: '12k+',
-    license: 'Apache-2.0',
+    stars: '14k+',
+    license: 'AGPL-3.0',
   },
 
   // ---- 语音与视频 ----
@@ -300,7 +262,7 @@ export const tools: AiTool[] = [
     category: '语音与视频',
     tags: ['语音识别', '字幕', '多语言'],
     url: 'https://github.com/openai/whisper',
-    stars: '85k+',
+    stars: '114k+',
     license: 'MIT',
   },
   {
@@ -310,8 +272,8 @@ export const tools: AiTool[] = [
     category: '语音与视频',
     tags: ['语音识别', '加速', 'CTranslate2'],
     url: 'https://github.com/SYSTRAN/faster-whisper',
-    stars: '14k+',
-    license: 'AGPL-3.0',
+    stars: '27k+',
+    license: 'MIT',
   },
   {
     id: 'fish-speech',
@@ -320,8 +282,8 @@ export const tools: AiTool[] = [
     category: '语音与视频',
     tags: ['语音合成', '声音克隆', '中文'],
     url: 'https://github.com/fishaudio/fish-speech',
-    stars: '18k+',
-    license: 'Apache-2.0',
+    stars: '34k+',
+    license: 'Fish Audio 社区许可',
   },
   {
     id: 'cosyvoice',
@@ -329,8 +291,8 @@ export const tools: AiTool[] = [
     desc: '阿里开源的多语种语音合成，支持情感、方言和零样本克隆，可控性强。',
     category: '语音与视频',
     tags: ['语音合成', '多语种', '阿里'],
-    url: 'https://github.com/FunAudioLLM/CosyVoice',
-    stars: '14k+',
+    url: 'https://github.com/QwenAudio/CosyVoice',
+    stars: '24.5k+',
     license: 'Apache-2.0',
   },
   {
@@ -340,8 +302,8 @@ export const tools: AiTool[] = [
     category: '语音与视频',
     tags: ['字幕', '说话人分离', '对齐'],
     url: 'https://github.com/m-bain/whisperX',
-    stars: '12k+',
-    license: 'MIT',
+    stars: '25.7k+',
+    license: 'BSD-2-Clause',
   },
 
   // ---- 副业与赚钱 ----
@@ -382,7 +344,7 @@ export const tools: AiTool[] = [
     category: '副业与赚钱',
     tags: ['远程工作', '资源清单', '求职'],
     url: 'https://github.com/lukasz-madon/awesome-remote-job',
-    stars: '51.2k+',
+    stars: '51k+',
     license: '未声明',
   },
 ];
